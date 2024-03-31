@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyrx76yvyfmh0"]
+
+[ext_resource type="Script" path="res://scripts/scenes/car_scene/CarController.cs" id="1_ajrom"]
+[ext_resource type="PackedScene" uid="uid://co5lswgb5u6kq" path="res://scenes/car/car.tscn" id="2_sq3hp"]
+
+[node name="car_controller" type="Node3D"]
+script = ExtResource("1_ajrom")
+
+[node name="car" parent="." instance=ExtResource("2_sq3hp")]
