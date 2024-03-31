@@ -1,40 +1,26 @@
 namespace TaxiSimulator.Scenes.CarScene.Signals {
-    
     public class SignalsProvider {
-        private static MovingBackwardSignal movingBackwardSignal = null;
-        
-        private static MovingForwardSignal movingForwardSignal = null;
+        private static MovingVerticalSignal movingVerticalSignal = null;
 
-        private static MovingLeftSignal movingLeftSignal = null;
+        private static MovingHorizontalSignal movingHorizontalSignal = null;
 
-        private static MovingRightSignal movingRightSignal = null;
-
-        public static MovingBackwardSignal MovingBackwardSignal {
+        public static MovingVerticalSignal MovingVerticalSignal {
             get {
-                movingBackwardSignal ??= new();
-                return movingBackwardSignal;
+                movingVerticalSignal ??= new();
+                return movingVerticalSignal;
             }
         }
 
-        public static MovingForwardSignal MovingForwardSignal {
+        public static MovingHorizontalSignal MovingHorizontalSignal {
             get {
-                movingForwardSignal ??= new();
-                return movingForwardSignal;
+                movingHorizontalSignal ??= new();
+                return movingHorizontalSignal;
             }
         }
 
-        public static MovingLeftSignal MovingLeftSignal {
-            get {
-                movingLeftSignal ??= new();
-                return movingLeftSignal;
-            }
-        }
-
-        public static MovingRightSignal MovingRightSignal {
-            get {
-                movingRightSignal ??= new();
-                return movingRightSignal;
-            }
+        public static void ClearSignals() {
+            movingVerticalSignal = null;
+            movingHorizontalSignal = null;
         }
     }
 }
