@@ -1,5 +1,6 @@
-using TaxiSimulator.Scenes.CarScene.Signals;
 using TaxiSimulator.Common.Helpers.Dictionary;
+using PauseSceneSignals = TaxiSimulator.Scenes.Pause.Signals;
+using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
 
 using Godot;
 
@@ -8,20 +9,27 @@ namespace TaxiSimulator.Common.Controllers {
 		public override void _Process(double delta) {
 			base._Process(delta);
 
+			CarSceneSignals.SignalsProvider.MovingVerticalSignal.Emit(
+				new CarSceneSignals.MovingAxisArgs() {
+					MovingAxis = Input.GetAxis(
+						InputActionDictionary.MoveBackward,
+						InputActionDictionary.MoveForward
+					),
+				}
+			);
 
-			SignalsProvider.MovingForwardSignal.Emit(new MovingAxisArgs() {
-				MovingAxis = Input.GetAxis(
-					InputActionDictionary.MoveForward,
-					InputActionDictionary.MoveBackward
-				),
-			});
+			CarSceneSignals.SignalsProvider.MovingHorizontalSignal.Emit(
+				new CarSceneSignals.MovingAxisArgs() {
+					MovingAxis = Input.GetAxis(
+						InputActionDictionary.MoveRight,
+						InputActionDictionary.MoveLeft
+					),
+				}
+			);
 
-			SignalsProvider.MovingLeftSignal.Emit(new MovingAxisArgs() {
-				MovingAxis = Input.GetAxis(
-					InputActionDictionary.MoveLeft,
-					InputActionDictionary.MoveRight
-				),
-			});
+			if (Input.IsActionJustPressed(InputActionDictionary.Pause)) {
+				PauseSceneSignals.SignalsProvider.ContinueButtonPressed.Emit();
+			}
 		}
 	}
 }

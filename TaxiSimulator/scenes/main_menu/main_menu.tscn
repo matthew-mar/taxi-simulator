@@ -11,6 +11,10 @@
 [ext_resource type="Script" path="res://scripts/scenes/main_menu/view/ExitButton.cs" id="9_xj1mj"]
 
 [node name="main_menu" type="Control"]
+process_mode = 3
+process_thread_group = 1
+process_thread_group_order = 0
+process_thread_messages = 0
 layout_mode = 3
 anchor_right = 1.667
 anchor_bottom = 1.667

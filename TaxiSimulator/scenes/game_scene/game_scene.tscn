@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://4xtgl17tt7gf"]
+[gd_scene load_steps=5 format=3 uid="uid://4xtgl17tt7gf"]
 
-[ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://car_controller.tscn" id="2_oxsq2"]
+[ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="2_oxsq2"]
 [ext_resource type="PackedScene" uid="uid://dv8vi6qmljoss" path="res://scenes/input_controller/input_controller.tscn" id="2_vbj4s"]
 [ext_resource type="PackedScene" uid="uid://dyupdcom14i0j" path="res://scenes/city/city.tscn" id="2_yjved"]
+[ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="4_ym044"]
 
 [node name="DriveLocation" type="Node3D"]
+process_mode = 1
 
 [node name="InputController" parent="." instance=ExtResource("2_vbj4s")]
 
@@ -16,3 +18,6 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100
 
 [node name="City" parent="." instance=ExtResource("2_yjved")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.34832, 0)
+
+[node name="pause_menu_controller" parent="." instance=ExtResource("4_ym044")]
+visible = false
