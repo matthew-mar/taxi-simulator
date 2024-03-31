@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://cgm7rn7f82fmr"]
+[gd_scene load_steps=4 format=3 uid="uid://4xtgl17tt7gf"]
 
-[node name="game_scene" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://car_controller.tscn" id="2_oxsq2"]
+[ext_resource type="PackedScene" uid="uid://dv8vi6qmljoss" path="res://scenes/input_controller/input_controller.tscn" id="2_vbj4s"]
+[ext_resource type="PackedScene" uid="uid://dyupdcom14i0j" path="res://scenes/city/city.tscn" id="2_yjved"]
+
+[node name="DriveLocation" type="Node3D"]
+
+[node name="InputController" parent="." instance=ExtResource("2_vbj4s")]
+
+[node name="CarController" parent="." instance=ExtResource("2_oxsq2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 36.3198, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)
+
+[node name="City" parent="." instance=ExtResource("2_yjved")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.34832, 0)

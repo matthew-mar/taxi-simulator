@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://cd65uyhjmjev8" path="res://common/assets/CheckersLogo.png" id="2_lbsc2"]
 [ext_resource type="Texture2D" uid="uid://c0w14jtaorgn8" path="res://common/assets/PlayButton (3).png" id="3_plbax"]
 [ext_resource type="Texture2D" uid="uid://esup2cqfu5xc" path="res://common/assets/PlayButtonHover (2).png" id="4_vxi4h"]
-[ext_resource type="Script" path="res://scripts/scenes/main_menu/ui/PlayButton.cs" id="5_4ahu1"]
+[ext_resource type="Script" path="res://scripts/scenes/main_menu/view/PlayButton.cs" id="5_4ahu1"]
 [ext_resource type="Texture2D" uid="uid://hkm3dh15jejd" path="res://common/assets/ExitButton (1).png" id="5_wff7o"]
 [ext_resource type="Texture2D" uid="uid://jx5ib0fpk55o" path="res://common/assets/ExitButtonHover (1).png" id="6_ktd6x"]
-[ext_resource type="Script" path="res://scripts/scenes/main_menu/ui/ExitButton.cs" id="9_xj1mj"]
+[ext_resource type="Script" path="res://scripts/scenes/main_menu/view/ExitButton.cs" id="9_xj1mj"]
 
 [node name="main_menu" type="Control"]
 layout_mode = 3

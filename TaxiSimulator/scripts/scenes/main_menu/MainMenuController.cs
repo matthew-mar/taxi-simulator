@@ -1,6 +1,6 @@
 using TaxiSimulator.Common;
-using TaxiSimulator.Common.Helpers;
 using TaxiSimulator.Scenes.MainMenu.Signals;
+using TaxiSimulator.Common.Helpers.Dictionary;
 
 using Godot;
 
@@ -12,7 +12,7 @@ namespace TaxiSimulator.Scenes.MainMenu {
 
 			SignalsProvider.PlayButtonPressedSignal.PlayButtonPressed += 
 				(EventSignalArgs signalArgs) => {
-					GetTree().ChangeSceneToFile(DictionaryService.GameScenePath);
+					GetTree().ChangeSceneToFile(ScenePathDictionary.GameScenePath);
 				};
 
 			SignalsProvider.ExitButtonPressedSignal.ExitButtonPressed += 
