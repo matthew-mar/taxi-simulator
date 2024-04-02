@@ -20,6 +20,7 @@ grow_vertical = 2
 script = ExtResource("1_2ej3d")
 
 [node name="continue_button" type="TextureButton" parent="."]
+process_mode = 2
 layout_mode = 0
 offset_left = 384.0
 offset_top = 384.0
@@ -30,6 +31,7 @@ texture_hover = ExtResource("2_q56i4")
 script = ExtResource("3_unlhg")
 
 [node name="main_menu_button" type="TextureButton" parent="."]
+process_mode = 2
 layout_mode = 0
 offset_left = 952.0
 offset_top = 384.0

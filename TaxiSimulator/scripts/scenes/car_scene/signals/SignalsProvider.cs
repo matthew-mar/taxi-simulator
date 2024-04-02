@@ -4,6 +4,8 @@ namespace TaxiSimulator.Scenes.CarScene.Signals {
 
         private static MovingHorizontalSignal movingHorizontalSignal = null;
 
+        private static CarStateChangedSignal carStateSignal = null;
+
         public static MovingVerticalSignal MovingVerticalSignal {
             get {
                 movingVerticalSignal ??= new();
@@ -18,9 +20,17 @@ namespace TaxiSimulator.Scenes.CarScene.Signals {
             }
         }
 
+        public static CarStateChangedSignal PositionSignal {
+            get {
+                carStateSignal ??= new();
+                return carStateSignal;
+            }
+        }
+
         public static void ClearSignals() {
             movingVerticalSignal = null;
             movingHorizontalSignal = null;
+            carStateSignal = null;
         }
     }
 }

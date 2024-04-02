@@ -11,5 +11,13 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 		public void Move(MovingAxisArgs movingArgs) {
 			EngineForce = movingArgs.MovingAxis * 10_000f;
 		}
+
+		public void BlitState() {
+			SignalsProvider.PositionSignal.Emit(new CarStateSignalArgs() {
+				CurrentPosition = GlobalPosition,
+				CurrentRotation = GlobalRotation,
+				CurrentSpeed = LinearVelocity,
+			});
+		}
 	}
 }

@@ -9,17 +9,25 @@ using Godot;
 namespace TaxiSimulator.Scenes.CarScene {
 	
 	public partial class CarController : Node3D, ISceneController {
+		private Car _car;
+
 		public override void _Ready() {
 			base._Ready();
 
-			Car car = GetNode<Car>("car");
-			CarSceneSignals.SignalsProvider.MovingVerticalSignal.MovingVertical += car.Move;
-			CarSceneSignals.SignalsProvider.MovingHorizontalSignal.MovingHorizontal += car.Turn;
+			_car = GetNode<Car>("car");
+			CarSceneSignals.SignalsProvider.MovingVerticalSignal.MovingVertical += _car.Move;
+			CarSceneSignals.SignalsProvider.MovingHorizontalSignal.MovingHorizontal += _car.Turn;
 
 			PauseSceneSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed += 
 				(EventSignalArgs args) => {
 					ClearSignals();
 				};
+		}
+
+		public override void _Process(double delta) {
+			base._Process(delta);
+
+			_car.BlitState();
 		}
 
 		public void ClearSignals() {
