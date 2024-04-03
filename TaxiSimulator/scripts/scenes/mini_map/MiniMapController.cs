@@ -1,22 +1,29 @@
-using Godot;
 using TaxiSimulator.Scenes.MiniMap.View;
-using TaxiSimulator.Scenes.CarScene.Signals;
 using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
+using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
+
+using Godot;
 
 namespace TaxiSimulator.Scenes.MiniMap {
 	public partial class MiniMapController : Control {
+		private bool _checkSignals = true;
+
 		public override void _Ready() {
 			base._Ready();
 
-			var miniMapCamera = GetNode<MiniMapCamera>(MiniMapCamera.NodePath);
+			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged += 
+				(GameSceneSignals.GameModeChangedArgs args) => {
+					_checkSignals = args.To == GameScene.GameMode.Game;
+				};
 
 			var speedText = GetNode<SpeedText>(SpeedText.NodePath);
 
-			CarSceneSignals.SignalsProvider.PositionSignal.CarStateChanged += 
-				(CarStateSignalArgs args) => {
-					miniMapCamera.FollowTargetPosition(args.CurrentPosition);
-					miniMapCamera.FollowTargetRotation(args.CurrentRotation);
-					
+			CarSceneSignals.SignalsProvider.SpeedChangedSignal.SpeedChanged +=
+				(CarSceneSignals.SpeedSignalArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
+
 					speedText.SetSpeed(args.CurrentSpeed);
 				};
 		}

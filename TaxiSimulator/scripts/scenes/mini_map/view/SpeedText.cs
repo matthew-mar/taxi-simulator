@@ -6,7 +6,7 @@ namespace TaxiSimulator.Scenes.MiniMap.View {
 
         public void SetSpeed(Vector3 speed) {
             var speedKm = speed.Length();
-            Text = $"{speedKm:f1} км/ч";
+            Text = $"[center] [color=#F7CA44] {speedKm:f1} км/ч";
         }
     }
 }

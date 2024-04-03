@@ -1,26 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://4xtgl17tt7gf"]
+[gd_scene load_steps=8 format=3 uid="uid://4xtgl17tt7gf"]
 
-[ext_resource type="PackedScene" uid="uid://b2dqquhs1bv4p" path="res://scenes/city/city.tscn" id="1_u2xbb"]
-[ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="2_oxsq2"]
+[ext_resource type="Script" path="res://scripts/scenes/game_scene/GameSceneController.cs" id="1_557g7"]
 [ext_resource type="PackedScene" uid="uid://dv8vi6qmljoss" path="res://scenes/input_controller/input_controller.tscn" id="2_vbj4s"]
-[ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="4_ym044"]
-[ext_resource type="PackedScene" uid="uid://q7y6qajrmtc7" path="res://scenes/mini_map/mini_map_controller.tscn" id="5_2vlyu"]
+[ext_resource type="PackedScene" uid="uid://beighsbus87kf" path="res://scenes/map_controller/map_controller.tscn" id="4_euhoc"]
+[ext_resource type="PackedScene" uid="uid://q7y6qajrmtc7" path="res://scenes/mini_map/mini_map_controller.tscn" id="4_l8nnq"]
+[ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="5_t6fgl"]
+[ext_resource type="PackedScene" uid="uid://b2dqquhs1bv4p" path="res://scenes/city/city.tscn" id="6_s8x63"]
+[ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="7_iqua7"]
 
 [node name="DriveLocation" type="Node3D"]
-process_mode = 1
-
-[node name="city" parent="." instance=ExtResource("1_u2xbb")]
+script = ExtResource("1_557g7")
 
 [node name="InputController" parent="." instance=ExtResource("2_vbj4s")]
 
-[node name="CarController" parent="." instance=ExtResource("2_oxsq2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.1443, 4.07752, 0)
+[node name="map_controller" parent="." instance=ExtResource("4_euhoc")]
+process_mode = 4
+visible = false
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)
+[node name="Enviroment" type="Control" parent="."]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 0
 
-[node name="MiniMapController" parent="." instance=ExtResource("5_2vlyu")]
+[node name="MiniMapController" parent="Enviroment" instance=ExtResource("4_l8nnq")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = 1152.0
+offset_top = 568.0
+offset_right = 1152.0
+offset_bottom = 568.0
+grow_horizontal = 0
+grow_vertical = 1
 size_flags_horizontal = 4
 
-[node name="pause_menu_controller" parent="." instance=ExtResource("4_ym044")]
+[node name="city" parent="Enviroment" instance=ExtResource("6_s8x63")]
+
+[node name="CarController" parent="Enviroment" instance=ExtResource("7_iqua7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.1443, 4.07752, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)
+
+[node name="pause_menu_controller" parent="." instance=ExtResource("5_t6fgl")]
 visible = false
+visibility_layer = 1
+offset_left = -0.192016
+offset_top = -0.108032
+offset_right = -0.191895
+offset_bottom = -0.108032

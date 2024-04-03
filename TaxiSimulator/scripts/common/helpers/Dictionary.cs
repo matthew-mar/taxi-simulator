@@ -15,6 +15,12 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
 
         public const string MoveLeft = "MoveLeft";
 
-        public const string Pause = "Pause";
+        public const string Esc = "Esc";
+
+        public const string WheelScrollForward = "WheelScrollForward";
+
+        public const string WheelScrollBackward = "WheelScrollBackward";
+
+        public const string ActionM = "ActionM";
     }
 }
