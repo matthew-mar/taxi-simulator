@@ -4,20 +4,27 @@ using TaxiSimulator.Scenes.CarScene.Signals;
 namespace TaxiSimulator.Scenes.CarScene.View {
 	
 	public partial class Car : VehicleBody3D {
-		public void Turn(MovingAxisArgs movingArgs) {
-			Steering = movingArgs.MovingAxis * 0.4f;
-		}
+		public const string NodePath = "car";
 
-		public void Move(MovingAxisArgs movingArgs) {
-			EngineForce = movingArgs.MovingAxis * 10_000f;
-		}
-
-		public void BlitState() {
-			SignalsProvider.PositionSignal.Emit(new CarStateSignalArgs() {
-				CurrentPosition = GlobalPosition,
+		public void Turn(float horizontalAxis) {
+			Steering = horizontalAxis * 0.4f;
+			SignalsProvider.RotationChangedSignal.Emit(new RotationSignalArgs() {
 				CurrentRotation = GlobalRotation,
+			});
+		}
+
+		public void Move(float verticalAxis) {
+			EngineForce = verticalAxis * 10_000f;
+			SignalsProvider.PositionChangedSignal.Emit(new PositionSignalArgs() {
+				CurrentPosition = GlobalPosition,
+			});
+			SignalsProvider.SpeedChangedSignal.Emit(new SpeedSignalArgs() {
 				CurrentSpeed = LinearVelocity,
 			});
+		}
+
+		public void ForceStop() {
+			EngineForce = 0f;
 		}
 	}
 }

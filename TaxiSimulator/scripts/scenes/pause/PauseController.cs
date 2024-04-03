@@ -4,6 +4,8 @@ using TaxiSimulator.Scenes.Pause.Signals;
 using TaxiSimulator.Common.Helpers.Dictionary;
 using TaxiSimulator.Common.Contracts.Controllers;
 
+using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
+
 using Godot;
 
 namespace TaxiSimulator.Scenes.Pause {
@@ -12,18 +14,29 @@ namespace TaxiSimulator.Scenes.Pause {
 		public override void _Ready() {
 			base._Ready();
 
-			SignalsProvider.ContinueButtonPressed.ContinueButtonPressed += SwitchPause;
+			InputSignals.SignalsProvider.EscapePressedSignal.EscapePressed +=
+				(EventSignalArgs args) => {
+					GD.Print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+					Visible = ! Visible;
+					SwitchPause();
+				};
+
+			SignalsProvider.ContinueButtonPressed.ContinueButtonPressed += 
+				(EventSignalArgs args) => {
+					SwitchPause();
+					Visible = ! Visible;
+				};
 
 			SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed += 
 				(EventSignalArgs args) => {
 					SwitchPause();
+					Visible = ! Visible;
 					SceneSwitcher.SwitchScene(ScenePathDictionary.MainMenuScenePath, this);
 				};
 		}
 
 		private void SwitchPause(EventSignalArgs args = null) {
 			GetTree().Paused = ! GetTree().Paused;
-			Visible = ! Visible;
 		}
 
 		public void ClearSignals() {

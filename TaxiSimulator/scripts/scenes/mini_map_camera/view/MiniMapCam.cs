@@ -1,8 +1,8 @@
 using Godot;
 
-namespace TaxiSimulator.Scenes.MiniMap.View {
-    public partial class MiniMapCamera : Camera3D {
-        public const string NodePath = "MarginContainer/MiniMapBase/MarginContainer/SubViewportContainer/SubViewport/Camera3D";
+namespace TaxiSimulator.Scenes.MiniMapCamera.View {
+    public partial class MiniMapCam : Camera3D {
+        public const string NodePath = "mini_map_camera";
 
         private Vector3? _positionOffset = null;
 

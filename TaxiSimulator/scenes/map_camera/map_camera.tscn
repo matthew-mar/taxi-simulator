@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dke6mqm2l2te6"]
+
+[ext_resource type="Script" path="res://scripts/scenes/map_camera/MapCameraController.cs" id="1_lgud2"]
+[ext_resource type="Script" path="res://scripts/scenes/map_camera/view/MapCamera.cs" id="2_rmuf4"]
+
+[node name="map_camera_controller" type="Node3D"]
+script = ExtResource("1_lgud2")
+
+[node name="map_camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+cull_mask = 2
+script = ExtResource("2_rmuf4")
