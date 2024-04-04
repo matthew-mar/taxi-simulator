@@ -11,7 +11,7 @@ using Godot;
 
 namespace TaxiSimulator.Scenes.MapCameraScene {
 	public partial class MapCameraController : Node3D {
-		private bool _checkSignals = false;
+		private bool _checkSignals = true;
 
 		public override void _Ready() {
 			base._Ready();
@@ -70,13 +70,20 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			MapSignals.SignalsProvider.CarLocationButtonPressedSignal.CarLocationButtonPressed +=
 				(EventSignalArgs args) => {
-					GD.Print("EHRKEJRWEKJREWJKR");
-
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.MoveToCar();
+				};
+
+			InputSignals.SignalsProvider.MouseLeftClickedSignal.MouseLeftClicked += 
+				(EventSignalArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
+
+					mapCamera.BlitPoint();
 				};
 		}
 	}

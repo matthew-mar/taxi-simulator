@@ -22,5 +22,7 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
         public const string WheelScrollBackward = "WheelScrollBackward";
 
         public const string ActionM = "ActionM";
+
+        public const string LeftClick = "LeftClick";
     }
 }

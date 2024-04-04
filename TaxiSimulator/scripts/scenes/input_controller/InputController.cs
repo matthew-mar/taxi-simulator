@@ -41,6 +41,10 @@ namespace TaxiSimulator.Scenes.InputController {
 			if (Input.IsActionJustPressed(InputActionDictionary.ActionM)) {
 				SignalsProvider.ActionMPressedSignal.Emit();
 			}
+
+			if (Input.IsActionJustPressed(InputActionDictionary.LeftClick)) {
+				SignalsProvider.MouseLeftClickedSignal.Emit();
+			}
 		}
 
         public override void _Input(InputEvent @event) {

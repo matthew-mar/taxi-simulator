@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwj6qp4xqnaln"]
+
+[ext_resource type="Script" path="res://scripts/scenes/test_nav_scene/Custom.cs" id="1_lboum"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_lboum")
