@@ -55,20 +55,11 @@ namespace TaxiSimulator.Scenes.GameScene {
 					enviroment.Visible = ! enviroment.Visible;
 
 					if (_currentGameMode == GameMode.Map) {
-						ChangeGameMode(_previousGameMode);
+						ChangeGameMode(GameMode.Game);
 						return;
 					}
 
 					ChangeGameMode(GameMode.Map);
-
-
-					// if (_pauseMode) {
-					// 	return;
-					// }
-
-					// GetTree().Paused = ! GetTree().Paused;
-					// _map.Visible = ! _map.Visible;
-					// _enviroment.Visible = ! _enviroment.Visible;
 				};
 
 			PuaseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=

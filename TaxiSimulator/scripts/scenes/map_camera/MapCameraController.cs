@@ -70,8 +70,6 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			MapSignals.SignalsProvider.CarLocationButtonPressedSignal.CarLocationButtonPressed +=
 				(EventSignalArgs args) => {
-					GD.Print("EHRKEJRWEKJREWJKR");
-
 					if (! _checkSignals) {
 						return;
 					}
