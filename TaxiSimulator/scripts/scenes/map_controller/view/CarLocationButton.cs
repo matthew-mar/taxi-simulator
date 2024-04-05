@@ -7,7 +7,6 @@ namespace TaxiSimulator.Scenes.MapController.View {
 			base._Ready();
 
 			ButtonDown += () => {
-				GD.Print("LSKDJFLSDJF");
 				SignalsProvider.CarLocationButtonPressedSignal.Emit();
 			};
 		}

@@ -16,7 +16,6 @@ namespace TaxiSimulator.Scenes.Pause {
 
 			InputSignals.SignalsProvider.EscapePressedSignal.EscapePressed +=
 				(EventSignalArgs args) => {
-					GD.Print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 					Visible = ! Visible;
 					SwitchPause();
 				};
