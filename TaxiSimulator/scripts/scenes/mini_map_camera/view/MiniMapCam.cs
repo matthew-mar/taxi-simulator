@@ -14,8 +14,9 @@ namespace TaxiSimulator.Scenes.MiniMapCamera.View {
         }
 
         public void FollowTargetRotation(Vector3 currentRotation) {
-            _rotationOffset ??= GlobalRotation - currentRotation;
-            GlobalRotation = (Vector3)(currentRotation + _rotationOffset);
+            var rotation = new Vector3(GlobalRotation.X, currentRotation.Y, currentRotation.Z);
+            _rotationOffset ??= GlobalRotation - rotation;
+            GlobalRotation = (Vector3)(rotation + _rotationOffset);
         }
     }
 }
