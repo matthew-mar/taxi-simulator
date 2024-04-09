@@ -17,22 +17,22 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 			base._Ready();
 
 			_agent = GetNode<NavigationAgent3D>("NavigationAgent3D");
-			_camera = GetParent().GetNode<TestCamera>("Camera3D");
+			// _camera = GetParent().GetNode<TestCamera>("Camera3D");
 
 			SetPhysicsProcess(false);
 			await ToSignal(GetTree(), "physics_frame");
 			SetPhysicsProcess(true);
 
-			CallDeferred("CustomSetup");
+			// CallDeferred("CustomSetup");
 		}
 
 		public override void _Input(InputEvent @event) {
 			base._Input(@event);
 
-			if (@event.IsActionPressed(InputActionDictionary.LeftClick)) {
-				_agent.TargetPosition = _camera.TargetPoint;
-				CallDeferred("CustomSetup");
-			}
+			// if (@event.IsActionPressed(InputActionDictionary.LeftClick)) {
+			// 	_agent.TargetPosition = _camera.TargetPoint;
+			// 	// CallDeferred("CustomSetup");
+			// }
 		}
 
 		public void Turn(float horizontalAxis) {

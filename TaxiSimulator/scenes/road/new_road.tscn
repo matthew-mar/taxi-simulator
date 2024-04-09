@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://ptfesd1fi6rr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qo44g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kq4yl"]
+albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ntbrp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80u70"]
+albedo_color = Color(0.968627, 0.768627, 0.411765, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o840q"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6algr"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="NewRoad" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_qo44g")
+surface_material_override/0 = SubResource("StandardMaterial3D_kq4yl")
+
+[node name="MapRoad" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("PlaneMesh_ntbrp")
+surface_material_override/0 = SubResource("StandardMaterial3D_80u70")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MapRoad"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MapRoad/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_o840q")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_6algr")

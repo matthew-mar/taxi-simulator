@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdoqfy760vdt5"]
+[gd_scene load_steps=3 format=3 uid="uid://cdoqfy760vdt5"]
 
 [ext_resource type="ArrayMesh" uid="uid://c5wr78ti0bwmw" path="res://scenes/road/road.tres" id="1_76y48"]
-[ext_resource type="ArrayMesh" uid="uid://dpw34x64lkfi1" path="res://scenes/road/road_yellow.tres" id="2_41n0d"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xgaf8"]
 data = PackedVector3Array(-99.0453, 0, -2400, 99.0453, 0, -2600, 99.0453, 0, -2400, -99.0453, 0, -2400, -99.0453, 0, -2600, 99.0453, 0, -2600)
@@ -15,6 +14,3 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xgaf8")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_41n0d")

@@ -35,10 +35,12 @@ namespace TaxiSimulator.Scenes.InputController {
 			});
 
 			if (Input.IsActionJustPressed(InputActionDictionary.Esc)) {
+				GD.Print("Esc emit");
 				SignalsProvider.EscapePressedSignal.Emit();
 			}
 
-			if (Input.IsActionJustPressed(InputActionDictionary.ActionM)) {
+			if (Input.IsActionJustReleased(InputActionDictionary.ActionM)) {
+				GD.Print("Emit");
 				SignalsProvider.ActionMPressedSignal.Emit();
 			}
 
