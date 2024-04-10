@@ -80,5 +80,13 @@ namespace TaxiSimulator.Scenes.CarScene {
 		}
 
 		public Node GetNode() => this;
+
+		public override void _Process(double delta) {
+			base._Process(delta);
+
+			_car.SendPosition();
+			_car.SendRotation();
+			_car.SendSpeed();
+		}
 	}
 }

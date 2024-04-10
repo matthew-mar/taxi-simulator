@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cd2qd46aiav7d" path="res://scenes/map_controller/assets/MyLocation.png" id="2_n1cbj"]
 
 [node name="map_controller" type="Control"]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

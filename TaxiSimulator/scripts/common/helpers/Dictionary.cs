@@ -23,6 +23,8 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
 
         public const string ActionM = "ActionM";
 
+        public const string LeftClick = "LeftClick";
+
         public const string ActionC = "ActionC";
     }
 }

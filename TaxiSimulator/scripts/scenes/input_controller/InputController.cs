@@ -4,7 +4,6 @@ using TaxiSimulator.Scenes.InputController.Signlas;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 
 using Godot;
-using System;
 
 namespace TaxiSimulator.Scenes.InputController {
 	public partial class InputController : Node {
@@ -38,8 +37,12 @@ namespace TaxiSimulator.Scenes.InputController {
 				SignalsProvider.EscapePressedSignal.Emit();
 			}
 
-			if (Input.IsActionJustPressed(InputActionDictionary.ActionM)) {
+			if (Input.IsActionJustReleased(InputActionDictionary.ActionM)) {
 				SignalsProvider.ActionMPressedSignal.Emit();
+			}
+
+			if (Input.IsActionJustPressed(InputActionDictionary.LeftClick)) {
+				SignalsProvider.MouseLeftClickedSignal.Emit();
 			}
 
 			if (Input.IsActionJustPressed(InputActionDictionary.ActionC)) {

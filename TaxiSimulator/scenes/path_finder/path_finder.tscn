@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdhtlsidvm6jg"]
+
+[ext_resource type="Script" path="res://scripts/scenes/path_finder/PathFinderController.cs" id="1_g7j8q"]
+[ext_resource type="Script" path="res://scripts/scenes/path_finder/view/PathAgent.cs" id="2_m6wup"]
+
+[node name="PathFinder" type="Node3D"]
+script = ExtResource("1_g7j8q")
+
+[node name="PathAgent" type="NavigationAgent3D" parent="."]
+script = ExtResource("2_m6wup")
