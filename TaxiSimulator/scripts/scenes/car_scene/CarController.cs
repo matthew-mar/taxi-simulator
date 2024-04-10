@@ -8,13 +8,22 @@ using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
 using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
 
 using Godot;
+using TaxiSimulator.Scenes.MiniMapCamera.View;
+using TaxiSimulator.Scenes.CarScene.Signals;
+using System;
 
 namespace TaxiSimulator.Scenes.CarScene {
+	public enum CameraMode {
+		Back,
+		Inside,
+	}
 	
 	public partial class CarController : Node3D, ISceneController {
 		private Car _car;
 
 		private bool _checkSignals = true;
+
+		private CameraMode _cameraMode = CameraMode.Back;
 
 		public override void _Ready() {
 			base._Ready();
@@ -28,7 +37,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 						_car.ForceStop();
 					}
 				};
-
+ 
 			InputSignals.SignalsProvider.VerticalPressedSignal.VerticalPressed +=
 				(InputSignals.VerticalPressedArgs args) => {
 					if (! _checkSignals) {
@@ -46,6 +55,19 @@ namespace TaxiSimulator.Scenes.CarScene {
 
 					_car.Turn(args.HorizontalAxis);
 				};
+
+			InputSignals.SignalsProvider.ActionCPressedSignal.ActionCPressed += (EventSignalArgs args) => {
+				if (! _checkSignals) {
+					return;
+				}
+
+				_cameraMode = _cameraMode switch {
+					CameraMode.Back => CameraMode.Inside,
+					CameraMode.Inside => CameraMode.Back,
+					_ => throw new ArgumentException("Illigal camera mode"),
+				};
+				_car.SetCamera(_cameraMode);
+			};
 
 			PauseSceneSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
 				(EventSignalArgs args) => {
