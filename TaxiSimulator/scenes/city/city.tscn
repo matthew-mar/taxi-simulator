@@ -1,6 +1,7 @@
-[gd_scene load_steps=651 format=3 uid="uid://b2dqquhs1bv4p"]
+[gd_scene load_steps=652 format=3 uid="uid://b2dqquhs1bv4p"]
 
 [ext_resource type="Texture2D" uid="uid://dmwg7nb470n5f" path="res://scenes/city/city_download (3).jpg" id="1_asvr4"]
+[ext_resource type="PackedScene" uid="uid://cdhtlsidvm6jg" path="res://scenes/path_finder/path_finder.tscn" id="1_o3oxj"]
 [ext_resource type="Texture2D" uid="uid://ud5wsa3og2xk" path="res://scenes/city/city_Building_texture10.jpg" id="2_aqeqd"]
 [ext_resource type="Texture2D" uid="uid://bh3pyts8ft2am" path="res://scenes/city/city_download (8).jpg" id="3_gxunf"]
 [ext_resource type="Texture2D" uid="uid://b38dch61ian54" path="res://scenes/city/city_Building_texture6.jpg" id="4_nhk53"]
@@ -6721,6 +6722,8 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 
 [node name="city" type="Node3D"]
 
+[node name="PathFinder" parent="." instance=ExtResource("1_o3oxj")]
+
 [node name="Base" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 0, 2, 0, 2, 0, -81.25, 0, 0, 7500, 5.5, -2150)
 mesh = SubResource("ArrayMesh_qelan")
@@ -8121,7 +8124,7 @@ skeleton = NodePath("")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Roads"]
 navigation_mesh = SubResource("NavigationMesh_i8beb")
-navigation_layers = 2
+navigation_layers = 3
 
 [node name="RoadPanel" parent="Roads/NavigationRegion3D" instance=ExtResource("53_pjbnv")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -1052, 5, 535)

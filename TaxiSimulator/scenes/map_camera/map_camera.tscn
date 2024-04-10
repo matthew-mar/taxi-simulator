@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/scenes/map_camera/MapCameraController.cs" id="1_lgud2"]
 [ext_resource type="Script" path="res://scripts/scenes/map_camera/view/MapCamera.cs" id="2_rmuf4"]
-[ext_resource type="PackedScene" uid="uid://bk5r6nqa0q1aa" path="res://scenes/sprite_3d.tscn" id="3_b3828"]
+[ext_resource type="PackedScene" uid="uid://cxx5dgou0wibw" path="res://scenes/navigation_point/navigation_point.tscn" id="3_7usn5"]
 
 [node name="map_camera_controller" type="Node3D"]
 process_mode = 3
@@ -11,7 +11,7 @@ script = ExtResource("1_lgud2")
 [node name="map_camera" type="Camera3D" parent="."]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 500, 0)
-cull_mask = 2
+cull_mask = 6
 size = 100.0
 script = ExtResource("2_rmuf4")
-packedScene = ExtResource("3_b3828")
+packedScene = ExtResource("3_7usn5")

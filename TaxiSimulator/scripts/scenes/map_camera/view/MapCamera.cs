@@ -1,6 +1,5 @@
 using Godot;
-using System.Collections.Generic;
-using Suff;
+using TaxiSimulator.Scenes.MapCameraScene.Signals;
 
 namespace TaxiSimulator.Scenes.MapCameraScene.View {
 	public partial class MapCamera : Camera3D {
@@ -14,9 +13,7 @@ namespace TaxiSimulator.Scenes.MapCameraScene.View {
 		[Export]
 		public PackedScene packedScene;
 
-		private Mark _mark = null;
-
-		private MeshInstance3D _line = null;
+		private CharacterBody3D _mark = null;
 
 		public void MoveHorizontal(float horizontalAxis) {
 			var velocity = Vector3.Zero;
@@ -64,48 +61,21 @@ namespace TaxiSimulator.Scenes.MapCameraScene.View {
 			var raycastResult = space.IntersectRay(rawQuery);
 			if (raycastResult.Count != 0) {
 				_mark?.QueueFree();
-				_mark = packedScene.Instantiate<Mark>();
+				_mark = packedScene.Instantiate<CharacterBody3D>();
 				var returnPosition = (Vector3)raycastResult["position"];
 				GetTree().Root.AddChild(_mark);
 				_mark.GlobalPosition = returnPosition;
-				_mark.agent.TargetPosition = new Vector3(_carPosition.X, _mark.GlobalPosition.Y, _carPosition.Z);
-				CallDeferred("DrawPath");
+				SignalsProvider.PointBlitedSignal.Emit(new PointBlitedArgs() {
+					PointPosition = _mark.GlobalPosition,
+					TargetPoisiton = _carPosition,
+				});
 			}
 		}
 
-		private async void DrawPath() {
-			await ToSignal(GetTree(), "physics_frame");
-			// GD.Print(_mark.agent.TargetPosition, _mark.GlobalPosition);
-			var path = NavigationServer3D.MapGetPath(_mark.agent.GetNavigationMap(), _mark.GlobalPosition, _mark.agent.TargetPosition, true);
-			var meshInstance = new MeshInstance3D();
-			var immedMesh = new ImmediateMesh();
-			var material = new OrmMaterial3D();
-
-			meshInstance.Mesh = immedMesh;
-			meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
-
-			immedMesh.SurfaceBegin(Mesh.PrimitiveType.LineStrip, material);
-			if (path.Length == 0) {
-				GD.Print("Here");
-				path = new Vector3[] {
-					new Vector3(0.1f, 0.0f, 0.1f),
-					new Vector3(1000.0f, 0.0f, 1000.0f),
-				};
-			}
-			foreach (var v in path) {
-				immedMesh.SurfaceAddVertex(v);
-			}
-			immedMesh.SurfaceEnd();
-
-			material.ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded;
-			material.AlbedoColor = Colors.Red;
-
-			_line?.QueueFree();
-			_line = meshInstance;
-
-			GD.Print(_line == null);
-
-			GetTree().Root.AddChild(_line);
+		public void ClearPoint() {
+			_mark?.QueueFree();
+			_mark = null;
+			SignalsProvider.PointCleanedSignal.Emit();
 		}
 	}
 }

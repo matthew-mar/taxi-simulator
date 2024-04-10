@@ -50,9 +50,7 @@ namespace TaxiSimulator.Scenes.GameScene {
 					if (_currentGameMode == GameMode.Pause) {
 						return;
 					}
-
-					GD.Print("Here 1");
-
+					
 					map.Visible = ! map.Visible;
 					enviroment.Visible = ! enviroment.Visible;
 
