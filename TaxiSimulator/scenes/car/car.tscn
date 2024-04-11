@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://co5lswgb5u6kq"]
 
 [ext_resource type="Script" path="res://scripts/scenes/car_scene/view/Car.cs" id="1_u5vif"]
-[ext_resource type="PackedScene" uid="uid://gu1vutkoh47j" path="res://scenes/navigation_mark/navigation_mark.tscn" id="2_wf48i"]
+[ext_resource type="PackedScene" uid="uid://gu1vutkoh47j" path="res://scenes/navigation_mark/navigation_mark.tscn" id="2_0itht"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cj5s8"]
 size = Vector3(10, 0.5, 4)
@@ -98,6 +98,6 @@ mesh = SubResource("CylinderMesh_iuao0")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10.368, 2.13524, 0)
 cull_mask = 1048573
+current = true
 
-[node name="NavigationMark" parent="." instance=ExtResource("2_wf48i")]
-process_mode = 3
+[node name="NavigationMark" parent="." instance=ExtResource("2_0itht")]

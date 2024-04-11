@@ -39,7 +39,7 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 					if (_destinationPoint == null) {
 						return;
 					}
-					
+
 					_markAgent.FindPath(
 						GlobalPosition, 
 						_destinationPoint ?? throw new ArgumentNullException(
