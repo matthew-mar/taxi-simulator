@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://scripts/scenes/pause/view/MainMenuButton.cs" id="6_ajn74"]
 
 [node name="pause_menu_controller" type="Control"]
-process_mode = 2
+process_mode = 3
 visibility_layer = 3
 layout_mode = 3
 anchor_right = 1.667
@@ -20,8 +20,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2ej3d")
 
-[node name="continue_button" type="TextureButton" parent="."]
-process_mode = 2
+[node name="Control" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="continue_button" type="TextureButton" parent="Control"]
+process_mode = 3
 layout_mode = 0
 offset_left = 384.0
 offset_top = 384.0
@@ -31,8 +37,8 @@ texture_normal = ExtResource("1_bvvs7")
 texture_hover = ExtResource("2_q56i4")
 script = ExtResource("3_unlhg")
 
-[node name="main_menu_button" type="TextureButton" parent="."]
-process_mode = 2
+[node name="main_menu_button" type="TextureButton" parent="Control"]
+process_mode = 3
 layout_mode = 0
 offset_left = 952.0
 offset_top = 384.0
