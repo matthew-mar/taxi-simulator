@@ -67,3 +67,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Добавлено
 
 - Звуки UI
+
+## [1.9.0] - 12.04.2024
+
+### Добавлено
+
+- Звуки мотора
