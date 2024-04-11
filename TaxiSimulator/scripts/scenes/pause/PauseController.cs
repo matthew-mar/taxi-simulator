@@ -4,9 +4,8 @@ using TaxiSimulator.Scenes.Pause.Signals;
 using TaxiSimulator.Common.Helpers.Dictionary;
 using TaxiSimulator.Common.Contracts.Controllers;
 
-using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
-
 using Godot;
+using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
 
 namespace TaxiSimulator.Scenes.Pause {
 
@@ -14,22 +13,25 @@ namespace TaxiSimulator.Scenes.Pause {
 		public override void _Ready() {
 			base._Ready();
 
+			var innerController = GetNode<Control>("Control");
+
 			InputSignals.SignalsProvider.EscapePressedSignal.EscapePressed +=
 				(EventSignalArgs args) => {
-					Visible = ! Visible;
+					innerController.Visible = ! innerController.Visible;
 					SwitchPause();
 				};
 
 			SignalsProvider.ContinueButtonPressed.ContinueButtonPressed += 
 				(EventSignalArgs args) => {
 					SwitchPause();
-					Visible = ! Visible;
+					innerController.Visible = ! innerController.Visible;
 				};
 
 			SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed += 
 				(EventSignalArgs args) => {
+					ClearSignals();
 					SwitchPause();
-					Visible = ! Visible;
+					innerController.Visible = ! innerController.Visible;
 					SceneSwitcher.SwitchScene(ScenePathDictionary.MainMenuScenePath, this);
 				};
 		}

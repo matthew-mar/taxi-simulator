@@ -61,3 +61,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Добавлено
 
 - 3д модель реальной машины
+
+## [1.8.0] - 11.04.2024
+
+### Добавлено
+
+- Звуки UI
