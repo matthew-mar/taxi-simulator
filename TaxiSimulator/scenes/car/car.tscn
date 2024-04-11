@@ -101,3 +101,14 @@ cull_mask = 1048573
 current = true
 
 [node name="NavigationMark" parent="." instance=ExtResource("2_0itht")]
+transform = Transform3D(3.77489e-07, -5, 2.18557e-07, 0, -2.18557e-07, -5, 5, 3.77489e-07, -1.65006e-14, 0, 0, 0)
+layers = 2
+texture = ExtResource("2_seybg")
+
+[node name="BackCamera" type="Camera3D" parent="."]
+transform = Transform3D(-4.2222e-08, -0.258819, 0.965926, -1.13133e-08, 0.965926, 0.258819, -1, 0, -4.37114e-08, 9.64299, 4.82456, 0)
+cull_mask = 1048065
+
+[node name="InsideCamera" type="Camera3D" parent="."]
+transform = Transform3D(-0.017204, -0.168111, 0.985618, -0.00293393, 0.985768, 0.168085, -0.999848, 9.31181e-10, -0.0174524, 0, 4.41442, 0)
+cull_mask = 1047553
