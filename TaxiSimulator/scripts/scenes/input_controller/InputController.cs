@@ -48,6 +48,10 @@ namespace TaxiSimulator.Scenes.InputController {
 			if (Input.IsActionJustPressed(InputActionDictionary.ActionC)) {
 				SignalsProvider.ActionCPressedSignal.Emit();
 			}
+
+			if (Input.IsActionJustPressed(InputActionDictionary.ActionE)) {
+				SignalsProvider.ActionEPressedSignal.Emit();
+			}
 		}
 
         public override void _Input(InputEvent @event) {

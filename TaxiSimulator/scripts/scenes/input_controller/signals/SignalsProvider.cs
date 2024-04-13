@@ -16,6 +16,8 @@ namespace TaxiSimulator.Scenes.InputController.Signlas {
 
         private static ActionCPressedSignal actionCPressedSignal = null;
 
+        private static ActionEPressedSignal actionEPressedSignal= null;
+
         public static EscapePressedSignal EscapePressedSignal {
             get {
                 escapePressedSignal ??= new();
@@ -72,6 +74,13 @@ namespace TaxiSimulator.Scenes.InputController.Signlas {
             }
         }
 
+        public static ActionEPressedSignal ActionEPressedSignal {
+            get {
+                actionEPressedSignal ??= new();
+                return actionEPressedSignal;
+            }
+        }
+
         public static void ClearSignals() {
             escapePressedSignal = null;
             horizontalPressedSignal = null;
@@ -81,6 +90,7 @@ namespace TaxiSimulator.Scenes.InputController.Signlas {
             actionMPressedSignal = null;
             mouseLeftClickedSignal = null;
             actionCPressedSignal = null;
+            actionEPressedSignal = null;
         }
     }
 }

@@ -7,3 +7,4 @@
 script = ExtResource("1_ajrom")
 
 [node name="car_copy_1" parent="." instance=ExtResource("2_t5fdp")]
+_fuel = 1.0
