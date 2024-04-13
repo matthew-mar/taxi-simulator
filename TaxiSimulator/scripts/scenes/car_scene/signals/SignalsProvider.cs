@@ -6,6 +6,8 @@ namespace TaxiSimulator.Scenes.CarScene.Signals {
 
         private static SpeedChangedSignal speedChangedSignal = null;
 
+        private static FuelChangedSignal fuelChangedSignal= null;
+
         public static PositionChangedSignal PositionChangedSignal {
             get {
                 positionChangedSignal ??= new();
@@ -27,10 +29,18 @@ namespace TaxiSimulator.Scenes.CarScene.Signals {
             }
         }
 
+        public static FuelChangedSignal FuelChangedSignal {
+            get {
+                fuelChangedSignal ??= new();
+                return fuelChangedSignal;
+            }
+        }
+
         public static void ClearSignals() {
             positionChangedSignal = null;
             rotationChangedSignal = null;
             speedChangedSignal = null;
+            fuelChangedSignal = null;
         }
     }
 }

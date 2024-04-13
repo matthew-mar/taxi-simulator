@@ -26,5 +26,13 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
         public const string LeftClick = "LeftClick";
 
         public const string ActionC = "ActionC";
+
+        public const string ActionE = "ActionE";
+    }
+
+    public class GameTextsDictionary {
+        public const string StopCarSuggestion = "остановите машину, чтобы заправиться";
+
+        public const string RefuelSuggestion = "нажмите [E] для заправки";
     }
 }

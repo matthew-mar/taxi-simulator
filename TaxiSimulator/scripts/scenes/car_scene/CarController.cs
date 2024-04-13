@@ -4,12 +4,11 @@ using TaxiSimulator.Common.Contracts.Controllers;
 
 using PauseSceneSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
+using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
 using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
 
 using Godot;
-using TaxiSimulator.Scenes.MiniMapCamera.View;
-using TaxiSimulator.Scenes.CarScene.Signals;
 using System;
 
 namespace TaxiSimulator.Scenes.CarScene {
@@ -37,7 +36,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 						_car.ForceStop();
 					}
 				};
- 
+
 			InputSignals.SignalsProvider.VerticalPressedSignal.VerticalPressed +=
 				(InputSignals.VerticalPressedArgs args) => {
 					if (! _checkSignals) {
@@ -45,6 +44,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 					}
 
 					_car.Move(args.VerticalAxis);
+					_car.Stop(args.VerticalAxis);
 				};
 
 			InputSignals.SignalsProvider.HorizontalPressedSignal.HorizontalPressed +=
@@ -56,22 +56,32 @@ namespace TaxiSimulator.Scenes.CarScene {
 					_car.Turn(args.HorizontalAxis);
 				};
 
-			InputSignals.SignalsProvider.ActionCPressedSignal.ActionCPressed += (EventSignalArgs args) => {
-				if (! _checkSignals) {
-					return;
-				}
+			InputSignals.SignalsProvider.ActionCPressedSignal.ActionCPressed += 
+				(EventSignalArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
 
-				_cameraMode = _cameraMode switch {
-					CameraMode.Back => CameraMode.Inside,
-					CameraMode.Inside => CameraMode.Back,
-					_ => throw new ArgumentException("Illigal camera mode"),
+					_cameraMode = _cameraMode switch {
+						CameraMode.Back => CameraMode.Inside,
+						CameraMode.Inside => CameraMode.Back,
+						_ => throw new ArgumentException("Illigal camera mode"),
+					};
+					_car.SetCamera(_cameraMode);
 				};
-				_car.SetCamera(_cameraMode);
-			};
 
 			PauseSceneSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
 				(EventSignalArgs args) => {
 					ClearSignals();
+				};
+
+			GasolineSignals.SignalsProvider.RefuelAllowedSignal.RefuelAllowed +=
+				(GasolineSignals.RefuelAllowedArgs args) => {
+					if (! args.Allowed) {
+						return;
+					}
+
+					_car.Refuel();
 				};
 		}
 
@@ -87,6 +97,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 			_car.SendPosition();
 			_car.SendRotation();
 			_car.SendSpeed();
+			_car.SendFuel();
 		}
 	}
 }
