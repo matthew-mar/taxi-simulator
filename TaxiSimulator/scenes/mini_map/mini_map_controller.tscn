@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://q7y6qajrmtc7"]
+[gd_scene load_steps=17 format=3 uid="uid://q7y6qajrmtc7"]
 
 [ext_resource type="Script" path="res://scripts/scenes/mini_map/MiniMapController.cs" id="1_jgw6y"]
 [ext_resource type="Texture2D" uid="uid://c5bi0qvkvkj8p" path="res://scenes/mini_map/assets/panel (1).png" id="2_utn32"]
@@ -8,14 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://c3kshhcxok8gn" path="res://scenes/mini_map/assets/panel (2).png" id="4_uchhl"]
 [ext_resource type="PackedScene" uid="uid://ds5gdfox3r874" path="res://scenes/sub_viewport_camera_mini_map/sub_viewport_container.tscn" id="5_0cxt4"]
 [ext_resource type="Script" path="res://scripts/scenes/mini_map/view/FuelBar.cs" id="5_6tb8s"]
+[ext_resource type="Texture2D" uid="uid://cc1i820hf63bj" path="res://scripts/scenes/mini_map/view/sleep.png" id="6_0xq5j"]
 [ext_resource type="Texture2D" uid="uid://s8k1f8dx6w1" path="res://scenes/gasoline/assets/panel (3).png" id="6_nvx11"]
 [ext_resource type="Script" path="res://scripts/scenes/mini_map/view/SuggestionText.cs" id="7_byw7n"]
+[ext_resource type="Script" path="res://scripts/scenes/mini_map/view/TirednessBar.cs" id="7_xwept"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f5s2"]
 bg_color = Color(0.968627, 0.792157, 0.266667, 0.501961)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6ejx"]
 bg_color = Color(0.968627, 0.792157, 0.266667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iywbb"]
+bg_color = Color(0.121569, 0.423529, 0.690196, 0.501961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_le7k4"]
+bg_color = Color(0.121569, 0.423529, 0.690196, 1)
 
 [node name="MiniMapController" type="Control"]
 layout_mode = 3
@@ -75,6 +83,34 @@ value = 1.0
 fill_mode = 3
 show_percentage = false
 script = ExtResource("5_6tb8s")
+
+[node name="TirednessBase" type="TextureRect" parent="MarginContainer/MiniMapBase"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 3.0
+offset_right = 156.0
+offset_bottom = 68.0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/MiniMapBase/TirednessBase"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = -2.0
+offset_right = 170.0
+offset_bottom = 64.0
+scale = Vector2(0.900062, 0.98422)
+texture = ExtResource("6_0xq5j")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/MiniMapBase/TirednessBase"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 11.0
+offset_right = 194.0
+offset_bottom = 52.0
+theme_override_styles/background = SubResource("StyleBoxFlat_iywbb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_le7k4")
+fill_mode = 3
+show_percentage = false
+script = ExtResource("7_xwept")
 
 [node name="SpeedBase" type="TextureRect" parent="MarginContainer/MiniMapBase"]
 layout_mode = 0

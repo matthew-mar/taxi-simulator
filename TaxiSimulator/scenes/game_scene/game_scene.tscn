@@ -38,7 +38,7 @@ size_flags_horizontal = 4
 [node name="city" parent="Enviroment" instance=ExtResource("6_s8x63")]
 
 [node name="CarController" parent="Enviroment" instance=ExtResource("7_iqua7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.949, 5.96669, 0)
+transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, -72, 4, 40)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)

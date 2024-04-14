@@ -1,50 +1,47 @@
 using Godot;
-using TaxiSimulator.Common;
-using TaxiSimulator.Scenes.Gasoline.Signals;
-using TaxiSimulator.Scenes.Gasoline.View;
+using TaxiSimulator.Common.View;
+using TaxiSimulator.Scenes.Parking.Singlas;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
-using TaxiSimulator.Common.View;
+using TaxiSimulator.Common;
 
-namespace TaxiSimulator.Scenes.Gasoline {
-	public partial class GasolineController : Node3D {
-		// private GasolineArea _gasolineArea;
-
+namespace TaxiSimulator.Scenes.Parking {
+	public partial class ParkingController : Node3D {
 		private CollisionArea _collisionArea;
 
 		public override void _Ready() {
 			base._Ready();
 
 			_collisionArea = GetNode<CollisionArea>(CollisionArea.NodePath);
-			
+
 			_collisionArea.BodyEntered += (Node3D body) => {
 				_collisionArea.CheckEnterd(body);
 				if (_collisionArea.CarStayed) {
 					SignalsProvider.CarEnteredSignal.Emit();
-				}		
+				}
 			};
 
 			_collisionArea.BodyExited += (Node3D body) => {
 				_collisionArea.CheckLeft(body);
-				if (! _collisionArea.CarStayed) {
-					SignalsProvider.CarLeftSignal.Emit();
-				}
-			};
 
-			// _gasolineArea = GetNode<GasolineArea>(GasolineArea.NodePath);
-			// _gasolineArea.BodyEntered += _gasolineArea.CheckEntered;
-			// _gasolineArea.BodyExited += _gasolineArea.CheckLeft;
+				if (_collisionArea.CarStayed) {
+					return;
+				}
+
+				SignalsProvider.CarLeftSignal.Emit();
+			};
 
 			InputSignals.SignalsProvider.ActionEPressedSignal.ActionEPressed +=
 				(EventSignalArgs args) => {
-					SignalsProvider.RefuelAllowedSignal.Emit(new RefuelAllowedArgs() {
+					SignalsProvider.RestAllowedSignal.Emit(new RestAllowedArgs() {
 						Allowed = _collisionArea.CarStopedInArea,
+						ParkingPosition = _collisionArea.GlobalPosition,
 					});
 				};
-			
+
 			PauseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
 				(EventSignalArgs args) => {
-					SignalsProvider.ClearSignals();  
+					SignalsProvider.ClearSignals();
 				};
 		}
 
@@ -55,9 +52,10 @@ namespace TaxiSimulator.Scenes.Gasoline {
 				CarStayed = _collisionArea.CarStayed,
 			});
 
-			
-
-			// _gasolineArea.CheckStay();
+			SignalsProvider.PositionBlitSignal.Emit(new PositionBlitArgs() {
+				ParkingId = _collisionArea.GetRid(),
+				ParkingPosition = _collisionArea.GlobalPosition,
+			});
 		}
 	}
 }

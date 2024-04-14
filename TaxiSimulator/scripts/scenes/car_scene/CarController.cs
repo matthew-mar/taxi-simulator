@@ -2,6 +2,8 @@ using TaxiSimulator.Common;
 using TaxiSimulator.Scenes.CarScene.View;
 using TaxiSimulator.Common.Contracts.Controllers;
 
+using PlayerSingals = TaxiSimulator.Scenes.Player.Signals;
+using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
 using PauseSceneSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
@@ -10,6 +12,8 @@ using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
 
 using Godot;
 using System;
+using System.Collections.Generic;
+using TaxiSimulator.Scenes.CarScene.Signals;
 
 namespace TaxiSimulator.Scenes.CarScene {
 	public enum CameraMode {
@@ -28,6 +32,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 			base._Ready();
 
 			_car = GetNode<Car>(Car.NodePath);
+			_car.Respawn();
 
 			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged +=
 				(GameSceneSignals.GameModeChangedArgs args) => {
@@ -82,6 +87,37 @@ namespace TaxiSimulator.Scenes.CarScene {
 					}
 
 					_car.Refuel();
+				};
+
+			PlayerSingals.SignalsProvider.TiredSignal.Tiredness +=
+				(PlayerSingals.TirednessArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
+
+					if (args.Tiredness >= 0f) {
+						return;
+					}
+
+					if (_car.OnSpawnPosition) {
+						return;
+					}
+
+					if (! _car.FullStoped) {
+						return;
+					}
+
+					_car.ForceStop();
+					_car.Respawn();
+				};
+
+			PlayerSingals.SignalsProvider.RestSignal.Rest +=
+				(PlayerSingals.RestArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
+
+					_car.SetSpawnPosition(args.RestPoint);
 				};
 		}
 

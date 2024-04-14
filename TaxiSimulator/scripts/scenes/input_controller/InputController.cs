@@ -4,6 +4,7 @@ using TaxiSimulator.Scenes.InputController.Signlas;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 
 using Godot;
+using TaxiSimulator.Scenes.Player;
 
 namespace TaxiSimulator.Scenes.InputController {
 	public partial class InputController : Node {
@@ -19,6 +20,10 @@ namespace TaxiSimulator.Scenes.InputController {
         public override void _Process(double delta) {
 			base._Process(delta);
 
+			if (Input.IsActionJustPressed(InputActionDictionary.Esc)) {
+				SignalsProvider.EscapePressedSignal.Emit();
+			}
+
 			SignalsProvider.VerticalPressedSignal.Emit(new VerticalPressedArgs() {
 				VerticalAxis = Input.GetAxis(
 					InputActionDictionary.MoveBackward,
@@ -32,9 +37,9 @@ namespace TaxiSimulator.Scenes.InputController {
 					InputActionDictionary.MoveLeft
 				),
 			});
-
-			if (Input.IsActionJustPressed(InputActionDictionary.Esc)) {
-				SignalsProvider.EscapePressedSignal.Emit();
+			
+			if (PlayerController.Instance.Tired) {
+				return;
 			}
 
 			if (Input.IsActionJustReleased(InputActionDictionary.ActionM)) {
