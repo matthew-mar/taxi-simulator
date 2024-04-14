@@ -10,6 +10,8 @@ namespace TaxiSimulator.Scenes.CarScene.Signals {
 
         private static RespawnedSignal respawnedSignal = null;
 
+        private static SteeringChangedSignal steeringChangedSignal = null;
+
         public static PositionChangedSignal PositionChangedSignal {
             get {
                 positionChangedSignal ??= new();
@@ -42,6 +44,13 @@ namespace TaxiSimulator.Scenes.CarScene.Signals {
             get {
                 respawnedSignal ??= new();
                 return respawnedSignal;
+            }
+        }
+
+        public static SteeringChangedSignal SteeringChangedSignal {
+            get {
+                steeringChangedSignal ??= new();
+                return steeringChangedSignal;
             }
         }
 

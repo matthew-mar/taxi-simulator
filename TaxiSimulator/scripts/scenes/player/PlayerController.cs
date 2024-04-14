@@ -7,7 +7,7 @@ using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
 
 namespace TaxiSimulator.Scenes.Player {
 	public partial class PlayerController : Node {
-		private const int SleepInterval = 50;
+		private const int SleepInterval = 5000;
 		
 		public static PlayerController Instance;
 		

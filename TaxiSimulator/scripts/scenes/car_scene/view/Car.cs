@@ -9,6 +9,8 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 
 		public const float FullFuel = 1f;
 
+		private const float Speed = 2_500f;
+
 		[Export]
 		private double _fuel = 1f;
 
@@ -30,6 +32,8 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 		public bool OnSpawnPosition => GlobalPosition == _spawnPosition;
 
 		private Vector3 _spawnPosition = new(-72, 4, 40);
+
+		private float _steeringAngle = 0f;
 
 		private double FuelConsumption {
 			get {
@@ -53,7 +57,11 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 				return;
 			}
 
-			Steering = horizontalAxis * 0.4f;
+			// Steering = horizontalAxis * 0.4f;
+
+			_steeringAngle = Mathf.Clamp(_steeringAngle + 1f * horizontalAxis * 0.4f, -45f, 45f); 
+			var radians = _steeringAngle * (Mathf.Pi / 180);
+			Steering = radians;
 		}
 
 		public void Move(float verticalAxis) {
@@ -66,13 +74,13 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 				EngineForce = 0;
 				if (! CarStoped) {
 					if (verticalAxis < 0) {
-						EngineForce = verticalAxis * 10_000f;			
+						EngineForce = verticalAxis * Speed;			
 					}
 				} else {
 					EngineForce = 0;
 				}
 			} else {
-				EngineForce = verticalAxis * 10_000f;
+				EngineForce = verticalAxis * Speed;
 				_fuel -= FuelConsumption;
 			}
 		}
@@ -107,6 +115,12 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 		public void SendFuel() {
 			SignalsProvider.FuelChangedSignal.Emit(new FuelChangedArgs {
 				FuelLevel = _fuel,
+			});
+		}
+
+		public void SendSteering() {
+			SignalsProvider.SteeringChangedSignal.Emit(new SteeringChangedArgs() {
+				Steering = Steering,
 			});
 		}
 
