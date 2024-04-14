@@ -17,7 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SoundManager="*res://scenes/sound_manager/sound_manager.tscn"
 Player="*res://scenes/player/player.tscn"
 
 [display]

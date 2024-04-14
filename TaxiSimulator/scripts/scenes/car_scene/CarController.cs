@@ -34,6 +34,8 @@ namespace TaxiSimulator.Scenes.CarScene {
 			_car = GetNode<Car>(Car.NodePath);
 			_car.Respawn();
 
+			var steerWheel = GetNode<SteerWheel>(SteerWheel.NodePath);
+
 			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged +=
 				(GameSceneSignals.GameModeChangedArgs args) => {
 					_checkSignals = args.To == GameScene.GameMode.Game;
@@ -119,6 +121,11 @@ namespace TaxiSimulator.Scenes.CarScene {
 
 					_car.SetSpawnPosition(args.RestPoint);
 				};
+
+			SignalsProvider.SteeringChangedSignal.SteeringChanged += 
+				(SteeringChangedArgs args) => {
+					steerWheel.RotateWheel(args.Steering);
+				};
 		}
 
 		public void ClearSignals() {
@@ -134,6 +141,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 			_car.SendRotation();
 			_car.SendSpeed();
 			_car.SendFuel();
+			_car.SendSteering();
 		}
 	}
 }
