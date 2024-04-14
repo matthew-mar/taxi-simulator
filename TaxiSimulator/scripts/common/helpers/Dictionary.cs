@@ -31,8 +31,10 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
     }
 
     public class GameTextsDictionary {
-        public const string StopCarSuggestion = "остановите машину, чтобы заправиться";
+        public const string StopCarSuggestion = "остановите машину";
 
         public const string RefuelSuggestion = "нажмите [E] для заправки";
+
+        public const string RestSuggestion = "нажмите [E] для отдыха";
     }
 }

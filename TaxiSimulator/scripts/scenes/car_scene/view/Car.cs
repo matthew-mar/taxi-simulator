@@ -1,4 +1,5 @@
 using Godot;
+using TaxiSimulator.Scenes.Player;
 using TaxiSimulator.Scenes.CarScene.Signals;
 
 namespace TaxiSimulator.Scenes.CarScene.View {
@@ -22,7 +23,13 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 
 		private bool CarStoped => SpeedMs <= 3f;
 
+		public bool FullStoped => (int)SpeedMs == 0;
+
 		public bool FullTank => _fuel == FullFuel;
+
+		public bool OnSpawnPosition => GlobalPosition == _spawnPosition;
+
+		private Vector3 _spawnPosition = new(-72, 4, 40);
 
 		private double FuelConsumption {
 			get {
@@ -41,10 +48,20 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 		}
 
 		public void Turn(float horizontalAxis) {
+			if (PlayerController.Instance.Tired) {
+				Steering = 0f;
+				return;
+			}
+
 			Steering = horizontalAxis * 0.4f;
 		}
 
 		public void Move(float verticalAxis) {
+			if (PlayerController.Instance.Tired) {
+				EngineForce = 0;
+				return;
+			}
+
 			if (_fuel <= 0) {
 				EngineForce = 0;
 				if (! CarStoped) {
@@ -66,6 +83,7 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 
 		public void ForceStop() {
 			EngineForce = 0f;
+			LinearVelocity = Vector3.Zero;
 		}
 
 		public void SendPosition() {
@@ -111,5 +129,14 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 
 			_fuel = FullFuel;
 		}
+
+		public void Respawn() {
+			GlobalPosition = _spawnPosition;
+			SignalsProvider.RespawnedSignal.Emit();
+		}
+
+		public void SetSpawnPosition(Vector3 spawnPosition) {
+			_spawnPosition = new Vector3(spawnPosition.X, 4, spawnPosition.Y);
+		}	
 	}
 }

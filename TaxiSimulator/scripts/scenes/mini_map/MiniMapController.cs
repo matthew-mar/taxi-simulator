@@ -1,4 +1,6 @@
 using TaxiSimulator.Scenes.MiniMap.View;
+using PlayerSingals = TaxiSimulator.Scenes.Player.Signals;
+using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
@@ -21,6 +23,7 @@ namespace TaxiSimulator.Scenes.MiniMap {
 			var mapContainer = GetNode<MarginContainer>("MarginContainer/MiniMapBase/MarginContainer");
 			var suggestionText = GetNode<SuggestionText>(SuggestionText.NodePath);
 			var fuelBar = GetNode<FuelBar>(FuelBar.NodePath);
+			var tirednessBar = GetNode<TirednessBar>(TirednessBar.NodePath);
 
 			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged += 
 				(GameSceneSignals.GameModeChangedArgs args) => {
@@ -66,6 +69,43 @@ namespace TaxiSimulator.Scenes.MiniMap {
 				};
 
 			GasolineSignals.SignalsProvider.CarLeftSignal.CarLeft +=
+				(EventSignalArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
+
+					ChangeNode(suggestion, mapContainer);
+				};
+
+			PlayerSingals.SignalsProvider.TiredSignal.Tiredness += 
+				(PlayerSingals.TirednessArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}	
+
+					tirednessBar.SetTirednessLevel(args.Tiredness);
+				};
+
+			ParkingSignals.SignalsProvider.CarStayedSignal.CarStayed +=
+				(ParkingSignals.CarStayedArgs args) => {
+					if (! _checkSignals) {
+						return;
+					}
+
+					if (! args.CarStayed) {
+						return;
+					}
+
+					ChangeNode(mapContainer, suggestion);
+					if ((int)_carSpeed != 0) {
+						suggestionText.SetText(GameTextsDictionary.StopCarSuggestion);
+						return;
+					}
+
+					suggestionText.SetText(GameTextsDictionary.RestSuggestion);
+				};
+
+			ParkingSignals.SignalsProvider.CarLeftSignal.CarLeft +=
 				(EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
