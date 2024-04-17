@@ -1,0 +1,14 @@
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\bin\Debug\net6.0\TaxiSimulatorDb.deps.json
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\bin\Debug\net6.0\TaxiSimulatorDb.dll
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\bin\Debug\net6.0\TaxiSimulatorDb.pdb
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.csproj.AssemblyReference.cache
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.AssemblyInfoInputs.cache
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.AssemblyInfo.cs
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.csproj.CoreCompileInputs.cache
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.dll
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\refint\TaxiSimulatorDb.dll
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.pdb
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\ref\TaxiSimulatorDb.dll
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\bin\Debug\net6.0\TaxiSimulatorDb.runtimeconfig.json
+C:\Users\chunai\Desktop\godot\taxi-simulator\TaxiSimulatorDb\obj\Debug\net6.0\TaxiSimulatorDb.genruntimeconfig.cache

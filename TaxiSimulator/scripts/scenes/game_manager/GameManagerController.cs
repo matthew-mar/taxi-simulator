@@ -1,7 +1,10 @@
 using Godot;
-using TaxiSimulator.Common.Contracts.Controllers;
+using System.IO;
+using TaxiSumulatorDb;
+
 using TaxiSimulator.Common.Helpers;
 using TaxiSimulator.Common.Helpers.Dictionary;
+using TaxiSimulator.Common.Contracts.Controllers;
 
 namespace TaxiSimulator.Scenes.GameManager {
 	public partial class GameManagerController : Node, ISceneController {
@@ -9,10 +12,17 @@ namespace TaxiSimulator.Scenes.GameManager {
 
 		public static GameManagerController Instance => instance;
 
-		public override void _Ready() {
+		public override async void _Ready() {
 			base._Ready();
 
 			instance ??= this;
+
+			var fullPath = ProjectSettings.GlobalizePath(TaxiSumulatorDbContext.DatabaseFileName);
+			var dbProvider = new TaxiSimulatorDbProvider(fullPath);
+			using var connection = dbProvider.Context;
+			await connection.MakeMigrationsAsync();
+			GD.Print("migrated");
+
 			CallDeferred(nameof(SwitchScene), ScenePathDictionary.MainMenuScenePath);
 		}
 
