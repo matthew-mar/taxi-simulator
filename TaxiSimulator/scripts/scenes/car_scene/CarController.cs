@@ -132,7 +132,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 			CarSceneSignals.SignalsProvider.ClearSignals();
 		}
 
-		public Node GetNode() => this;
+		public Node GetNewNode() => this;
 
 		public override void _Process(double delta) {
 			base._Process(delta);

@@ -44,6 +44,6 @@ namespace TaxiSimulator.Scenes.Pause {
 			SignalsProvider.ClearSignals();
 		}
 
-		public Node GetNode() => this;
+		public Node GetNewNode() => this;
 	}
 }

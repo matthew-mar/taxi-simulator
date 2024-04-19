@@ -27,6 +27,6 @@ namespace TaxiSimulator.Scenes.MainMenu {
 			SignalsProvider.ClearSignals();
 		}
 
-		public Node GetNode() => this;
+		public Node GetNewNode() => this;
 	}
 }
