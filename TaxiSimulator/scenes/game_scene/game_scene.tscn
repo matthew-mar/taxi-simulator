@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://4xtgl17tt7gf"]
+[gd_scene load_steps=15 format=3 uid="uid://4xtgl17tt7gf"]
 
 [ext_resource type="Script" path="res://scripts/scenes/game_scene/GameSceneController.cs" id="1_557g7"]
 [ext_resource type="PackedScene" uid="uid://dv8vi6qmljoss" path="res://scenes/input_controller/input_controller.tscn" id="2_m030p"]
@@ -7,6 +7,161 @@
 [ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="5_t6fgl"]
 [ext_resource type="PackedScene" uid="uid://b2dqquhs1bv4p" path="res://scenes/city/city.tscn" id="6_s8x63"]
 [ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="7_iqua7"]
+
+[sub_resource type="Animation" id="Animation_lku53"]
+resource_name = "new_animation"
+length = 1440.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-3.4, 0, 721.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0), Vector3(-1.5708, 0, 0), Vector3(1.58825, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 721.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.538, 0.193]
+}
+
+[sub_resource type="Animation" id="Animation_7ijgm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.538]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekg6e"]
+_data = {
+"RESET": SubResource("Animation_7ijgm"),
+"new_animation": SubResource("Animation_lku53")
+}
+
+[sub_resource type="Environment" id="Environment_lfw7k"]
+background_mode = 1
+background_color = Color(0.792157, 0.929412, 0.960784, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.803922, 0.882353, 0.94902, 1)
+tonemap_exposure = 1.26
+
+[sub_resource type="Animation" id="Animation_xeokt"]
+resource_name = "new_animation"
+length = 1440.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 720),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.803922, 0.882353, 0.94902, 1), Color(0.0156863, 0.054902, 0.121569, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 720),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.803922, 0.882353, 0.94902, 1), Color(0.027451, 0.0784314, 0.164706, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:tonemap_exposure")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 720),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.26, 0.74]
+}
+
+[sub_resource type="Animation" id="Animation_lkt8s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:environment:background_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.792157, 0.929412, 0.960784, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:environment:ambient_light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.803922, 0.882353, 0.94902, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:environment:tonemap_exposure")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.26]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ld1mr"]
+_data = {
+"RESET": SubResource("Animation_lkt8s"),
+"new_animation": SubResource("Animation_xeokt")
+}
 
 [node name="DriveLocation" type="Node3D"]
 script = ExtResource("1_557g7")
@@ -41,7 +196,23 @@ size_flags_horizontal = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.949, 5.96669, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1069.72, 0)
+light_energy = 1.538
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enviroment/DirectionalLight3D"]
+libraries = {
+"": SubResource("AnimationLibrary_ekg6e")
+}
+autoplay = "new_animation"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment"]
+environment = SubResource("Environment_lfw7k")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enviroment/WorldEnvironment"]
+libraries = {
+"": SubResource("AnimationLibrary_ld1mr")
+}
+autoplay = "new_animation"
 
 [node name="pause_menu_controller" parent="." instance=ExtResource("5_t6fgl")]
 visibility_layer = 1
