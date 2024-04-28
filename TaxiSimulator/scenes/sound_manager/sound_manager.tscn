@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://yb6ipy5u1ja3"]
 
+[ext_resource type="Script" path="res://scripts/services/sound/SoundService.cs" id="1_asaj8"]
 [ext_resource type="AudioStream" uid="uid://yys8chfsq56v" path="res://scenes/main_menu/assets/677861__el_boss__ui-button-click.wav" id="1_g4070"]
-[ext_resource type="Script" path="res://scripts/scenes/sound_manager/SoundManagerController.cs" id="1_q31jf"]
 [ext_resource type="AudioStream" uid="uid://d0w51lrm8v06h" path="res://scenes/sound_manager/assets/637710__kyles__motor-pump-small-nice-sharp-close2.mp3" id="3_jnecd"]
 
 [node name="SoundManager" type="Node"]
-script = ExtResource("1_q31jf")
+script = ExtResource("1_asaj8")
 
 [node name="ButtonPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_g4070")

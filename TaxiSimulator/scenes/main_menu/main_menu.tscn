@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dd5hshdcgihnd"]
+[gd_scene load_steps=10 format=3 uid="uid://dd5hshdcgihnd"]
 
 [ext_resource type="Script" path="res://scripts/scenes/main_menu/MainMenuController.cs" id="1_cltuo"]
 [ext_resource type="Texture2D" uid="uid://5a1w65qchiip" path="res://common/assets/BackgroundImage (3).png" id="1_pmq8v"]
 [ext_resource type="Texture2D" uid="uid://cd65uyhjmjev8" path="res://common/assets/CheckersLogo.png" id="2_lbsc2"]
-[ext_resource type="PackedScene" uid="uid://yb6ipy5u1ja3" path="res://scenes/sound_manager/sound_manager.tscn" id="2_v2ouq"]
 [ext_resource type="Texture2D" uid="uid://c0w14jtaorgn8" path="res://common/assets/PlayButton (3).png" id="3_plbax"]
 [ext_resource type="Texture2D" uid="uid://esup2cqfu5xc" path="res://common/assets/PlayButtonHover (2).png" id="4_vxi4h"]
 [ext_resource type="Script" path="res://scripts/scenes/main_menu/view/PlayButton.cs" id="5_4ahu1"]
@@ -25,8 +24,6 @@ offset_bottom = -3.21606
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cltuo")
-
-[node name="SoundManager" parent="." instance=ExtResource("2_v2ouq")]
 
 [node name="background" type="TextureRect" parent="."]
 layout_mode = 0

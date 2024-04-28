@@ -2,7 +2,7 @@ using TaxiSimulator.Common;
 using TaxiSimulator.Scenes.GameScene.Signals;
 
 using PuaseSignals = TaxiSimulator.Scenes.Pause.Signals;
-using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
+using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 
 using Godot;
 using System;
@@ -27,26 +27,28 @@ namespace TaxiSimulator.Scenes.GameScene {
 			var map = GetNode<Control>("map_controller");
 			var enviroment = GetNode<Control>("Enviroment");
 
-			InputSignals.SignalsProvider.EscapePressedSignal.EscapePressed +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.EscapePressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (_currentGameMode != GameMode.Pause) {
 						ChangeGameMode(GameMode.Pause);
 					} else {
 						ChangeGameMode(_previousGameMode);
 					}
-				};
+				})
+			);
 
-			PuaseSignals.SignalsProvider.ContinueButtonPressed.ContinueButtonPressed +=
-				(EventSignalArgs args) => {
+			PuaseSignals.SignalsProvider.ContinueButtonPressed.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (_currentGameMode != GameMode.Pause) {
-						throw new Exception("Can't continue game cause game is not in PuseMode");
+						throw new Exception("Can't continue game cause game is not in PauseMode");
 					}
 
 					ChangeGameMode(_previousGameMode);
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.ActionMPressedSignal.ActionMPressed +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.ActionMPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (_currentGameMode == GameMode.Pause) {
 						return;
 					}
@@ -60,12 +62,14 @@ namespace TaxiSimulator.Scenes.GameScene {
 					}
 
 					ChangeGameMode(GameMode.Map);
-				};
+				})
+			);
+		}
 
-			PuaseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
-				(EventSignalArgs args) => {
-					SignalsProvider.ClearSignals();
-				};
+		public override void _Process(double delta) {
+			base._Process(delta);
+
+			SendGameMode();
 		}
 
 		private void ChangeGameMode(GameMode gameMode) {
@@ -76,5 +80,11 @@ namespace TaxiSimulator.Scenes.GameScene {
 				To = _currentGameMode,
 			});
 		}
+
+		private void SendGameMode() => SignalsProvider.CurrentGameModeSignal.Emit(
+			new CurrentGameModeArgs() {
+				CurrentGameMode = _currentGameMode,
+			}
+		);
 	}
 }

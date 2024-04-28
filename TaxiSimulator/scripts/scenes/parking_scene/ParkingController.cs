@@ -2,7 +2,7 @@ using Godot;
 using TaxiSimulator.Common.View;
 using TaxiSimulator.Scenes.Parking.Singlas;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
-using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
+using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 using TaxiSimulator.Common;
 
 namespace TaxiSimulator.Scenes.Parking {
@@ -31,18 +31,20 @@ namespace TaxiSimulator.Scenes.Parking {
 				SignalsProvider.CarLeftSignal.Emit();
 			};
 
-			InputSignals.SignalsProvider.ActionEPressedSignal.ActionEPressed +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.ActionEPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					SignalsProvider.RestAllowedSignal.Emit(new RestAllowedArgs() {
 						Allowed = _collisionArea.CarStopedInArea,
 						ParkingPosition = _collisionArea.GlobalPosition,
 					});
-				};
+				})
+			);
 
-			PauseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
-				(EventSignalArgs args) => {
+			PauseSignals.SignalsProvider.MainMenuButtonPressed.Attach(
+				Callable.From((EventSignalArgs args) => {
 					SignalsProvider.ClearSignals();
-				};
+				})
+			);
 		}
 
 		public override void _Process(double delta) {

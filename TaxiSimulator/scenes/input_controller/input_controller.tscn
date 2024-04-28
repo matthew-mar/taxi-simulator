@@ -1,7 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dv8vi6qmljoss"]
+[gd_scene format=3 uid="uid://dv8vi6qmljoss"]
 
-[ext_resource type="Script" path="res://scripts/scenes/input_controller/InputController.cs" id="1_16tew"]
-
-[node name="InputController" type="Node"]
+[node name="input_service" type="Node"]
 process_mode = 3
-script = ExtResource("1_16tew")

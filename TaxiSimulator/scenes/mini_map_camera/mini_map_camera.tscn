@@ -7,7 +7,7 @@
 script = ExtResource("1_17qrg")
 
 [node name="mini_map_camera" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 0, 500, 0)
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, 1, 1, 4.37114e-08, -4.37114e-08, 0, 500, 0)
 cull_mask = 1047554
 size = 100.0
 script = ExtResource("2_ltn7x")

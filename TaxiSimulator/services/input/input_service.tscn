@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://baw5nw5m1732u"]
+
+[ext_resource type="Script" path="res://scripts/services/input/InputService.cs" id="1_2fl3n"]
+
+[node name="input_service" type="Node"]
+process_mode = 3
+script = ExtResource("1_2fl3n")

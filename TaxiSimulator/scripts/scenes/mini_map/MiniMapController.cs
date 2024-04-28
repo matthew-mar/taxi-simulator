@@ -1,5 +1,5 @@
 using TaxiSimulator.Scenes.MiniMap.View;
-using PlayerSingals = TaxiSimulator.Scenes.Player.Signals;
+using PlayerSingals = TaxiSimulator.Services.Player.Signals;
 using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
@@ -25,32 +25,35 @@ namespace TaxiSimulator.Scenes.MiniMap {
 			var fuelBar = GetNode<FuelBar>(FuelBar.NodePath);
 			var tirednessBar = GetNode<TirednessBar>(TirednessBar.NodePath);
 
-			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged += 
-				(GameSceneSignals.GameModeChangedArgs args) => {
+			GameSceneSignals.SignalsProvider.GameModeChangedSignal.Attach(
+				Callable.From((GameSceneSignals.GameModeChangedArgs args) => {
 					_checkSignals = args.To == GameScene.GameMode.Game;
-				};
+				})
+			);
 
-			CarSceneSignals.SignalsProvider.SpeedChangedSignal.SpeedChanged +=
-				(CarSceneSignals.SpeedSignalArgs args) => {
+			CarSceneSignals.SignalsProvider.SpeedChangedSignal.Attach(
+				Callable.From((CarSceneSignals.SpeedSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					speedText.SetSpeed(args.CurrentSpeed);
 					_carSpeed = args.CurrentSpeed.Length();
-				};
+				})
+			);
 
-			CarSceneSignals.SignalsProvider.FuelChangedSignal.FuelChanged +=
-				(CarSceneSignals.FuelChangedArgs args) => {
+			CarSceneSignals.SignalsProvider.FuelChangedSignal.Attach(
+				Callable.From((CarSceneSignals.FuelChangedArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					fuelBar.SetFuelLevel(args.FuelLevel);
-				};
+				})
+			);
 
-			GasolineSignals.SignalsProvider.CarStayedSignal.CarStayed += 
-				(GasolineSignals.CarStayedArgs args) => {
+			GasolineSignals.SignalsProvider.CarStayedSignal.Attach(
+				Callable.From((GasolineSignals.CarStayedArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
@@ -66,28 +69,31 @@ namespace TaxiSimulator.Scenes.MiniMap {
 					}
 					
 					suggestionText.SetText(GameTextsDictionary.RefuelSuggestion);
-				};
+				})
+			);
 
-			GasolineSignals.SignalsProvider.CarLeftSignal.CarLeft +=
-				(EventSignalArgs args) => {
+			GasolineSignals.SignalsProvider.CarLeftSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					ChangeNode(suggestion, mapContainer);
-				};
+				})
+			);
 
-			PlayerSingals.SignalsProvider.TiredSignal.Tiredness += 
-				(PlayerSingals.TirednessArgs args) => {
+			PlayerSingals.SignalsProvider.TiredSignal.Attach(
+				Callable.From((PlayerSingals.TirednessArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}	
 
 					tirednessBar.SetTirednessLevel(args.Tiredness);
-				};
+				})
+			);
 
-			ParkingSignals.SignalsProvider.CarStayedSignal.CarStayed +=
-				(ParkingSignals.CarStayedArgs args) => {
+			ParkingSignals.SignalsProvider.CarStayedSignal.Attach(
+				Callable.From((ParkingSignals.CarStayedArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
@@ -103,16 +109,18 @@ namespace TaxiSimulator.Scenes.MiniMap {
 					}
 
 					suggestionText.SetText(GameTextsDictionary.RestSuggestion);
-				};
+				})
+			);
 
-			ParkingSignals.SignalsProvider.CarLeftSignal.CarLeft +=
+			ParkingSignals.SignalsProvider.CarLeftSignal.Attach(Callable.From(
 				(EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					ChangeNode(suggestion, mapContainer);
-				};
+				})
+			);
 		}
 
 		private static void ChangeNode(Control from, Control to) {

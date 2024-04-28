@@ -1,5 +1,5 @@
 using Godot;
-using TaxiSimulator.Scenes.Player;
+using TaxiSimulator.Services.Player;
 using TaxiSimulator.Scenes.CarScene.Signals;
 
 namespace TaxiSimulator.Scenes.CarScene.View {
@@ -52,12 +52,10 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 		}
 
 		public void Turn(float horizontalAxis) {
-			if (PlayerController.Instance.Tired) {
+			if (PlayerService.Instance.Tired) {
 				Steering = 0f;
 				return;
 			}
-
-			// Steering = horizontalAxis * 0.4f;
 
 			_steeringAngle = Mathf.Clamp(_steeringAngle + 1f * horizontalAxis * 0.4f, -45f, 45f); 
 			var radians = _steeringAngle * (Mathf.Pi / 180);
@@ -65,7 +63,7 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 		}
 
 		public void Move(float verticalAxis) {
-			if (PlayerController.Instance.Tired) {
+			if (PlayerService.Instance.Tired) {
 				EngineForce = 0;
 				return;
 			}

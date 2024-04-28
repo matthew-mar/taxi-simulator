@@ -24,18 +24,21 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 			await ToSignal(GetTree(), "physics_frame");
 			SetPhysicsProcess(true);
 
-			MapCameraSignals.SignalsProvider.PointBlitedSignal.PointBlited +=
-				(MapCameraSignals.PointBlitedArgs args) => {
+			MapCameraSignals.SignalsProvider.PointBlitedSignal.Attach(
+				Callable.From((MapCameraSignals.PointBlitedArgs args) => {
 					_destinationPoint = args.PointPosition;
-				};
+				})
+			);
 
-			MapCameraSignals.SignalsProvider.PointCleanedSignal.PointCleaned +=
-				(EventSignalArgs args) => {
+			MapCameraSignals.SignalsProvider.PointCleanedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					_destinationPoint = null;
-				};
+					SignalsProvider.DestinationDestroyedSignal.Emit();
+				})
+			);
 
-			CarSignals.SignalsProvider.PositionChangedSignal.PositionChanged +=
-				(CarSignals.PositionSignalArgs args) => {
+			CarSignals.SignalsProvider.PositionChangedSignal.Attach(
+				Callable.From((CarSignals.PositionSignalArgs args) => {
 					if (_destinationPoint == null) {
 						return;
 					}
@@ -46,12 +49,8 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 							"Destination Point can not be null"
 						)
 					);
-				};
-
-			PauseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
-				(EventSignalArgs args) => {
-					SignalsProvider.ClearSignals();
-				};
+				})
+			);
 		}
 
 		public override void _Process(double delta) {

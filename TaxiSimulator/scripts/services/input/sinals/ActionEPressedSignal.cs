@@ -1,7 +1,7 @@
 using Godot;
 using TaxiSimulator.Common;
 
-namespace TaxiSimulator.Scenes.InputController.Signlas {
+namespace TaxiSimulator.Services.InputService.Signlas {
     public partial class ActionEPressedSignal : EventSignal {
         [Signal]
         public delegate void ActionEPressedEventHandler(EventSignalArgs args);
