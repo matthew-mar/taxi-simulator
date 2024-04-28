@@ -11,30 +11,33 @@ namespace TaxiSimulator.Scenes.MiniMapCamera {
 		public override void _Ready() {
 			base._Ready();
 
-			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged += 
-				(GameSceneSignals.GameModeChangedArgs args) => {
+			GameSceneSignals.SignalsProvider.GameModeChangedSignal.Attach(
+				Callable.From((GameSceneSignals.GameModeChangedArgs args) => {
 					_checkSignals = args.To == GameScene.GameMode.Game;
-				};
+				})
+			);
 
 			var miniMapCamera = GetNode<MiniMapCam>(MiniMapCam.NodePath);
 			
-			CarSignals.SignalsProvider.PositionChangedSignal.PositionChanged += 
-				(CarSignals.PositionSignalArgs args) => {
+			CarSignals.SignalsProvider.PositionChangedSignal.Attach(
+				Callable.From((CarSignals.PositionSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					miniMapCamera.FollowTargetPosition(args.CurrentPosition);
-				};
+				})
+			);
 			
-			CarSignals.SignalsProvider.RotationChangedSignal.RotationChanged +=
-				(CarSignals.RotationSignalArgs args) => {
+			CarSignals.SignalsProvider.RotationChangedSignal.Attach(
+				Callable.From((CarSignals.RotationSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					miniMapCamera.FollowTargetRotation(args.CurrentRotation);
-				};
+				})
+			);
 		}
 	}
 }

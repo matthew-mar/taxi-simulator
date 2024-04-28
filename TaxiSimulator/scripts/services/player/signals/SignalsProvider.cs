@@ -1,4 +1,4 @@
-namespace TaxiSimulator.Scenes.Player.Signals {
+namespace TaxiSimulator.Services.Player.Signals {
     public class SignalsProvider {
         private static TirednessSignal tiredSignal = null;
 
@@ -10,7 +10,7 @@ namespace TaxiSimulator.Scenes.Player.Signals {
                 return tiredSignal;
             }
         }
-        
+
         public static RestSignal RestSignal {
             get {
                 restSignal ??= new();

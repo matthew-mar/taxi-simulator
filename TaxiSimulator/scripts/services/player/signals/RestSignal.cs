@@ -1,7 +1,7 @@
 using Godot;
 using TaxiSimulator.Common;
 
-namespace TaxiSimulator.Scenes.Player.Signals {
+namespace TaxiSimulator.Services.Player.Signals {
     public partial class RestArgs : EventSignalArgs {
         public Vector3 RestPoint { get; set; }
     }

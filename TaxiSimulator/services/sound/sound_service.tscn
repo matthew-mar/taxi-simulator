@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://diqxgxko4025b"]
+
+[ext_resource type="Script" path="res://scripts/services/sound/SoundService.cs" id="1_4qala"]
+[ext_resource type="AudioStream" uid="uid://yys8chfsq56v" path="res://scenes/main_menu/assets/677861__el_boss__ui-button-click.wav" id="2_31v2l"]
+[ext_resource type="AudioStream" uid="uid://d0w51lrm8v06h" path="res://scenes/sound_manager/assets/637710__kyles__motor-pump-small-nice-sharp-close2.mp3" id="3_6ppg1"]
+
+[node name="sound_service" type="Node"]
+script = ExtResource("1_4qala")
+
+[node name="ButtonPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_31v2l")
+volume_db = 24.0
+
+[node name="MotorPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6ppg1")
+volume_db = -15.0

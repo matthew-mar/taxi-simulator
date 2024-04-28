@@ -7,11 +7,6 @@ namespace TaxiSimulator.Scenes.MapController {
 	public partial class MapController : Control {
 		public override void _Ready() {
 			base._Ready();
-
-			PauseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed += 
-				(EventSignalArgs args) => {
-					SignalsProvider.ClearSignals();
-				};
 		}
 	}
 }

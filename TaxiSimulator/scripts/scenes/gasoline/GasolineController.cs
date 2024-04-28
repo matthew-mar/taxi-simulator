@@ -3,13 +3,11 @@ using TaxiSimulator.Common;
 using TaxiSimulator.Scenes.Gasoline.Signals;
 using TaxiSimulator.Scenes.Gasoline.View;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
-using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
+using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 using TaxiSimulator.Common.View;
 
 namespace TaxiSimulator.Scenes.Gasoline {
 	public partial class GasolineController : Node3D {
-		// private GasolineArea _gasolineArea;
-
 		private CollisionArea _collisionArea;
 
 		public override void _Ready() {
@@ -31,21 +29,13 @@ namespace TaxiSimulator.Scenes.Gasoline {
 				}
 			};
 
-			// _gasolineArea = GetNode<GasolineArea>(GasolineArea.NodePath);
-			// _gasolineArea.BodyEntered += _gasolineArea.CheckEntered;
-			// _gasolineArea.BodyExited += _gasolineArea.CheckLeft;
-
-			InputSignals.SignalsProvider.ActionEPressedSignal.ActionEPressed +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.ActionEPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					SignalsProvider.RefuelAllowedSignal.Emit(new RefuelAllowedArgs() {
 						Allowed = _collisionArea.CarStopedInArea,
 					});
-				};
-			
-			PauseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed +=
-				(EventSignalArgs args) => {
-					SignalsProvider.ClearSignals();  
-				};
+				})
+			);
 		}
 
 		public override void _Process(double delta) {
@@ -54,10 +44,6 @@ namespace TaxiSimulator.Scenes.Gasoline {
 			SignalsProvider.CarStayedSignal.Emit(new CarStayedArgs() {
 				CarStayed = _collisionArea.CarStayed,
 			});
-
-			
-
-			// _gasolineArea.CheckStay();
 		}
 	}
 }

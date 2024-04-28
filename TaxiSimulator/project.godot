@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="TaxiSimulator"
-run/main_scene="res://scenes/game_scene/game_scene.tscn"
+run/main_scene="res://scenes/initial/initial.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Player="*res://scenes/player/player.tscn"
+GameManager="*res://services/game_manager/game_manager.tscn"
+InputService="*res://services/input/input_service.tscn"
+PlayerService="*res://services/player/player_service.tscn"
 
 [display]
 

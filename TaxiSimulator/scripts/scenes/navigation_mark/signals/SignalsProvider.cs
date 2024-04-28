@@ -4,6 +4,8 @@ namespace TaxiSimulator.Scenes.NavigationMark.Signals {
 
         private static PointReachedSignal pointReachedSignal = null;
 
+        private static DestinationDestroyedSignal destinationDestroyedSignal = null;
+
         public static PathFoundedSignal PathFoundedSignal {
             get {
                 pathFoundedSignal ??= new();
@@ -15,6 +17,13 @@ namespace TaxiSimulator.Scenes.NavigationMark.Signals {
             get {
                 pointReachedSignal ??= new();
                 return pointReachedSignal;
+            }
+        }
+
+        public static DestinationDestroyedSignal DestinationDestroyedSignal {
+            get {
+                destinationDestroyedSignal ??= new();
+                return destinationDestroyedSignal;
             }
         }
 

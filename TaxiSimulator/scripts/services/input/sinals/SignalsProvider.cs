@@ -1,4 +1,4 @@
-namespace TaxiSimulator.Scenes.InputController.Signlas {
+namespace TaxiSimulator.Services.InputService.Signlas {
     public class SignalsProvider {
         private static EscapePressedSignal escapePressedSignal = null;
 

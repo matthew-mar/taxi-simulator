@@ -6,7 +6,7 @@ using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using MapSignals = TaxiSimulator.Scenes.MapController.Signals;
 using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
-using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
+using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 using NavigationMarkSignals = TaxiSimulator.Scenes.NavigationMark.Signals;
 
 using Godot;
@@ -20,89 +20,93 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			var mapCamera = GetNode<MapCamera>(MapCamera.NodePath);
 
-			GameSceneSignals.SignalsProvider.GameModeChangedSignal.GameModeChanged += 
-				(GameSceneSignals.GameModeChangedArgs args) => {
+			GameSceneSignals.SignalsProvider.GameModeChangedSignal.Attach(
+				Callable.From((GameSceneSignals.GameModeChangedArgs args) => {
 					_checkSignals = args.To == GameScene.GameMode.Map;
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.VerticalPressedSignal.VerticalPressed += 
-				(InputSignals.VerticalPressedArgs args) => {
+			InputSignals.SignalsProvider.VerticalPressedSignal.Attach(
+				Callable.From((InputSignals.VerticalPressedArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.MoveVertical(args.VerticalAxis);
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.HorizontalPressedSignal.HorizontalPressed +=
-				(InputSignals.HorizontalPressedArgs args) => {
+			InputSignals.SignalsProvider.HorizontalPressedSignal.Attach(
+				Callable.From((InputSignals.HorizontalPressedArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.MoveHorizontal(args.HorizontalAxis);
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.MouseScrolledUpSignal.MouseScrolledUp +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.MouseScrolledUpSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.ZoomIn();
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.MouseScrolledDownSignal.MouseScrolledDown +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.MouseScrolledDownSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.ZoomOut();
-				};
+				})
+			);
 
-			CarSignals.SignalsProvider.PositionChangedSignal.PositionChanged += 
-				(CarSignals.PositionSignalArgs args) => {
+			CarSignals.SignalsProvider.PositionChangedSignal.Attach(
+				Callable.From((CarSignals.PositionSignalArgs args) => {
 					mapCamera.SetCarPosition(args.CurrentPosition);
-				};
+				})
+			);
 
-			MapSignals.SignalsProvider.CarLocationButtonPressedSignal.CarLocationButtonPressed +=
-				(EventSignalArgs args) => {
+			MapSignals.SignalsProvider.CarLocationButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.MoveToCar();
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.MouseLeftClickedSignal.MouseLeftClicked += 
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.MouseLeftClickedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.BlitPoint();
-				};
+				})
+			);
 
-			InputSignals.SignalsProvider.ActionCPressedSignal.ActionCPressed +=
-				(EventSignalArgs args) => {
+			InputSignals.SignalsProvider.ActionCPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					if (! _checkSignals) {
 						return;
 					}
 
 					mapCamera.ClearPoint();
-				};
+				})
+			);
 
-			NavigationMarkSignals.SignalsProvider.PointReachedSignal.PointReached +=
-				(EventSignalArgs args) => {
+			NavigationMarkSignals.SignalsProvider.PointReachedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					mapCamera.ClearPoint();
-				};
-			
-			PauseSignals.SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed += 
-				(EventSignalArgs args) => {
-					mapCamera.ClearPoint();
-					SignalsProvider.ClearSignals();
-				};
+				})
+			);
 		}
 	}
 }

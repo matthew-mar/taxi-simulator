@@ -5,45 +5,45 @@ using TaxiSimulator.Common.Helpers.Dictionary;
 using TaxiSimulator.Common.Contracts.Controllers;
 
 using Godot;
-using InputSignals = TaxiSimulator.Scenes.InputController.Signlas;
+using InputSignals = TaxiSimulator.Services.InputService.Signlas;
+using TaxiSimulator.Services.Game;
+using TaxiSimulator.Scenes.Pause.View;
 
 namespace TaxiSimulator.Scenes.Pause {
 
-	public partial class PauseController : Control, ISceneController {
+	public partial class PauseController : Control {
+		private Control _innerController;
+
+		private MainMenuButton _mainMenuButton;
+
+		private ContinueButton _continueButton;
+
 		public override void _Ready() {
 			base._Ready();
 
-			var innerController = GetNode<Control>("Control");
+			_innerController = GetNode<Control>("Control");
+			_mainMenuButton = GetNode<MainMenuButton>(MainMenuButton.NodePath);
+			_continueButton = GetNode<ContinueButton>(ContinueButton.NodePath);
 
-			InputSignals.SignalsProvider.EscapePressedSignal.EscapePressed +=
-				(EventSignalArgs args) => {
-					innerController.Visible = ! innerController.Visible;
-					SwitchPause();
-				};
+			_continueButton.ButtonDown += () => {
+				SwitchVisible();
+				SignalsProvider.ContinueButtonPressed.Emit();
+			};
 
-			SignalsProvider.ContinueButtonPressed.ContinueButtonPressed += 
-				(EventSignalArgs args) => {
-					SwitchPause();
-					innerController.Visible = ! innerController.Visible;
-				};
+			_mainMenuButton.ButtonDown += () => {
+				SwitchVisible();
+				SignalsProvider.MainMenuButtonPressed.Emit();
+			};
 
-			SignalsProvider.MainMenuButtonPressed.MainMenuButtonPressed += 
-				(EventSignalArgs args) => {
-					ClearSignals();
-					SwitchPause();
-					innerController.Visible = ! innerController.Visible;
-					SceneSwitcher.SwitchScene(ScenePathDictionary.MainMenuScenePath, this);
-				};
+			InputSignals.SignalsProvider.EscapePressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
+					SwitchVisible();
+				})
+			);
 		}
 
-		private void SwitchPause(EventSignalArgs args = null) {
-			GetTree().Paused = ! GetTree().Paused;
+		private void SwitchVisible() {
+			_innerController.Visible = ! _innerController.Visible;
 		}
-
-		public void ClearSignals() {
-			SignalsProvider.ClearSignals();
-		}
-
-		public Node GetNode() => this;
 	}
 }

@@ -5,28 +5,25 @@ using TaxiSimulator.Common.Helpers.Dictionary;
 using TaxiSimulator.Common.Contracts.Controllers;
 
 using Godot;
+using TaxiSimulator.Services.Game;
 
 namespace TaxiSimulator.Scenes.MainMenu {
 
-	public partial class MainMenuController : Control, ISceneController {
+	public partial class MainMenuController : Control {
 		public override void _Ready() {
 			base._Ready();
 
-			SignalsProvider.PlayButtonPressedSignal.PlayButtonPressed += 
-				(EventSignalArgs signalArgs) => {
-					SceneSwitcher.SwitchScene(ScenePathDictionary.GameScenePath, this);
-				};
+			SignalsProvider.PlayButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs signalArgs) => {
+					GameService.Instance.SwitchToGame();
+				})
+			);
 
-			SignalsProvider.ExitButtonPressedSignal.ExitButtonPressed += 
-				(EventSignalArgs signalArgs) => {
+			SignalsProvider.ExitButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs signalArgs) => {
 					GetTree().Quit();
-				};
+				})
+			);
 		}
-
-		public void ClearSignals() {
-			SignalsProvider.ClearSignals();
-		}
-
-		public Node GetNode() => this;
 	}
 }
