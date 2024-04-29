@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnhmu2ooruon3"]
+
+[ext_resource type="Script" path="res://scripts/scenes/menu/MenuController.cs" id="1_qcvkh"]
+[ext_resource type="Texture2D" uid="uid://o0jhbn5fbcpy" path="res://scenes/Lobby/assets/BackgroundImage (4).png" id="1_yx8p2"]
+[ext_resource type="PackedScene" uid="uid://dmymi7tq85tg0" path="res://scenes/Lobby/lobby.tscn" id="2_uy5a7"]
+[ext_resource type="PackedScene" uid="uid://cekwmnlt6j86l" path="res://scenes/tab/tab.tscn" id="3_410jm"]
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qcvkh")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yx8p2")
+
+[node name="Lobby" parent="." instance=ExtResource("2_uy5a7")]
+layout_mode = 1
+
+[node name="Tab" parent="." instance=ExtResource("3_410jm")]
+visible = false
+layout_mode = 1

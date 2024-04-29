@@ -1,6 +1,6 @@
 using Godot;
 using TaxiSimulator.Common.View;
-using TaxiSimulator.Scenes.Parking.Singlas;
+using TaxiSimulator.Scenes.Parking.Signals;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 using TaxiSimulator.Common;

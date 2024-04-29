@@ -15,7 +15,7 @@ namespace TaxiSimulator.Scenes.MainMenu {
 
 			SignalsProvider.PlayButtonPressedSignal.Attach(
 				Callable.From((EventSignalArgs signalArgs) => {
-					GameService.Instance.SwitchToGame();
+					GameService.Instance.SwitchToMenu();
 				})
 			);
 

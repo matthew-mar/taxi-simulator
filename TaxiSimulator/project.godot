@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://services/game_manager/game_manager.tscn"
 InputService="*res://services/input/input_service.tscn"
 PlayerService="*res://services/player/player_service.tscn"
+GameManager="*res://services/game_manager/game_manager.tscn"
 
 [display]
 

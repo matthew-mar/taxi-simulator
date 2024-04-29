@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cekwmnlt6j86l"]
+
+[ext_resource type="Texture2D" uid="uid://scjkpy8dvghq" path="res://scenes/tab/assets/back_panel.png" id="1_28xcg"]
+[ext_resource type="Script" path="res://scripts/scenes/tab/TabController.cs" id="1_c54ey"]
+[ext_resource type="Texture2D" uid="uid://chkfhb8ptm3hi" path="res://scenes/tab/assets/close_button.png" id="2_5ggu4"]
+[ext_resource type="Script" path="res://scripts/scenes/tab/view/CloseButton.cs" id="3_jhptl"]
+
+[node name="Tab" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c54ey")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -927.0
+offset_top = -507.0
+offset_right = 927.0
+offset_bottom = 507.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_28xcg")
+
+[node name="close_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1787.0
+offset_top = 59.0
+offset_right = 1853.0
+offset_bottom = 124.0
+texture_normal = ExtResource("2_5ggu4")
+script = ExtResource("3_jhptl")
