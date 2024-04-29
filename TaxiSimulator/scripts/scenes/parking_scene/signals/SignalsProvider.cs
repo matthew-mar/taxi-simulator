@@ -1,4 +1,4 @@
-namespace TaxiSimulator.Scenes.Parking.Singlas {
+namespace TaxiSimulator.Scenes.Parking.Signals {
     public class SignalsProvider {
         private static CarEnteredSignal carEnteredSignal = null;
 

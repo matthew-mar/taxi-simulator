@@ -1,7 +1,7 @@
 using Godot;
 using TaxiSimulator.Common;
 
-namespace TaxiSimulator.Scenes.Parking.Singlas {
+namespace TaxiSimulator.Scenes.Parking.Signals {
     public partial class CarStayedArgs : EventSignalArgs {
         public bool CarStayed { get; set; }
     }

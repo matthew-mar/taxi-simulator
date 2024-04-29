@@ -1,6 +1,6 @@
 using Godot;
 using TaxiSimulator.Services.Player.Signals;
-using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
+using ParkingSignals = TaxiSimulator.Scenes.Parking.Signals;
 
 namespace TaxiSimulator.Services.Player {
     #nullable enable

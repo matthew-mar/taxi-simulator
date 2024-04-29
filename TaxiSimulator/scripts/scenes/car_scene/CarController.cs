@@ -3,7 +3,7 @@ using TaxiSimulator.Scenes.CarScene.View;
 using TaxiSimulator.Common.Contracts.Controllers;
 
 using PlayerSingals = TaxiSimulator.Services.Player.Signals;
-using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
+using ParkingSignals = TaxiSimulator.Scenes.Parking.Signals;
 using PauseSceneSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSceneSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;

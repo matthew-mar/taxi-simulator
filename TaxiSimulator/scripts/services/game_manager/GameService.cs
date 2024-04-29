@@ -1,11 +1,15 @@
+using TaxiSimulator.Common;
 using TaxiSimulator.Common.Helpers;
 using TaxiSimulator.Common.Helpers.Dictionary;
 
+using TabSignals = TaxiSimulator.Scenes.Tab.Signals;
+using MenuSignals = TaxiSimulator.Scenes.Menu.Signals;
+using LobbySignals = TaxiSimulator.Scenes.Lobby.Signals;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GameSignals = TaxiSimulator.Scenes.GameScene.Signals;
 using PlayerSignal = TaxiSimulator.Services.Player.Signals;
-using ParkingSignals = TaxiSimulator.Scenes.Parking.Singlas;
+using ParkingSignals = TaxiSimulator.Scenes.Parking.Signals;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using MainMenuSignals = TaxiSimulator.Scenes.MainMenu.Signals;
 using MapSignals = TaxiSimulator.Scenes.MapController.Signals;
@@ -14,7 +18,6 @@ using MapCameraSignals = TaxiSimulator.Scenes.MapCameraScene.Signals;
 using NavigationMarkSignals = TaxiSimulator.Scenes.NavigationMark.Signals;
 
 using Godot;
-using TaxiSimulator.Common;
 
 namespace TaxiSimulator.Services.Game {
 	public partial class GameService : Node {
@@ -53,6 +56,11 @@ namespace TaxiSimulator.Services.Game {
 			GetTree().CurrentScene
 		);
 
+		public void SwitchToMenu() => SceneSwitcher.SwitchScene(
+			ScenePathDictionary.MenuScenePath,
+			GetTree().CurrentScene
+		);
+
 		private void Pause() => GetTree().Paused = ! GetTree().Paused;
 
 		private static void ClearSignals() {
@@ -67,6 +75,9 @@ namespace TaxiSimulator.Services.Game {
 			InputSignals.SignalsProvider.ClearSignals();
 			MapCameraSignals.SignalsProvider.ClearSignals();
 			NavigationMarkSignals.SignalsProvider.ClearSignals();
+			LobbySignals.SignalsProvider.ClearSignals();
+			TabSignals.SignalsProvider.ClearSignals();
+			MenuSignals.SignalsProvider.ClearSignals();
 		}
 
 		private void Attach() {
@@ -85,6 +96,20 @@ namespace TaxiSimulator.Services.Game {
 			PauseSignals.SignalsProvider.MainMenuButtonPressed.Attach(
 				Callable.From((EventSignalArgs args) => {
 					CallDeferred(nameof(Pause));
+					CallDeferred(nameof(ClearSignals));
+					CallDeferred(nameof(SwitchToMenu));
+					_reload = true;
+				})
+			);
+
+			LobbySignals.SignalsProvider.DriveButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
+					CallDeferred(nameof(SwitchToGame));
+				})
+			);
+
+			LobbySignals.SignalsProvider.QuitButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
 					CallDeferred(nameof(ClearSignals));
 					CallDeferred(nameof(SwitchToMain));
 					_reload = true;

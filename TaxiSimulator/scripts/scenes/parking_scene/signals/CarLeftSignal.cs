@@ -1,7 +1,7 @@
 using Godot;
 using TaxiSimulator.Common;
 
-namespace TaxiSimulator.Scenes.Parking.Singlas {
+namespace TaxiSimulator.Scenes.Parking.Signals {
     public partial class CarLeftSignal : EventSignal {
         [Signal]
         public delegate void CarLeftEventHandler(EventSignalArgs args = null);
