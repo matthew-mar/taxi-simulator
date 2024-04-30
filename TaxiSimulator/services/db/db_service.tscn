@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsde54xn2f35l"]
+
+[ext_resource type="Script" path="res://scripts/services/database/DbService.cs" id="1_axxxx"]
+
+[node name="db_service" type="Node"]
+script = ExtResource("1_axxxx")

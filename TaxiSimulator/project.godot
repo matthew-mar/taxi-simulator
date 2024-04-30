@@ -17,9 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+ProcessService="*res://services/process/process_service.tscn"
 InputService="*res://services/input/input_service.tscn"
 PlayerService="*res://services/player/player_service.tscn"
 GameManager="*res://services/game_manager/game_manager.tscn"
+DbService="*res://services/db/db_service.tscn"
 
 [display]
 
