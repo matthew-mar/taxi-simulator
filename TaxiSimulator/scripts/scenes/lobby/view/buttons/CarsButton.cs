@@ -1,6 +1,6 @@
 using Godot;
 
-namespace TaxiSimulator.Scenes.Lobby.View {
+namespace TaxiSimulator.Scenes.Lobby.View.Buttons {
     public partial class CarsButton : TextureButton {
         public const string NodePath = "buttons/cars_button";
     }

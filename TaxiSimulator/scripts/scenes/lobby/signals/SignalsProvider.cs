@@ -1,4 +1,4 @@
-using TaxiSimulator.Scenes.Lobby.View;
+using TaxiSimulator.Scenes.Lobby.View.Buttons;
 
 namespace TaxiSimulator.Scenes.Lobby.Signals {
     public class SignalsProvider {

@@ -23,5 +23,7 @@ namespace DbPackage.Models {
         public long? EndTime { get; set; }
 
         public long? CompletedAt { get; set; }
+
+        public int? Mark { get; set; }
     }
 }

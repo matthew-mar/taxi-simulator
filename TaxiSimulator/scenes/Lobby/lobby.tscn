@@ -1,17 +1,21 @@
-[gd_scene load_steps=54 format=3 uid="uid://dmymi7tq85tg0"]
+[gd_scene load_steps=58 format=3 uid="uid://dmymi7tq85tg0"]
 
 [ext_resource type="Script" path="res://scripts/scenes/lobby/LobbyController.cs" id="1_2c8c6"]
-[ext_resource type="Texture2D" uid="uid://bm0nva6ijyf15" path="res://scenes/Lobby/assets/player_panel_base.png" id="1_7t5ll"]
 [ext_resource type="Texture2D" uid="uid://bp7gd5pa1jxkx" path="res://scenes/Lobby/assets/garage_panel.png" id="2_c2666"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/player_card/OrdersComplete.cs" id="3_21ctv"]
 [ext_resource type="Texture2D" uid="uid://c5ugd0a7atq06" path="res://scenes/Lobby/assets/balance_panel.png" id="3_uvru0"]
 [ext_resource type="Texture2D" uid="uid://dn0jyohckp5qp" path="res://scenes/Lobby/assets/top_panel.png" id="4_s8bxq"]
 [ext_resource type="Texture2D" uid="uid://cmikvejvb5nlq" path="res://scenes/Lobby/assets/star.png" id="5_1c7o2"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/player_card/Balance.cs" id="5_txq4s"]
 [ext_resource type="Texture2D" uid="uid://bcwame51n4we4" path="res://scenes/Lobby/assets/driver_class.png" id="6_bb2yd"]
 [ext_resource type="Texture2D" uid="uid://cudli8m83vus6" path="res://scenes/Lobby/assets/progress_base.png" id="7_4mmlx"]
 [ext_resource type="Texture2D" uid="uid://dghsruwknwe21" path="res://scenes/Lobby/assets/level.png" id="7_tic18"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/player_card/Raiting.cs" id="7_yoeo8"]
 [ext_resource type="Texture2D" uid="uid://cbi0je8raawxr" path="res://scenes/Lobby/assets/empty.png" id="8_1benm"]
 [ext_resource type="Texture2D" uid="uid://dxggi1712sawt" path="res://scenes/Lobby/assets/full_small.png" id="9_mu2ep"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/player_card/ExperienceBar.cs" id="11_bnvhd"]
 [ext_resource type="Texture2D" uid="uid://v1n1vbjoop2v" path="res://scenes/Lobby/assets/shop_panel.png" id="11_hwmee"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/player_card/Level.cs" id="12_df6ex"]
 [ext_resource type="Texture2D" uid="uid://5ocsahhivex3" path="res://scenes/Lobby/assets/shop_panel_hover.png" id="12_hwsjn"]
 [ext_resource type="Texture2D" uid="uid://qn7rnwql35wr" path="res://scenes/Lobby/assets/business_panel.png" id="13_hv8lr"]
 [ext_resource type="Texture2D" uid="uid://baeexeg7oadr5" path="res://scenes/Lobby/assets/store.png" id="13_vxjof"]
@@ -21,38 +25,38 @@
 [ext_resource type="Texture2D" uid="uid://crttvinqum8rx" path="res://scenes/Lobby/assets/drive_buttonhover.png" id="18_v4lpb"]
 [ext_resource type="Texture2D" uid="uid://bwcgpj5hfrq5r" path="res://scenes/Lobby/assets/local_taxi.png" id="19_c570i"]
 [ext_resource type="Texture2D" uid="uid://7tpymeqndl8t" path="res://scenes/Lobby/assets/map_button.png" id="20_lfo6j"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/DriveButton.cs" id="20_nk8m2"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/DriveButton.cs" id="21_c801l"]
 [ext_resource type="Texture2D" uid="uid://yysy40nnkvw2" path="res://scenes/Lobby/assets/map_hover.png" id="21_obrdd"]
 [ext_resource type="Texture2D" uid="uid://bwkgueu0kb85i" path="res://scenes/Lobby/assets/public.png" id="22_yukoq"]
 [ext_resource type="Texture2D" uid="uid://cvm1ci8cbpkl3" path="res://scenes/Lobby/assets/order_grid (1).png" id="23_r1rl8"]
 [ext_resource type="Texture2D" uid="uid://82uxaa8vccd1" path="res://scenes/Lobby/assets/order_grid_hover (1).png" id="24_3oxy4"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/MapButton.cs" id="24_ghi04"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/MapButton.cs" id="25_iwpou"]
 [ext_resource type="Texture2D" uid="uid://c0mvc1kclo8u8" path="res://scenes/Lobby/assets/cards.png" id="25_nbfpb"]
 [ext_resource type="Texture2D" uid="uid://clwq2c3vtp6gn" path="res://scenes/Lobby/assets/company_button.png" id="26_xwbnb"]
 [ext_resource type="Texture2D" uid="uid://dmlp674kjydyi" path="res://scenes/Lobby/assets/company_hover.png" id="27_myviw"]
 [ext_resource type="Texture2D" uid="uid://dgsrfhnu2ysem" path="res://scenes/Lobby/assets/apartment.png" id="28_307dc"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/OrdersButton.cs" id="28_wfxvd"]
 [ext_resource type="Texture2D" uid="uid://cptg3pwlhxsel" path="res://scenes/Lobby/assets/real_estate_button.png" id="29_8i4oy"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/OrdersButton.cs" id="29_w5c2k"]
 [ext_resource type="Texture2D" uid="uid://b445uscu8xa3h" path="res://scenes/Lobby/assets/real_estate_hover.png" id="30_2rpal"]
 [ext_resource type="Texture2D" uid="uid://ct1pvbwj8givr" path="res://scenes/Lobby/assets/garage_home.png" id="31_kymta"]
 [ext_resource type="Texture2D" uid="uid://cp104lus6ehht" path="res://scenes/Lobby/assets/cars_button.png" id="32_ixud6"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/CompanyButton.cs" id="32_q4513"]
 [ext_resource type="Texture2D" uid="uid://i3oepxlo281q" path="res://scenes/Lobby/assets/cars_hover.png" id="33_cj7eg"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/CompanyButton.cs" id="33_llfpn"]
 [ext_resource type="Texture2D" uid="uid://becwq7ri28v8e" path="res://scenes/Lobby/assets/directions_car.png" id="34_0nfvh"]
 [ext_resource type="Texture2D" uid="uid://cdirqblmwkbxe" path="res://scenes/Lobby/assets/mail_button.png" id="35_c6njk"]
 [ext_resource type="Texture2D" uid="uid://duayvokerwrhj" path="res://scenes/Lobby/assets/mail_button_hover.png" id="36_2ks6y"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/RealEstateButton.cs" id="36_dprhy"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/RealEstateButton.cs" id="37_r0shl"]
 [ext_resource type="Texture2D" uid="uid://dcds58vla6tru" path="res://scenes/Lobby/assets/mail.png" id="37_s0fx8"]
 [ext_resource type="Texture2D" uid="uid://bwccvtrm80c7d" path="res://scenes/Lobby/assets/settings_button.png" id="38_6xl0k"]
 [ext_resource type="Texture2D" uid="uid://du0ocg4lpn1a0" path="res://scenes/Lobby/assets/settings_hover.png" id="39_2l0vr"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/CarsButton.cs" id="40_bshfe"]
 [ext_resource type="Texture2D" uid="uid://b8pcxbff66pmf" path="res://scenes/Lobby/assets/settings.png" id="40_myhgd"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/CarsButton.cs" id="41_7f1wd"]
 [ext_resource type="Texture2D" uid="uid://ctbp73u7rqbeh" path="res://scenes/Lobby/assets/quit_button.png" id="41_hcwga"]
 [ext_resource type="Texture2D" uid="uid://c7s8utgkpgf8p" path="res://scenes/Lobby/assets/quit_hover.png" id="42_dkhk6"]
 [ext_resource type="Texture2D" uid="uid://c5sfjkamd7i0w" path="res://scenes/Lobby/assets/logout.png" id="43_8jp65"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/MailButton.cs" id="44_yldvx"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/QuitButton.cs" id="45_31f6s"]
-[ext_resource type="Script" path="res://scripts/scenes/lobby/view/SettingsButton.cs" id="48_rg17p"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/MailButton.cs" id="45_3x7u5"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/SettingsButton.cs" id="49_wh856"]
+[ext_resource type="Script" path="res://scripts/scenes/lobby/view/buttons/QuitButton.cs" id="53_4i0gu"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
@@ -68,36 +72,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="base_panel" type="TextureRect" parent="player_card"]
-layout_mode = 0
-offset_left = 168.0
-offset_top = 168.0
-offset_right = 598.0
-offset_bottom = 577.0
-texture = ExtResource("1_7t5ll")
-
-[node name="panel_name" type="RichTextLabel" parent="player_card/base_panel"]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 304.0
-offset_right = 168.0
-offset_bottom = 350.0
-bbcode_enabled = true
-text = "[color=#F7CA44]Стоимость 
-недвижимости"
-fit_content = true
-
-[node name="panel_cost" type="RichTextLabel" parent="player_card/base_panel"]
-layout_mode = 0
-offset_left = 184.0
-offset_top = 312.0
-offset_right = 376.0
-offset_bottom = 336.0
-bbcode_enabled = true
-text = "[center][color=#F7CA44]320 241 444 ₽"
-fit_content = true
-
-[node name="garage_panel" type="TextureRect" parent="player_card"]
+[node name="orders_panel" type="TextureRect" parent="player_card"]
 layout_mode = 0
 offset_left = 193.0
 offset_top = 195.0
@@ -105,26 +80,26 @@ offset_right = 563.0
 offset_bottom = 458.0
 texture = ExtResource("2_c2666")
 
-[node name="panel_name" type="RichTextLabel" parent="player_card/garage_panel"]
+[node name="panel_name" type="RichTextLabel" parent="player_card/orders_panel"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 197.0
 offset_right = 143.0
 offset_bottom = 243.0
 bbcode_enabled = true
-text = "[color=#F7CA44]Стоимость 
-гаража"
+text = "[color=#F7CA44]Выполнено заказов"
 fit_content = true
 
-[node name="panel_cost" type="RichTextLabel" parent="player_card/garage_panel"]
+[node name="panel_cost" type="RichTextLabel" parent="player_card/orders_panel"]
 layout_mode = 0
 offset_left = 159.0
 offset_top = 205.0
 offset_right = 351.0
 offset_bottom = 229.0
 bbcode_enabled = true
-text = "[center][color=#F7CA44]20 241 444 ₽"
+text = "[center][color=#F7CA44]100"
 fit_content = true
+script = ExtResource("3_21ctv")
 
 [node name="balance_panel" type="TextureRect" parent="player_card"]
 layout_mode = 0
@@ -151,8 +126,9 @@ offset_top = 118.0
 offset_right = 350.0
 offset_bottom = 142.0
 bbcode_enabled = true
-text = "[center][color=#F7CA44]241 312 ₽"
+text = "[center][color=#F7CA44]0"
 fit_content = true
+script = ExtResource("5_txq4s")
 
 [node name="top_panel" type="TextureRect" parent="player_card"]
 layout_mode = 0
@@ -181,6 +157,7 @@ offset_bottom = 86.0
 scale = Vector2(0.8, 0.8)
 bbcode_enabled = true
 text = "[color=#F7CA44]4.2"
+script = ExtResource("7_yoeo8")
 
 [node name="star" type="TextureRect" parent="player_card/top_panel"]
 layout_mode = 0
@@ -222,11 +199,12 @@ offset_right = 102.0
 offset_bottom = 29.5
 grow_horizontal = 2
 grow_vertical = 2
-value = 30.0
+max_value = 1000.0
 nine_patch_stretch = true
 texture_under = ExtResource("7_4mmlx")
 texture_over = ExtResource("8_1benm")
 texture_progress = ExtResource("9_mu2ep")
+script = ExtResource("11_bnvhd")
 
 [node name="level_panel" type="TextureRect" parent="player_card"]
 layout_mode = 0
@@ -246,6 +224,7 @@ scale = Vector2(3, 3)
 bbcode_enabled = true
 text = "[center][color=#F7CA44]7"
 fit_content = true
+script = ExtResource("12_df6ex")
 
 [node name="side_control" type="Control" parent="."]
 anchors_preset = 0
@@ -312,7 +291,7 @@ offset_right = 516.0
 offset_bottom = 961.0
 texture_normal = ExtResource("17_bp8h3")
 texture_hover = ExtResource("18_v4lpb")
-script = ExtResource("20_nk8m2")
+script = ExtResource("21_c801l")
 
 [node name="icon" type="TextureRect" parent="start_drive_button"]
 layout_mode = 0
@@ -348,7 +327,7 @@ offset_right = 1766.0
 offset_bottom = 1033.0
 texture_normal = ExtResource("20_lfo6j")
 texture_hover = ExtResource("21_obrdd")
-script = ExtResource("24_ghi04")
+script = ExtResource("25_iwpou")
 
 [node name="icon" type="TextureRect" parent="buttons/map_button"]
 layout_mode = 0
@@ -376,7 +355,7 @@ offset_right = 1732.0
 offset_bottom = 999.0
 texture_normal = ExtResource("23_r1rl8")
 texture_hover = ExtResource("24_3oxy4")
-script = ExtResource("28_wfxvd")
+script = ExtResource("29_w5c2k")
 
 [node name="icon2" type="TextureRect" parent="buttons/order_grid_button"]
 layout_mode = 0
@@ -404,7 +383,7 @@ offset_right = 1732.0
 offset_bottom = 999.0
 texture_normal = ExtResource("26_xwbnb")
 texture_hover = ExtResource("27_myviw")
-script = ExtResource("32_q4513")
+script = ExtResource("33_llfpn")
 
 [node name="icon2" type="TextureRect" parent="buttons/company_button"]
 layout_mode = 0
@@ -432,7 +411,7 @@ offset_right = 1732.0
 offset_bottom = 999.0
 texture_normal = ExtResource("29_8i4oy")
 texture_hover = ExtResource("30_2rpal")
-script = ExtResource("36_dprhy")
+script = ExtResource("37_r0shl")
 
 [node name="icon2" type="TextureRect" parent="buttons/real_estate_button"]
 layout_mode = 0
@@ -460,7 +439,7 @@ offset_right = 1732.0
 offset_bottom = 999.0
 texture_normal = ExtResource("32_ixud6")
 texture_hover = ExtResource("33_cj7eg")
-script = ExtResource("40_bshfe")
+script = ExtResource("41_7f1wd")
 
 [node name="icon2" type="TextureRect" parent="buttons/cars_button"]
 layout_mode = 0
@@ -488,7 +467,7 @@ offset_right = 1731.0
 offset_bottom = 999.0
 texture_normal = ExtResource("35_c6njk")
 texture_hover = ExtResource("36_2ks6y")
-script = ExtResource("44_yldvx")
+script = ExtResource("45_3x7u5")
 
 [node name="icon2" type="TextureRect" parent="buttons/mail_button"]
 layout_mode = 0
@@ -516,7 +495,7 @@ offset_right = 1733.0
 offset_bottom = 999.0
 texture_normal = ExtResource("38_6xl0k")
 texture_hover = ExtResource("39_2l0vr")
-script = ExtResource("48_rg17p")
+script = ExtResource("49_wh856")
 
 [node name="icon2" type="TextureRect" parent="buttons/settings_button"]
 layout_mode = 0
@@ -544,7 +523,7 @@ offset_right = 1734.0
 offset_bottom = 999.0
 texture_normal = ExtResource("41_hcwga")
 texture_hover = ExtResource("42_dkhk6")
-script = ExtResource("45_31f6s")
+script = ExtResource("53_4i0gu")
 
 [node name="icon2" type="TextureRect" parent="buttons/quit_button"]
 layout_mode = 0

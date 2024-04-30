@@ -2,6 +2,7 @@ using TaxiSimulator.Common;
 using TaxiSimulator.Common.Helpers;
 using TaxiSimulator.Common.Helpers.Dictionary;
 
+using DbSignals = TaxiSimulator.Services.Db.Signals;
 using TabSignals = TaxiSimulator.Scenes.Tab.Signals;
 using MenuSignals = TaxiSimulator.Scenes.Menu.Signals;
 using LobbySignals = TaxiSimulator.Scenes.Lobby.Signals;
@@ -31,8 +32,6 @@ namespace TaxiSimulator.Services.Game {
 			Instance ??= this;
 
 			Attach();
-
-			CallDeferred(nameof(SwitchToMain));
 		}
 
 		public override void _Process(double delta) {
@@ -78,9 +77,16 @@ namespace TaxiSimulator.Services.Game {
 			LobbySignals.SignalsProvider.ClearSignals();
 			TabSignals.SignalsProvider.ClearSignals();
 			MenuSignals.SignalsProvider.ClearSignals();
+			DbSignals.SignalsProvider.ClearSignals();
 		}
 
 		private void Attach() {
+			DbSignals.SignalsProvider.DatabaseInitializedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
+					CallDeferred(nameof(SwitchToMain));
+				})
+			);
+
 			PauseSignals.SignalsProvider.ContinueButtonPressed.Attach(
 				Callable.From((EventSignalArgs args) => {
 					CallDeferred(nameof(Pause));
