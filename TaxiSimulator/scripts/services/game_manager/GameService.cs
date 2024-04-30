@@ -19,12 +19,15 @@ using MapCameraSignals = TaxiSimulator.Scenes.MapCameraScene.Signals;
 using NavigationMarkSignals = TaxiSimulator.Scenes.NavigationMark.Signals;
 
 using Godot;
+using TaxiSimulator.Scenes.GameScene;
 
 namespace TaxiSimulator.Services.Game {
 	public partial class GameService : Node {
 		public static GameService Instance { get; private set; }
 
 		private bool _reload = false;
+
+		public GameMode GameMode { get; private set; }
 
 		public override void _Ready() {
 			base._Ready();
@@ -110,7 +113,17 @@ namespace TaxiSimulator.Services.Game {
 
 			LobbySignals.SignalsProvider.DriveButtonPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
+					GameMode = GameMode.Game;
 					CallDeferred(nameof(SwitchToGame));
+					// _reload = true;
+				})
+			);
+
+			LobbySignals.SignalsProvider.MapButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
+					GameMode = GameMode.Map;
+					CallDeferred(nameof(SwitchToGame));
+					// _reload = true;
 				})
 			);
 

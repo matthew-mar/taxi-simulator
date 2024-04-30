@@ -130,3 +130,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Добавлено
 
 - Отображение данных в карточке игрока
+
+## [1.15.0] - 01.05.2024
+
+### Добавлено
+
+- Переход в карту из лобби
