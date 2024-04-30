@@ -1,4 +1,5 @@
 using TaxiSimulator.Common;
+using TaxiSimulator.Services.Game;
 using TaxiSimulator.Scenes.GameScene.Signals;
 
 using PuaseSignals = TaxiSimulator.Scenes.Pause.Signals;
@@ -19,13 +20,17 @@ namespace TaxiSimulator.Scenes.GameScene {
 
 		private GameMode _previousGameMode;
 
+		private Control _map;
+
+		private Control _enviroment;
+
 		public override void _Ready() {
 			base._Ready();
 
-			ChangeGameMode(GameMode.Game);
-
-			var map = GetNode<Control>("map_controller");
-			var enviroment = GetNode<Control>("Enviroment");
+			_map = GetNode<Control>("map_controller");
+			_enviroment = GetNode<Control>("Enviroment");
+			
+			ChangeGameMode(GameService.Instance.GameMode);
 
 			InputSignals.SignalsProvider.EscapePressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
@@ -53,8 +58,8 @@ namespace TaxiSimulator.Scenes.GameScene {
 						return;
 					}
 					
-					map.Visible = ! map.Visible;
-					enviroment.Visible = ! enviroment.Visible;
+					_map.Visible = ! _map.Visible;
+					_enviroment.Visible = ! _enviroment.Visible;
 
 					if (_currentGameMode == GameMode.Map) {
 						ChangeGameMode(GameMode.Game);
@@ -73,6 +78,20 @@ namespace TaxiSimulator.Scenes.GameScene {
 		}
 
 		private void ChangeGameMode(GameMode gameMode) {
+			switch (gameMode) {
+				case GameMode.Map:
+					_map.Visible = true;
+					_enviroment.Visible = false;
+					break;
+				
+				case GameMode.Game:
+					_map.Visible = false;
+					_enviroment.Visible = true;
+					break;
+
+				default: break;
+			}
+
 			_previousGameMode = _currentGameMode;
 			_currentGameMode = gameMode;
 			SignalsProvider.GameModeChangedSignal.Emit(new GameModeChangedArgs() {
