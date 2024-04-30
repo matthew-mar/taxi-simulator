@@ -1,8 +1,5 @@
 using TaxiSimulator.Common;
-using TaxiSimulator.Common.Helpers;
 using TaxiSimulator.Scenes.MainMenu.Signals;
-using TaxiSimulator.Common.Helpers.Dictionary;
-using TaxiSimulator.Common.Contracts.Controllers;
 
 using Godot;
 using TaxiSimulator.Services.Game;

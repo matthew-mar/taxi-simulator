@@ -4,6 +4,10 @@ namespace TaxiSimulator.Services.Player.Signals {
 
         private static RestSignal restSignal = null;
 
+        private static ExperienceSignal experienceSignal = null;
+
+        private static BalanceSignal balanceSignal = null;
+
         public static TirednessSignal TiredSignal {
             get {
                 tiredSignal ??= new();
@@ -18,9 +22,25 @@ namespace TaxiSimulator.Services.Player.Signals {
             }
         }
 
+        public static ExperienceSignal ExperienceSignal {
+            get {
+                experienceSignal ??= new();
+                return experienceSignal;
+            }
+        }
+
+        public static BalanceSignal BalanceSignal {
+            get {
+                balanceSignal ??= new();
+                return balanceSignal;
+            }
+        }
+
         public static void ClearSingals() {
             tiredSignal = null;
             restSignal = null;
+            experienceSignal = null;
+            balanceSignal = null;
         }
     }
 }
