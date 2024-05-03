@@ -34,7 +34,7 @@ namespace TaxiSimulator.Scenes.CarScene {
 			base._Ready();
 
 			_car = GetNode<Car>(Car.NodePath);
-			_car.Respawn();
+			// _car.Respawn();
 
 			_steerWheel = GetNode<SteerWheel>(SteerWheel.NodePath);
 

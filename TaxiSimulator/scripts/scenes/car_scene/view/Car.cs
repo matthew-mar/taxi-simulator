@@ -9,7 +9,7 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 
 		public const float FullFuel = 1f;
 
-		private const float Speed = 2_500f;
+		private const float Speed = 1000f;
 
 		[Export]
 		private double _fuel = 1f;
@@ -31,7 +31,7 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 
 		public bool OnSpawnPosition => GlobalPosition == _spawnPosition;
 
-		private Vector3 _spawnPosition = new(-72, 4, 40);
+		private Vector3 _spawnPosition = new(-72, 1, 40);
 
 		private float _steeringAngle = 0f;
 
@@ -57,9 +57,29 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 				return;
 			}
 
-			_steeringAngle = Mathf.Clamp(_steeringAngle + 1f * horizontalAxis * 0.4f, -45f, 45f); 
+			if (Mathf.Abs(horizontalAxis) > 0) {
+				_steeringAngle = Mathf.Clamp(_steeringAngle + 1f * horizontalAxis * 0.4f, -45f, 45f);
+			} else if (_steeringAngle > 0) {
+				_steeringAngle -= 0.4f;
+				if (_steeringAngle < 0) {
+					_steeringAngle = 0f;
+				}
+			} else if (_steeringAngle < 0) {
+				_steeringAngle += 0.4f;
+				if (_steeringAngle > 0) {
+					_steeringAngle = 0f;
+				}
+			}
 			var radians = _steeringAngle * (Mathf.Pi / 180);
 			Steering = radians;
+			
+
+			// var radians = 0f;
+			// if (Mathf.Abs(horizontalAxis) > 0) {
+			// 	_steeringAngle = Mathf.Clamp(_steeringAngle + 1f * horizontalAxis * 0.4f, -45f, 45f); 
+			// 	radians = _steeringAngle * (Mathf.Pi / 180);
+			// }
+			// Steering = radians;
 		}
 
 		public void Move(float verticalAxis) {

@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/scenes/game_scene/GameSceneController.cs" id="1_557g7"]
 [ext_resource type="PackedScene" uid="uid://beighsbus87kf" path="res://scenes/map_controller/map_controller.tscn" id="4_euhoc"]
 [ext_resource type="PackedScene" uid="uid://q7y6qajrmtc7" path="res://scenes/mini_map/mini_map_controller.tscn" id="4_l8nnq"]
+[ext_resource type="PackedScene" uid="uid://uu5dv0kunsar" path="res://scenes/chertanovo/chertanovo.tscn" id="5_bu6st"]
 [ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="5_t6fgl"]
-[ext_resource type="PackedScene" uid="uid://b2dqquhs1bv4p" path="res://scenes/city/city.tscn" id="6_s8x63"]
 [ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="7_iqua7"]
 
 [node name="DriveLocation" type="Node3D"]
@@ -32,10 +32,10 @@ grow_horizontal = 0
 grow_vertical = 1
 size_flags_horizontal = 4
 
-[node name="city" parent="Enviroment" instance=ExtResource("6_s8x63")]
+[node name="city4" parent="Enviroment" instance=ExtResource("5_bu6st")]
 
 [node name="CarController" parent="Enviroment" instance=ExtResource("7_iqua7")]
-transform = Transform3D(-1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, -1, -72, 4, 40)
+transform = Transform3D(-0.00515143, 0, -0.00857105, 0, 0.01, 0, 0.00857105, 0, -0.00515143, 9.22395, 0.342668, -23.1419)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)

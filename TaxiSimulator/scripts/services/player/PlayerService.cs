@@ -9,7 +9,7 @@ using TaxiSimulator.Common;
 namespace TaxiSimulator.Services.Player {
 	#nullable enable
 	public partial class PlayerService : Node {
-		private const int SleepInterval = 500;
+		private const int SleepInterval = 5000;
 
 		public static PlayerService? Instance { get; private set; }
 
@@ -73,7 +73,7 @@ namespace TaxiSimulator.Services.Player {
 		});
 
 		private void Rest() {
-			_tiredness = 100.0;
+			_tiredness = SleepInterval;
 			SignalsProvider.RestSignal.Emit(new RestArgs() {
 				RestPoint = _restPoint,
 			});
