@@ -7,7 +7,7 @@ namespace TaxiSimulator.Services.Db.Processes {
 
         public async Task RunAsync() {
             await DbService.Instance.DbProvider.Context.MakeMigrationsAsync();
-            Completed.Invoke();
+            Completed.Invoke(null);
         }
     }
 }

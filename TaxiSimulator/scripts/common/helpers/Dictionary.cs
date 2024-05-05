@@ -6,6 +6,8 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
         public const string MainMenuScenePath = "res://scenes/main_menu/main_menu.tscn";
 
         public const string MenuScenePath = "res://scenes/menu/menu.tscn";
+
+        public const string OrderCardScenePath = "res://scenes/order_card/order_card.tscn";
     }
 
     public class InputActionDictionary {

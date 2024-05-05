@@ -5,6 +5,7 @@ using Godot;
 using DbPackage;
 using System.IO;
 using TaxiSimulator.Services.Db.Signals;
+using TaxiSimulator.Common.Contracts.Processes;
 
 namespace TaxiSimulator.Services.Db {
 	public partial class DbService : Node {
@@ -23,7 +24,7 @@ namespace TaxiSimulator.Services.Db {
 			DbProvider = new DbProvider(DbPath);
 			if (! File.Exists(DbPath)) {
 				var migrate = new Migrate();
-				migrate.Completed += () => {
+				migrate.Completed += (ProcessResult? result) => {
 					GD.Print("Db migrated");
 					FillDbInitial();
 				};
@@ -35,7 +36,7 @@ namespace TaxiSimulator.Services.Db {
 
 		private static void FillDbInitial() {
 			var fillInitial = new FillInitial();
-			fillInitial.Completed += () => {
+			fillInitial.Completed += (ProcessResult? result) => {
 				GD.Print("Initial fill completed");
 				SignalsProvider.DatabaseInitializedSignal.Emit();
 			};

@@ -86,6 +86,7 @@ namespace TaxiSimulator.Services.Game {
 		private void Attach() {
 			DbSignals.SignalsProvider.DatabaseInitializedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
+					GD.Print("Db initialized");
 					CallDeferred(nameof(SwitchToMain));
 				})
 			);
@@ -122,8 +123,9 @@ namespace TaxiSimulator.Services.Game {
 			LobbySignals.SignalsProvider.MapButtonPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
 					GameMode = GameMode.Map;
+					CallDeferred(nameof(ClearSignals));
 					CallDeferred(nameof(SwitchToGame));
-					// _reload = true;
+					_reload = true;
 				})
 			);
 
@@ -132,6 +134,21 @@ namespace TaxiSimulator.Services.Game {
 					CallDeferred(nameof(ClearSignals));
 					CallDeferred(nameof(SwitchToMain));
 					_reload = true;
+				})
+			);
+
+			LobbySignals.SignalsProvider.OrdersButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
+					GameMode = GameMode.OrderGrid;
+					CallDeferred(nameof(ClearSignals));
+					CallDeferred(nameof(SwitchToGame));
+					_reload = true;
+				})
+			);
+
+			GameSignals.SignalsProvider.GameModeChangedSignal.Attach(
+				Callable.From((GameSignals.GameModeChangedArgs args) => {
+					GameMode = args.To;
 				})
 			);
 		}

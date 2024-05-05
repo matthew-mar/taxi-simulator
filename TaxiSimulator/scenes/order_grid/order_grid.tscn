@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0vodnnk8ea8l"]
+
+[ext_resource type="Script" path="res://scripts/scenes/order_card/OrderController.cs" id="1_ce5ba"]
+[ext_resource type="PackedScene" uid="uid://0u3hgfx22i1k" path="res://scenes/sub_viewport_map_container/sub_map_view_port.tscn" id="1_xxhoe"]
+[ext_resource type="Texture2D" uid="uid://4eeo64kslsi" path="res://scenes/order_grid/assets/base (1).png" id="2_8y5qq"]
+[ext_resource type="Script" path="res://scripts/scenes/order_card/view/OrderContainer.cs" id="4_r6b67"]
+
+[node name="orders_grid" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -952.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ce5ba")
+
+[node name="SubMapViewPort" parent="." instance=ExtResource("1_xxhoe")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_right = 1024.0
+offset_bottom = 1088.0
+grow_horizontal = 1
+grow_vertical = 1
+ViewPortMode = 3
+
+[node name="base_panel" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 944.0
+offset_right = 1919.0
+offset_bottom = 1080.0
+texture = ExtResource("2_8y5qq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="base_panel"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 192.0
+offset_right = 975.0
+offset_bottom = 896.0
+theme_override_constants/separation = 270
+script = ExtResource("4_r6b67")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://4xtgl17tt7gf"]
+[gd_scene load_steps=8 format=3 uid="uid://4xtgl17tt7gf"]
 
 [ext_resource type="Script" path="res://scripts/scenes/game_scene/GameSceneController.cs" id="1_557g7"]
 [ext_resource type="PackedScene" uid="uid://beighsbus87kf" path="res://scenes/map_controller/map_controller.tscn" id="4_euhoc"]
 [ext_resource type="PackedScene" uid="uid://q7y6qajrmtc7" path="res://scenes/mini_map/mini_map_controller.tscn" id="4_l8nnq"]
 [ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="5_t6fgl"]
 [ext_resource type="PackedScene" uid="uid://b2dqquhs1bv4p" path="res://scenes/city/city.tscn" id="6_s8x63"]
+[ext_resource type="PackedScene" uid="uid://d0vodnnk8ea8l" path="res://scenes/order_grid/order_grid.tscn" id="7_a1mep"]
 [ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="7_iqua7"]
 
 [node name="DriveLocation" type="Node3D"]
@@ -46,3 +47,6 @@ offset_left = -0.192016
 offset_top = -0.108032
 offset_right = -0.191895
 offset_bottom = -0.108032
+
+[node name="orders_grid" parent="." instance=ExtResource("7_a1mep")]
+visible = false
