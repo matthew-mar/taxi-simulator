@@ -23,6 +23,9 @@ namespace DbPackage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("IconPath")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
@@ -81,6 +84,9 @@ namespace DbPackage.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<long?>("CompletedAt")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("CreatedAt")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DepartureName")
