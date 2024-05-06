@@ -24,7 +24,7 @@ namespace TaxiSimulator.Services.Db {
 			DbProvider = new DbProvider(DbPath);
 			if (! File.Exists(DbPath)) {
 				var migrate = new Migrate();
-				migrate.Completed += (ProcessResult? result) => {
+				migrate.Completed += (ProcessResult result) => {
 					GD.Print("Db migrated");
 					FillDbInitial();
 				};
@@ -36,7 +36,7 @@ namespace TaxiSimulator.Services.Db {
 
 		private static void FillDbInitial() {
 			var fillInitial = new FillInitial();
-			fillInitial.Completed += (ProcessResult? result) => {
+			fillInitial.Completed += (ProcessResult result) => {
 				GD.Print("Initial fill completed");
 				SignalsProvider.DatabaseInitializedSignal.Emit();
 			};

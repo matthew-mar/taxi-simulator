@@ -1,7 +1,9 @@
 using Godot;
 using System;
+using DbPackage.Models;
 using TaxiSimulator.Services.Db;
 using ModelOrder = DbPackage.Models.Order;
+using TaxiSimulator.Common.View;
 
 namespace TaxiSimulator.Scenes.OrderCard.View {
 	public partial class Order : Control {
@@ -19,6 +21,12 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 
 		private CompanyIcon _companyIcon;
 
+		private TarifPlanLabel _tarifPlanLabel;
+
+		private WaitTime _waitTime;
+
+		private ExpectTime _expectTime;
+
 		public void SetOrder(ModelOrder order) {
 			SetCompany(
 				order.CompanyId ?? throw new NullReferenceException("order has no company id")
@@ -33,6 +41,15 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			SetCreatedAt(
 				order.CreatedAt ?? throw new NullReferenceException("order has no created at")
 			);
+			SetTarifPlan(
+				order.TarifPlanId ?? throw new NullReferenceException("order has no tarif plan")
+			);
+			SetWaitTime(
+				order.StartTime ?? throw new NullReferenceException("order has no start time")
+			);
+			SetExpectTime(
+				order.EndTime ?? throw new NullReferenceException("order has no end time")
+			);
 		}
 
 		public void Init() {
@@ -43,6 +60,9 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			_distance = GetNode<Distance>(Distance.NodePath);
 			_createdAt = GetNode<CreatedAt>(CreatedAt.NodePath);
 			_companyIcon = GetNode<CompanyIcon>(CompanyIcon.NodePath);
+			_tarifPlanLabel = GetNode<TarifPlanLabel>(TarifPlanLabel.NodePath);
+			_waitTime = GetNode<WaitTime>(WaitTime.NodePath);
+			_expectTime = GetNode<ExpectTime>(ExpectTime.NodePath);
 		}
 
 		private async void SetCompany(int companyId) {
@@ -51,8 +71,8 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 				.GetByIdAsync(companyId);
 			var companyName = company.Name ?? throw new NullReferenceException("company has no name");
 			_companyName.SetText(companyName);
-			_companyIcon.SetIcon(company.IconPath 
-				?? throw new NullReferenceException("company has no icon path")
+			_companyIcon.SetIcon(
+				company.IconPath ?? throw new NullReferenceException("company has no icon path")
 			);
 		}
 
@@ -64,11 +84,20 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 
 		private void SetDistance(string distance) => _distance.SetText(distance);
 
-		private void SetCreatedAt(long createdAt) {
-			var dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(createdAt);
+		private void SetCreatedAt(long createdAt) => SetTime(createdAt, _createdAt);
+
+		private void SetTarifPlan(int tarifPlanId) 
+			=> _tarifPlanLabel.SetText(TarifPlanName.TarifPlan(tarifPlanId));
+
+		private void SetWaitTime(long startTime) => SetTime(startTime, _waitTime);
+
+		private void SetExpectTime(long endTime) => SetTime(endTime, _expectTime);
+
+		private static void SetTime(long timestamp, CommonText timeNode) {
+			var dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(timestamp);
 			var hours = dateTimeOffset.DateTime.Hour;
 			var minutes = dateTimeOffset.DateTime.Minute;
-			_createdAt.SetText($"{hours:d2}:{minutes:d2}");
+			timeNode.SetText($"{hours:d2}:{minutes:d2}");
 		}
 	}
 }
