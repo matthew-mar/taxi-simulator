@@ -10,5 +10,7 @@ namespace DbPackage.Contracts {
         IQueryable<MarkCount> CountByMarks();
 
         Task<List<Order>> PaginateOrdersAsync(int offset);
+
+        Task<Order> GetOrderByIdAsync(int id);
     }
 }

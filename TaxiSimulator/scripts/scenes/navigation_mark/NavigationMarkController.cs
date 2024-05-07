@@ -2,12 +2,14 @@ using TaxiSimulator.Common;
 using TaxiSimulator.Scenes.NavigationMark.View;
 using TaxiSimulator.Scenes.NavigationMark.Signals;
 
-using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
+using OrderSignals = TaxiSimulator.Scenes.OrderCard.Signals;
 using MapCameraSignals = TaxiSimulator.Scenes.MapCameraScene.Signals;
 
 using Godot;
 using System;
+using TaxiSimulator.Services.Db;
+using TaxiSimulator.Common.Helpers;
 
 namespace TaxiSimulator.Scenes.NavigationMark {
 	public partial class NavigationMarkController : Sprite3D {
@@ -51,6 +53,22 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 					);
 				})
 			);
+
+			OrderSignals.SignalsProvider.OrderSelectedSignal.OrderSelected += 
+				async (OrderSignals.OrderSelectedArgs args) => {
+					GD.Print("order selected draw path");
+
+					var order = await DbService.Instance.DbProvider
+						.OrderRespository
+						.GetOrderByIdAsync(args.OrderId);
+
+					GD.Print(order.DepartureName);
+					
+					_markAgent.FindPath(
+						VectorConverter.FromDb(order.DeparturePoint),
+						VectorConverter.FromDb(order.DestinationPoint)
+					);
+				};
 		}
 
 		public override void _Process(double delta) {

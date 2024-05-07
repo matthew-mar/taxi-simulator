@@ -11,6 +11,7 @@ using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GameSignals = TaxiSimulator.Scenes.GameScene.Signals;
 using PlayerSignal = TaxiSimulator.Services.Player.Signals;
 using ParkingSignals = TaxiSimulator.Scenes.Parking.Signals;
+using OrderSignals = TaxiSimulator.Scenes.OrderCard.Signals;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using MainMenuSignals = TaxiSimulator.Scenes.MainMenu.Signals;
 using MapSignals = TaxiSimulator.Scenes.MapController.Signals;
@@ -81,6 +82,7 @@ namespace TaxiSimulator.Services.Game {
 			TabSignals.SignalsProvider.ClearSignals();
 			MenuSignals.SignalsProvider.ClearSignals();
 			DbSignals.SignalsProvider.ClearSignals();
+			OrderSignals.SignalsProvider.ClearSignals();
 		}
 
 		private void Attach() {

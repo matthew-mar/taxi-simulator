@@ -4,6 +4,8 @@ using DbPackage.Models;
 using TaxiSimulator.Services.Db;
 using ModelOrder = DbPackage.Models.Order;
 using TaxiSimulator.Common.View;
+using TaxiSimulator.Scenes.OrderCard.Signals;
+using DbPackage.Structures;
 
 namespace TaxiSimulator.Scenes.OrderCard.View {
 	public partial class Order : Control {
@@ -27,7 +29,12 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 
 		private ExpectTime _expectTime;
 
+		private ModelOrder _order;
+
+		private OrderButton _orderButton;
+
 		public void SetOrder(ModelOrder order) {
+			_order = order;
 			SetCompany(
 				order.CompanyId ?? throw new NullReferenceException("order has no company id")
 			);
@@ -50,6 +57,7 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			SetExpectTime(
 				order.EndTime ?? throw new NullReferenceException("order has no end time")
 			);
+			SetDistance(order.DeparturePoint, order.DestinationPoint);
 		}
 
 		public void Init() {
@@ -63,6 +71,13 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			_tarifPlanLabel = GetNode<TarifPlanLabel>(TarifPlanLabel.NodePath);
 			_waitTime = GetNode<WaitTime>(WaitTime.NodePath);
 			_expectTime = GetNode<ExpectTime>(ExpectTime.NodePath);
+			_orderButton = GetNode<OrderButton>(OrderButton.NodePath);
+			_orderButton.ButtonDown += () => {
+				GD.Print("order selected");
+				SignalsProvider.OrderSelectedSignal.Emit(new OrderSelectedArgs() {
+					OrderId = _order.Id,
+				});
+			};
 		}
 
 		private async void SetCompany(int companyId) {
@@ -82,7 +97,14 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 
 		private void SetDestination(string destination) => _destination.SetText(destination);
 
-		private void SetDistance(string distance) => _distance.SetText(distance);
+		private void SetDistance(DbVector from, DbVector to) {
+			float distance = Mathf.Sqrt(
+				Mathf.Pow(from.X - to.X, 2) +
+				Mathf.Pow(from.Y - to.Y, 2) +
+				Mathf.Pow(from.Z - to.Z, 2)
+			) / 1000;
+			_distance.SetText($"{distance:F2}");
+		}
 
 		private void SetCreatedAt(long createdAt) => SetTime(createdAt, _createdAt);
 

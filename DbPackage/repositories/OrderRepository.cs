@@ -37,5 +37,14 @@ namespace DbPackage.Repositories {
                 .Take(IOrderRespository.OrderPageCount)
                 .ToListAsync();
         }
+
+        public Task<Order> GetOrderByIdAsync(int id) {
+            if (_dbProvider.Context.Orders == null) {
+                throw new Exception("orders table doesn't exist");
+            }
+            return _dbProvider.Context.Orders
+                .Where(order => order.Id == id)
+                .FirstAsync();
+        }
     }
 }
