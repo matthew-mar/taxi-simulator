@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0vodnnk8ea8l"]
+[gd_scene load_steps=12 format=3 uid="uid://d0vodnnk8ea8l"]
 
 [ext_resource type="Script" path="res://scripts/scenes/order_card/OrderController.cs" id="1_ce5ba"]
 [ext_resource type="PackedScene" uid="uid://0u3hgfx22i1k" path="res://scenes/sub_viewport_map_container/sub_map_view_port.tscn" id="1_xxhoe"]
 [ext_resource type="Texture2D" uid="uid://4eeo64kslsi" path="res://scenes/order_grid/assets/base (1).png" id="2_8y5qq"]
 [ext_resource type="Script" path="res://scripts/scenes/order_card/view/OrderContainer.cs" id="4_r6b67"]
+[ext_resource type="Texture2D" uid="uid://c6g12e6xmncqx" path="res://scenes/order_grid/assets/panel (6).png" id="5_ancw7"]
+[ext_resource type="Texture2D" uid="uid://3qvhtvfsladf" path="res://scenes/order_grid/assets/panel (7).png" id="6_7clfu"]
+[ext_resource type="Script" path="res://scripts/scenes/order_card/view/PaginationContainer.cs" id="6_wnebv"]
+[ext_resource type="Texture2D" uid="uid://md36sbwkt7me" path="res://scenes/order_grid/assets/arrow_back_ios_new (1).png" id="7_yfwbv"]
+[ext_resource type="Texture2D" uid="uid://caqo4yc3c0w2a" path="res://scenes/order_grid/assets/arrow_back_ios_new.png" id="8_81rum"]
+[ext_resource type="Texture2D" uid="uid://cqmbrsx0bsta1" path="res://scenes/order_grid/assets/arrow_forward_ios.png" id="9_enqt8"]
+[ext_resource type="Texture2D" uid="uid://bkho00lqdt76s" path="res://scenes/order_grid/assets/arrow_forward_ios (1).png" id="10_31t1n"]
 
 [node name="orders_grid" type="Control"]
 layout_mode = 3
@@ -42,3 +49,52 @@ offset_right = 975.0
 offset_bottom = 896.0
 theme_override_constants/separation = 270
 script = ExtResource("4_r6b67")
+
+[node name="TextureRect" type="TextureRect" parent="base_panel"]
+layout_mode = 2
+offset_left = 24.0
+offset_top = 928.0
+offset_right = 975.0
+offset_bottom = 1020.0
+texture = ExtResource("5_ancw7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="base_panel/TextureRect"]
+layout_mode = 0
+offset_left = 97.0
+offset_right = 856.0
+offset_bottom = 92.0
+alignment = 1
+script = ExtResource("6_wnebv")
+
+[node name="LeftButtonBase" type="TextureRect" parent="base_panel/TextureRect"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("6_7clfu")
+
+[node name="LeftButtonArrow" type="TextureButton" parent="base_panel/TextureRect/LeftButtonBase"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 65.0
+offset_bottom = 65.0
+texture_normal = ExtResource("7_yfwbv")
+texture_pressed = ExtResource("8_81rum")
+texture_disabled = ExtResource("8_81rum")
+
+[node name="RightButtonBase" type="TextureRect" parent="base_panel/TextureRect"]
+layout_mode = 0
+offset_left = 856.0
+offset_right = 953.0
+offset_bottom = 92.0
+texture = ExtResource("6_7clfu")
+
+[node name="RightButtonArrow" type="TextureButton" parent="base_panel/TextureRect/RightButtonBase"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 73.0
+offset_bottom = 65.0
+texture_normal = ExtResource("9_enqt8")
+texture_pressed = ExtResource("10_31t1n")
+texture_disabled = ExtResource("10_31t1n")
