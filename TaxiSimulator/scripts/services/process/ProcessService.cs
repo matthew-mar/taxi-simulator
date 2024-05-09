@@ -4,6 +4,16 @@ using Godot;
 using TaxiSimulator.Common.Contracts.Processes;
 
 namespace TaxiSimulator.Services.Process {
+    public class ProcessExecutor {
+        private IProcess _process;
+
+        public ProcessExecutor(IProcess process) {
+            _process = process;
+        }
+
+        public async void Execute() => await _process.RunAsync();
+    }
+
     public partial class ProcessService : Node {
         public static ProcessService Instance { get; private set; }
 
@@ -31,17 +41,22 @@ namespace TaxiSimulator.Services.Process {
             ProcessAdded.Invoke();
         }
 
-        private async void RunProcesses() {
+        private void RunProcesses() {
             _isRunning = true;
             while (_processes.Count > 0) {
                 IProcess process = _processes.Dequeue();
                 try {
-                    await process.RunAsync();
+                    CallDeferred(nameof(RunExecutor), Callable.From(() => {
+                        var executor = new ProcessExecutor(process);
+                        executor.Execute();              
+                    }));
                 } catch (Exception ex) {
                     GD.Print($"Background process failed {ex.Message}");
                 }
             }
             _isRunning = false;
         }
+
+        private static void RunExecutor(Callable executorCall) => executorCall.CallDeferred();
     }
 }

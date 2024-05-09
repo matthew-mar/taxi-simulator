@@ -136,3 +136,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Добавлено
 
 - Переход в карту из лобби
+
+## [1.16.0] - 10.05.2024
+
+### Добавлено
+
+- Сетка заказов

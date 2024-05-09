@@ -65,7 +65,6 @@ namespace TaxiSimulator.Scenes.MapCameraScene.View {
 				var returnPosition = (Vector3)raycastResult["position"];
 				GetTree().Root.AddChild(_mark);
 				_mark.GlobalPosition = returnPosition;
-				GD.Print(_mark.GlobalPosition);
 				SignalsProvider.PointBlitedSignal.Emit(new PointBlitedArgs() {
 					PointPosition = _mark.GlobalPosition,
 					TargetPoisiton = _carPosition,

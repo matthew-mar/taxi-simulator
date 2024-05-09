@@ -7,10 +7,7 @@ namespace TaxiSimulator.Scenes.City.View {
 
         public async void FindPath(Vector3 from, Vector3 to) {
             await ToSignal(GetTree(), "physics_frame");
-            var map = GetNavigationMap();
-            GD.Print($"Nav region map: {map.Id}");
-			var path = NavigationServer3D.MapGetPath(map, from, to, true);
-            GD.Print($"Nav region path: {path.Length}");
+			var path = NavigationServer3D.MapGetPath(GetNavigationMap(), from, to, true);
 			SignalsProvider.PathFoundedSignal.Emit(new PathFoundedArgs() {
 				Path = path,
 			});

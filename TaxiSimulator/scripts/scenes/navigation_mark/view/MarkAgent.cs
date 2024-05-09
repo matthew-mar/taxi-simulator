@@ -9,22 +9,7 @@ namespace TaxiSimulator.Scenes.NavigationMark.View {
 
 		public async void FindPath(Vector3 from, Vector3 to) {
 			await ToSignal(GetTree(), "physics_frame");
-			var map = GetNavigationMap();
-
-			// /*
-			// from: {"x": -1265, "y": 3, "z": 565}
-			// to: {"x": -36, "y": 3, "z": -146}
-			// */
-
-			// var from_over = new Vector3(-1265f, 3f, 565f);
-			// var to_over = new Vector3(-36f, 3f, -146f);
-
-			GD.Print($"Order: {from}");
-			GD.Print($"Order: {to}");
-
-			GD.Print($"Mark agent map: {map.Id}");
-			_currentPath = NavigationServer3D.MapGetPath(map, from, to, true);
-			GD.Print($"Mark agent path: {_currentPath.Length}");
+			_currentPath = NavigationServer3D.MapGetPath(GetNavigationMap(), from, to, true);
 			SignalsProvider.PathFoundedSignal.Emit(new PathFoundedArgs() {
 				Path = _currentPath,
 			});

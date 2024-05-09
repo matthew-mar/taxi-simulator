@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PtFCL1OgmBycl2+IKBzUx4+yS0VSmoT8QBFw1oUxn12pWblsGDZY6lhuIJEQicJJDNejRPr2cgGh+wC49nvq0w==",
+  "dgSpecHash": "LqdHNVzldphLaDUfG1+U8exh+1v/CAShiW2yILBbcIuwrrkqMIFwe95DzXPSNqvmMbYahB0BO16iqL9olemHPA==",
   "success": true,
-  "projectFilePath": "/home/mmary/Desktop/godot/taxi-simulator/DbPackage/DbPackage.csproj",
+  "projectFilePath": "/home/mmary/taxi-simulator/DbPackage/DbPackage.csproj",
   "expectedPackageFiles": [
     "/home/mmary/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/mmary/.nuget/packages/microsoft.data.sqlite.core/6.0.0/microsoft.data.sqlite.core.6.0.0.nupkg.sha512",

@@ -88,7 +88,6 @@ namespace TaxiSimulator.Services.Game {
 		private void Attach() {
 			DbSignals.SignalsProvider.DatabaseInitializedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					GD.Print("Db initialized");
 					CallDeferred(nameof(SwitchToMain));
 				})
 			);

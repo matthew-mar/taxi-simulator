@@ -56,13 +56,9 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 
 			OrderSignals.SignalsProvider.OrderSelectedSignal.OrderSelected += 
 				async (OrderSignals.OrderSelectedArgs args) => {
-					GD.Print("order selected draw path");
-
 					var order = await DbService.Instance.DbProvider
 						.OrderRespository
 						.GetOrderByIdAsync(args.OrderId);
-
-					GD.Print(order.DepartureName);
 					
 					_markAgent.FindPath(
 						VectorConverter.FromDb(order.DeparturePoint),

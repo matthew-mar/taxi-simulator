@@ -1,6 +1,6 @@
 using Godot;
-using TaxiSimulator.Common.Contracts.Processes;
 using TaxiSimulator.Services.Process;
+using TaxiSimulator.Common.Contracts.Processes;
 
 namespace TaxiSimulator.Scenes.OrderCard.View {
     public partial class CompanyIcon : TextureRect {
@@ -10,10 +10,12 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
             var loadIconProcess = new LoadImage(iconPath);
             loadIconProcess.Completed += (ProcessResult result) => {
                 if (result is LoadImageResult loadImageResult) {
-                    Texture = loadImageResult.Texture;
+                    CallDeferred(nameof(SetTexture), loadImageResult.Texture);
                 }
             };
             ProcessService.Instance.AddProcess(loadIconProcess);
         }
+
+        private void SetTexture(Texture2D texture) => Texture = texture;
     }
 }

@@ -25,7 +25,6 @@ namespace TaxiSimulator.Scenes.PathFinder {
 
 			NavigationMarkSignals.SignalsProvider.PathFoundedSignal.Attach(
 				Callable.From((NavigationMarkSignals.PathFoundedArgs args) => {
-					GD.Print("start draw path");
 					_pathAgent.DrawPathOnScene(args.Path, GetTree().Root);
 				})
 			);

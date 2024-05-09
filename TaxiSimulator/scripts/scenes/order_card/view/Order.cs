@@ -73,7 +73,6 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			_expectTime = GetNode<ExpectTime>(ExpectTime.NodePath);
 			_orderButton = GetNode<OrderButton>(OrderButton.NodePath);
 			_orderButton.ButtonDown += () => {
-				GD.Print("order selected");
 				SignalsProvider.OrderSelectedSignal.Emit(new OrderSelectedArgs() {
 					OrderId = _order.Id,
 				});
@@ -86,10 +85,14 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 				.GetByIdAsync(companyId);
 			var companyName = company.Name ?? throw new NullReferenceException("company has no name");
 			_companyName.SetText(companyName);
-			_companyIcon.SetIcon(
-				company.IconPath ?? throw new NullReferenceException("company has no icon path")
+			CallDeferred(
+				nameof(SetIcon), 
+				company.IconPath 
+				?? throw new NullReferenceException("company has no icon")
 			);
 		}
+
+		private void SetIcon(string iconPath) => _companyIcon.SetIcon(iconPath);
 
 		private void SetCost(float cost) => _cost.SetText($"{cost}");
 

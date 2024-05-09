@@ -1135,11 +1135,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mmary/Desktop/godot/taxi-simulator/DbPackage/DbPackage.csproj",
+      "projectUniqueName": "/home/mmary/taxi-simulator/DbPackage/DbPackage.csproj",
       "projectName": "DbPackage",
-      "projectPath": "/home/mmary/Desktop/godot/taxi-simulator/DbPackage/DbPackage.csproj",
+      "projectPath": "/home/mmary/taxi-simulator/DbPackage/DbPackage.csproj",
       "packagesPath": "/home/mmary/.nuget/packages/",
-      "outputPath": "/home/mmary/Desktop/godot/taxi-simulator/DbPackage/obj/",
+      "outputPath": "/home/mmary/taxi-simulator/DbPackage/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/mmary/.nuget/NuGet/NuGet.Config"
@@ -1196,7 +1196,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.128/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.129/RuntimeIdentifierGraph.json"
       }
     }
   }
