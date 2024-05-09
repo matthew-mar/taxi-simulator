@@ -11,6 +11,7 @@ using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GameSignals = TaxiSimulator.Scenes.GameScene.Signals;
 using PlayerSignal = TaxiSimulator.Services.Player.Signals;
 using ParkingSignals = TaxiSimulator.Scenes.Parking.Signals;
+using OrderSignals = TaxiSimulator.Scenes.OrderCard.Signals;
 using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using MainMenuSignals = TaxiSimulator.Scenes.MainMenu.Signals;
 using MapSignals = TaxiSimulator.Scenes.MapController.Signals;
@@ -81,6 +82,7 @@ namespace TaxiSimulator.Services.Game {
 			TabSignals.SignalsProvider.ClearSignals();
 			MenuSignals.SignalsProvider.ClearSignals();
 			DbSignals.SignalsProvider.ClearSignals();
+			OrderSignals.SignalsProvider.ClearSignals();
 		}
 
 		private void Attach() {
@@ -122,8 +124,9 @@ namespace TaxiSimulator.Services.Game {
 			LobbySignals.SignalsProvider.MapButtonPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
 					GameMode = GameMode.Map;
+					CallDeferred(nameof(ClearSignals));
 					CallDeferred(nameof(SwitchToGame));
-					// _reload = true;
+					_reload = true;
 				})
 			);
 
@@ -132,6 +135,21 @@ namespace TaxiSimulator.Services.Game {
 					CallDeferred(nameof(ClearSignals));
 					CallDeferred(nameof(SwitchToMain));
 					_reload = true;
+				})
+			);
+
+			LobbySignals.SignalsProvider.OrdersButtonPressedSignal.Attach(
+				Callable.From((EventSignalArgs args) => {
+					GameMode = GameMode.OrderGrid;
+					CallDeferred(nameof(ClearSignals));
+					CallDeferred(nameof(SwitchToGame));
+					_reload = true;
+				})
+			);
+
+			GameSignals.SignalsProvider.GameModeChangedSignal.Attach(
+				Callable.From((GameSignals.GameModeChangedArgs args) => {
+					GameMode = args.To;
 				})
 			);
 		}

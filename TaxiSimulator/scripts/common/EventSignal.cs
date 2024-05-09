@@ -15,5 +15,9 @@ namespace TaxiSimulator.Common {
         public void Attach(Callable callable) {
             Connect(EventName, callable);
         }
+
+        public void Detach(Callable callable) {
+            Disconnect(EventName, callable);
+        }
     }
 }

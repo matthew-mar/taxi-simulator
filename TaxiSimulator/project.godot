@@ -19,9 +19,10 @@ config/icon="res://icon.svg"
 
 GameManager="*res://services/game_manager/game_manager.tscn"
 ProcessService="*res://services/process/process_service.tscn"
-PlayerService="*res://services/player/player_service.tscn"
 DbService="*res://services/db/db_service.tscn"
+PlayerService="*res://services/player/player_service.tscn"
 InputService="*res://services/input/input_service.tscn"
+SoundService="*res://services/sound/sound_service.tscn"
 
 [display]
 

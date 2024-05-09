@@ -10,9 +10,29 @@ using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 using NavigationMarkSignals = TaxiSimulator.Scenes.NavigationMark.Signals;
 
 using Godot;
+using System.Collections.Generic;
+using TaxiSimulator.Scenes.GameScene;
+using TaxiSimulator.Services.Game;
 
 namespace TaxiSimulator.Scenes.MapCameraScene {
 	public partial class MapCameraController : Node3D {
+		public const string NodePath = "SubViewport/map_camera";
+
+		private static List<GameMode> AvailableModes = new () {
+			GameMode.Map,
+			GameMode.OrderGrid,
+		};
+
+		private static bool CanMove => AvailableModes.Contains(GameService.Instance.GameMode);
+
+		public GameMode CurrentGameMode { get; set; }
+
+		private bool Available => CurrentGameMode == GameService.Instance.GameMode;
+		
+		private bool MapMode => CurrentGameMode == GameMode.Map;
+		
+		private bool OrderGridMode => CurrentGameMode == GameMode.OrderGrid;
+		
 		private bool _checkSignals = true;
 
 		public override void _Ready() {
@@ -28,7 +48,7 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			InputSignals.SignalsProvider.VerticalPressedSignal.Attach(
 				Callable.From((InputSignals.VerticalPressedArgs args) => {
-					if (! _checkSignals) {
+					if (! CanMove) {
 						return;
 					}
 
@@ -38,7 +58,7 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			InputSignals.SignalsProvider.HorizontalPressedSignal.Attach(
 				Callable.From((InputSignals.HorizontalPressedArgs args) => {
-					if (! _checkSignals) {
+					if (! CanMove) {
 						return;
 					}
 
@@ -48,7 +68,7 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			InputSignals.SignalsProvider.MouseScrolledUpSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! _checkSignals) {
+					if (! CanMove) {
 						return;
 					}
 
@@ -58,7 +78,7 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			InputSignals.SignalsProvider.MouseScrolledDownSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! _checkSignals) {
+					if (! CanMove) {
 						return;
 					}
 
@@ -74,7 +94,7 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			MapSignals.SignalsProvider.CarLocationButtonPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! _checkSignals) {
+					if (! CanMove) {
 						return;
 					}
 
@@ -84,7 +104,11 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			InputSignals.SignalsProvider.MouseLeftClickedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! _checkSignals) {
+					if (! Available) {
+						return;
+					}
+
+					if (! MapMode) {
 						return;
 					}
 
@@ -94,7 +118,11 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 
 			InputSignals.SignalsProvider.ActionCPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! _checkSignals) {
+					if (! Available) {
+						return;
+					}
+
+					if (! MapMode) {
 						return;
 					}
 

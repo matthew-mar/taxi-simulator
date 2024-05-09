@@ -1,4 +1,5 @@
 using DbPackage.Contracts;
+using DbPackage.Models;
 using DbPackage.Structures;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,8 +17,7 @@ namespace DbPackage.Repositories {
             );
         }
 
-        public IQueryable<MarkCount> CountByMarks()
-        {
+        public IQueryable<MarkCount> CountByMarks() {
             if (_dbProvider.Context.Orders == null) {
                 throw new Exception("orders table doesn't exist");
             }
@@ -25,6 +25,26 @@ namespace DbPackage.Repositories {
                 .Where(order => order.CompletedAt != null)
                 .GroupBy(order => order.Mark)
                 .Select(order => new MarkCount { Mark = order.Key, Count = order.Count() });
+        }
+
+        public Task<List<Order>> PaginateOrdersAsync(int offset) {
+            if (_dbProvider.Context.Orders == null) {
+                throw new Exception("orders table doesn't exist");
+            }
+            return _dbProvider.Context.Orders
+                .OrderBy(order => order.CreatedAt)
+                .Skip(offset * IOrderRespository.OrderPageCount)
+                .Take(IOrderRespository.OrderPageCount)
+                .ToListAsync();
+        }
+
+        public Task<Order> GetOrderByIdAsync(int id) {
+            if (_dbProvider.Context.Orders == null) {
+                throw new Exception("orders table doesn't exist");
+            }
+            return _dbProvider.Context.Orders
+                .Where(order => order.Id == id)
+                .FirstAsync();
         }
     }
 }

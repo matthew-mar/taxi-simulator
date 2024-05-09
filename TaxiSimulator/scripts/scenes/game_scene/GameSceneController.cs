@@ -7,12 +7,14 @@ using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace TaxiSimulator.Scenes.GameScene {
 	public enum GameMode {
 		Game,
 		Pause,
 		Map,
+		OrderGrid,
 	}
 
 	public partial class GameSceneController : Node3D {
@@ -20,15 +22,16 @@ namespace TaxiSimulator.Scenes.GameScene {
 
 		private GameMode _previousGameMode;
 
-		private Control _map;
-
-		private Control _enviroment;
+		private Dictionary<GameMode, Control> _modes;
 
 		public override void _Ready() {
 			base._Ready();
 
-			_map = GetNode<Control>("map_controller");
-			_enviroment = GetNode<Control>("Enviroment");
+			_modes = new() {
+				{ GameMode.Map, GetNode<Control>("map_controller") },
+				{ GameMode.Game, GetNode<Control>("Enviroment") },
+				{ GameMode.OrderGrid, GetNode<Control>("orders_grid") },
+			};
 			
 			ChangeGameMode(GameService.Instance.GameMode);
 
@@ -57,9 +60,6 @@ namespace TaxiSimulator.Scenes.GameScene {
 					if (_currentGameMode == GameMode.Pause) {
 						return;
 					}
-					
-					_map.Visible = ! _map.Visible;
-					_enviroment.Visible = ! _enviroment.Visible;
 
 					if (_currentGameMode == GameMode.Map) {
 						ChangeGameMode(GameMode.Game);
@@ -78,22 +78,16 @@ namespace TaxiSimulator.Scenes.GameScene {
 		}
 
 		private void ChangeGameMode(GameMode gameMode) {
-			switch (gameMode) {
-				case GameMode.Map:
-					_map.Visible = true;
-					_enviroment.Visible = false;
-					break;
-				
-				case GameMode.Game:
-					_map.Visible = false;
-					_enviroment.Visible = true;
-					break;
-
-				default: break;
-			}
-
 			_previousGameMode = _currentGameMode;
 			_currentGameMode = gameMode;
+
+			foreach (var map in _modes) {
+				_modes[map.Key].Visible = map.Key == _currentGameMode;
+				// _modes[map.Key].ProcessMode = map.Key == _currentGameMode
+				// 	? ProcessModeEnum.Always
+				// 	: ProcessModeEnum.Disabled;
+			}
+
 			SignalsProvider.GameModeChangedSignal.Emit(new GameModeChangedArgs() {
 				From = _previousGameMode,
 				To = _currentGameMode,

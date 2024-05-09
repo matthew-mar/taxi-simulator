@@ -25,6 +25,7 @@ offset_right = 1928.0
 offset_bottom = 1096.0
 grow_horizontal = 1
 grow_vertical = 1
+ViewPortMode = 2
 
 [node name="CarLocation" type="TextureButton" parent="."]
 process_mode = 3

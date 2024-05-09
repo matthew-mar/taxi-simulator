@@ -15,7 +15,8 @@ namespace DbPackage.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
-                    PlayerSigned = table.Column<bool>(type: "INTEGER", nullable: true)
+                    PlayerSigned = table.Column<bool>(type: "INTEGER", nullable: true),
+                    IconPath = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -64,6 +65,7 @@ namespace DbPackage.Migrations
                     DestinationPoint = table.Column<string>(type: "TEXT", nullable: true),
                     TarifPlanId = table.Column<int>(type: "INTEGER", nullable: true),
                     Price = table.Column<float>(type: "REAL", nullable: true),
+                    CreatedAt = table.Column<long>(type: "INTEGER", nullable: true),
                     StartTime = table.Column<long>(type: "INTEGER", nullable: true),
                     EndTime = table.Column<long>(type: "INTEGER", nullable: true),
                     CompletedAt = table.Column<long>(type: "INTEGER", nullable: true),
