@@ -33,7 +33,7 @@ namespace DbPackage.Repositories {
             }
             return _dbProvider.Context.Orders
                 .OrderBy(order => order.CreatedAt)
-                .Skip(offset)
+                .Skip(offset * IOrderRespository.OrderPageCount)
                 .Take(IOrderRespository.OrderPageCount)
                 .ToListAsync();
         }

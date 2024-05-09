@@ -93,6 +93,8 @@ namespace TaxiSimulator.Scenes.OrderCard {
 				.OrderRespository
 				.PaginateOrdersAsync(_currentOffset);
 
+			GD.Print($"AAAAAAAAAAAAAAAA {orders.Count}");
+
 			foreach (var order in orders) {
 				AddOrder(order);
 			}
