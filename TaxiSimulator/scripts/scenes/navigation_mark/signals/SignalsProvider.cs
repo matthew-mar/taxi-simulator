@@ -28,8 +28,14 @@ namespace TaxiSimulator.Scenes.NavigationMark.Signals {
         }
 
         public static void ClearSignals() {
+            pathFoundedSignal?.Dispose();
             pathFoundedSignal = null;
+
+            pointReachedSignal?.Dispose();
             pointReachedSignal = null;
+
+            destinationDestroyedSignal?.Dispose();
+            destinationDestroyedSignal = null;
         }
     }
 }

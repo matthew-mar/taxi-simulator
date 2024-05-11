@@ -20,8 +20,9 @@ namespace TaxiSimulator.Scenes.NavigationMark.View {
 				return;
 			}
 
-			if (_currentPath.Length <= 2) {
+			if (_currentPath.Length <= 1) {
 				_currentPath = null;
+				GD.Print("point reached");
 				SignalsProvider.PointReachedSignal.Emit();
 			}
 		}

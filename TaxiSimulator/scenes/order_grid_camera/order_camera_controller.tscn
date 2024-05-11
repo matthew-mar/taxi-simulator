@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b116ertptyh1"]
+
+[ext_resource type="Script" path="res://scripts/scenes/order_grid_camera/OrderGridCameraController.cs" id="1_b85l4"]
+[ext_resource type="Script" path="res://scripts/scenes/order_grid_camera/view/OrderGridCamera.cs" id="2_gosbi"]
+
+[node name="order_camera_controller" type="Node3D"]
+script = ExtResource("1_b85l4")
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+cull_mask = 2
+script = ExtResource("2_gosbi")
+_speed = 20.0

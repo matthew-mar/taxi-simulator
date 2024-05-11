@@ -11,9 +11,13 @@ namespace DbPackage.Repositories {
             if (_dbProvider.Context.Orders == null) {
                 throw new Exception("orders table doesn't exist");
             }
-            return await _dbProvider.Context.Orders.CountAsync(order => completed 
-                ? order.CompletedAt != null 
-                : order.CompletedAt == null
+            return await _dbProvider.Context.Orders.CountAsync(
+                order => 
+                    completed 
+                        ? order.CompletedAt != null 
+                        : order.CompletedAt == null
+                    && 
+                        order.TakenAt == null
             );
         }
 
@@ -27,24 +31,37 @@ namespace DbPackage.Repositories {
                 .Select(order => new MarkCount { Mark = order.Key, Count = order.Count() });
         }
 
-        public Task<List<Order>> PaginateOrdersAsync(int offset) {
+        public async Task<List<Order>> PaginateOrdersAsync(int offset) {
             if (_dbProvider.Context.Orders == null) {
                 throw new Exception("orders table doesn't exist");
             }
-            return _dbProvider.Context.Orders
+            return await _dbProvider.Context.Orders
+                .Where(
+                    order => 
+                        order.TakenAt == null
+                        && order.CompletedAt == null
+                )
                 .OrderBy(order => order.CreatedAt)
                 .Skip(offset * IOrderRespository.OrderPageCount)
                 .Take(IOrderRespository.OrderPageCount)
                 .ToListAsync();
         }
 
-        public Task<Order> GetOrderByIdAsync(int id) {
+        public async Task<Order> GetOrderByIdAsync(int id) {
             if (_dbProvider.Context.Orders == null) {
                 throw new Exception("orders table doesn't exist");
             }
-            return _dbProvider.Context.Orders
+            return await _dbProvider.Context.Orders
                 .Where(order => order.Id == id)
                 .FirstAsync();
+        }
+
+        public async Task UpdateByModelAsync(Order order) {
+            if (_dbProvider.Context.Orders == null) {
+                throw new Exception("orders table doesn't exist");
+            }
+            _dbProvider.Context.Orders.Update(order);
+            await _dbProvider.Context.SaveChangesAsync();
         }
     }
 }

@@ -24,5 +24,13 @@ namespace DbPackage.Repositories {
             }
             return await _dbProvider.Context.Players.Where(player => player.Id == 1).FirstAsync();
         }
+
+        public async Task UpdateByModelAsync(Player player) {
+            if (_dbProvider.Context.Players == null) {
+                throw new Exception("players table doesn't exist");
+            }
+            _dbProvider.Context.Players.Update(player);
+            await _dbProvider.Context.SaveChangesAsync();
+        }
     }
 }

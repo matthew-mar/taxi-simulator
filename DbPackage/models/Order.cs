@@ -20,6 +20,8 @@ namespace DbPackage.Models {
 
         public long? CreatedAt { get; set; }
 
+        public long? TakenAt { get; set; }
+
         public long? StartTime { get; set; }
 
         public long? EndTime { get; set; }

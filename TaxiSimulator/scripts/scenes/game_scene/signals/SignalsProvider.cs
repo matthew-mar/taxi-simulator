@@ -19,7 +19,10 @@ namespace TaxiSimulator.Scenes.GameScene.Signals {
         }
 
         public static void ClearSignals() {
+            gameModeChangedSignal?.Dispose();
             gameModeChangedSignal = null;
+
+            currentGameModeSignal?.Dispose();
             currentGameModeSignal = null;
         }
     }

@@ -5,5 +5,7 @@ namespace DbPackage.Contracts {
         Task CreatePlayerAsync();
 
         Task<Player> GetFirstAsync();
+
+        Task UpdateByModelAsync(Player player);
     }
 }

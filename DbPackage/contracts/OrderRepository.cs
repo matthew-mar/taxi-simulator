@@ -12,5 +12,7 @@ namespace DbPackage.Contracts {
         Task<List<Order>> PaginateOrdersAsync(int offset);
 
         Task<Order> GetOrderByIdAsync(int id);
+
+        Task UpdateByModelAsync(Order order);
     }
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://beighsbus87kf"]
 
 [ext_resource type="Script" path="res://scripts/scenes/map_controller/MapController.cs" id="1_qhq00"]
-[ext_resource type="PackedScene" uid="uid://0u3hgfx22i1k" path="res://scenes/sub_viewport_map_container/sub_map_view_port.tscn" id="1_vhrr7"]
+[ext_resource type="PackedScene" uid="uid://b3hlplnr0aeq7" path="res://scenes/sub_viewport_map_container/map_camera_viewport.tscn" id="2_abj5b"]
 [ext_resource type="Script" path="res://scripts/scenes/map_controller/view/CarLocationButton.cs" id="2_i2itu"]
 [ext_resource type="Texture2D" uid="uid://cd2qd46aiav7d" path="res://scenes/map_controller/assets/MyLocation.png" id="2_n1cbj"]
 
@@ -15,17 +15,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qhq00")
 
-[node name="SubMapViewPort" parent="." instance=ExtResource("1_vhrr7")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="MapCameraViewPort" parent="." instance=ExtResource("2_abj5b")]
+layout_mode = 1
 offset_left = 0.0
-offset_right = 1928.0
-offset_bottom = 1096.0
-grow_horizontal = 1
-grow_vertical = 1
-ViewPortMode = 2
+offset_right = 0.0
 
 [node name="CarLocation" type="TextureButton" parent="."]
 process_mode = 3

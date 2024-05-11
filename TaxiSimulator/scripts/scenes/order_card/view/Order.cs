@@ -6,6 +6,7 @@ using ModelOrder = DbPackage.Models.Order;
 using TaxiSimulator.Common.View;
 using TaxiSimulator.Scenes.OrderCard.Signals;
 using DbPackage.Structures;
+using TaxiSimulator.Common.Helpers;
 
 namespace TaxiSimulator.Scenes.OrderCard.View {
 	public partial class Order : Control {
@@ -32,6 +33,8 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 		private ModelOrder _order;
 
 		private OrderButton _orderButton;
+
+		private TakeButton _takeButton;
 
 		public void SetOrder(ModelOrder order) {
 			_order = order;
@@ -71,9 +74,21 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			_tarifPlanLabel = GetNode<TarifPlanLabel>(TarifPlanLabel.NodePath);
 			_waitTime = GetNode<WaitTime>(WaitTime.NodePath);
 			_expectTime = GetNode<ExpectTime>(ExpectTime.NodePath);
+			
 			_orderButton = GetNode<OrderButton>(OrderButton.NodePath);
-			_orderButton.ButtonDown += () => {
-				SignalsProvider.OrderSelectedSignal.Emit(new OrderSelectedArgs() {
+			_orderButton.ButtonUp += () => {
+				GD.Print("order selected");
+				SignalsProvider.OrderSelectedSignal.Emit(new OrderArgs() {
+					OrderId = _order.Id,
+				});
+			};
+
+			_takeButton = GetNode<TakeButton>(TakeButton.NodePath);
+			_takeButton.ButtonDown += async () => {
+				GD.Print("order button pressed");
+				_order.TakenAt = TimeTool.NowTimestamp;
+				await DbService.Instance.DbProvider.OrderRespository.UpdateByModelAsync(_order);
+				SignalsProvider.OrderTakenSignal.Emit(new OrderArgs() {
 					OrderId = _order.Id,
 				});
 			};

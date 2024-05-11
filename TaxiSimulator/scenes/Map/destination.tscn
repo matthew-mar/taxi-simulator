@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bubg2dh4j4ele"]
+
+[ext_resource type="Texture2D" uid="uid://17pwwxlg3s2d" path="res://scenes/Map/assets/Destination.png" id="1_y3mhl"]
+
+[node name="Destination" type="Sprite3D"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+layers = 2
+texture = ExtResource("1_y3mhl")

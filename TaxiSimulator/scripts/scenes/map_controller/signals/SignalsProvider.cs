@@ -10,6 +10,7 @@ namespace TaxiSimulator.Scenes.MapController.Signals {
         }
 
         public static void ClearSignals() {
+            carLocationButtonPressedSignal?.Dispose();
             carLocationButtonPressedSignal = null;
         }
     }

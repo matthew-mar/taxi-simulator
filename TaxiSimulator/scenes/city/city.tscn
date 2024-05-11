@@ -7142,8 +7142,6 @@ agent_height = 57.68
 
 [node name="city" type="Node3D"]
 
-[node name="CityAgent" type="NavigationAgent3D" parent="."]
-
 [node name="PathFinder" parent="." instance=ExtResource("1_o3oxj")]
 
 [node name="Base" type="MeshInstance3D" parent="."]

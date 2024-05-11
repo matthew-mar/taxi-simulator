@@ -21,7 +21,7 @@ namespace TaxiSimulator.Scenes.City {
 
         private void Connect() {
             OrderSignals.SignalsProvider.OrderSelectedSignal.OrderSelected +=
-                async (OrderSignals.OrderSelectedArgs args) => {
+                async (OrderSignals.OrderArgs args) => {
                     var order = await DbService.Instance.DbProvider
                         .OrderRespository
                         .GetOrderByIdAsync(args.OrderId);

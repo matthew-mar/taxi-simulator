@@ -5,6 +5,10 @@ using TaxiSimulator.Scenes.OrderCard.View;
 using TaxiSimulator.Services.Db;
 using ModelOrder = DbPackage.Models.Order;
 using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
+using TaxiSimulator.Common.Helpers;
+using TaxiSimulator.Services.Order;
+using OrdersServiceSignals = TaxiSimulator.Services.Order.Signals;
+using System.Collections.Generic;
 
 namespace TaxiSimulator.Scenes.OrderCard {
 	public partial class OrderController : Control {
@@ -22,19 +26,9 @@ namespace TaxiSimulator.Scenes.OrderCard {
 
 		public override void _Ready() {
 			base._Ready();
-
 			Init();
-			CallDeferred(nameof(ShowPages));
-
-			GameSceneSignals.SignalsProvider.GameModeChangedSignal.Attach(
-				Callable.From((GameSceneSignals.GameModeChangedArgs args) => {
-					if (args.To != GameScene.GameMode.OrderGrid) {
-						return;
-					}
-
-					CallDeferred(nameof(ShowOrders));
-				})
-			);
+			Attach();
+			CallDeferred(nameof(ShowPages));	
 		}
 
 		public override void _Process(double delta) {
@@ -48,18 +42,35 @@ namespace TaxiSimulator.Scenes.OrderCard {
 		private void Init() {
 			_ordersContainer = GetNode<OrderContainer>(OrderContainer.NodePath);
 			_paginationContainer = GetNode<PaginationContainer>(PaginationContainer.NodePath);
-			
 			_leftArrowButton = GetNode<TextureButton>("base_panel/TextureRect/LeftButtonBase/LeftButtonArrow");
+			_rightArrowButton = GetNode<TextureButton>("base_panel/TextureRect/RightButtonBase/RightButtonArrow");
+		}
+
+		private void Attach() {
 			_leftArrowButton.ButtonDown += () => {
 				_currentOffset--;
-				ShowOrders();
+				CallDeferred(nameof(LoadOrders));
 			};
-			
-			_rightArrowButton = GetNode<TextureButton>("base_panel/TextureRect/RightButtonBase/RightButtonArrow");
+
 			_rightArrowButton.ButtonDown += () => {
 				_currentOffset++;
-				ShowOrders();
+				CallDeferred(nameof(LoadOrders));
 			};
+
+			GameSceneSignals.SignalsProvider.GameModeChangedSignal.Attach(
+				Callable.From((GameSceneSignals.GameModeChangedArgs args) => {
+					if (args.To != GameScene.GameMode.OrderGrid) {
+						return;
+					}
+					CallDeferred(nameof(LoadOrders));
+				})
+			);
+
+			OrdersServiceSignals.SignalsProvider.OrdersLoadedSignal.Attach(
+				Callable.From((OrdersServiceSignals.OrdersArgs args) => {
+					CallDeferred(nameof(ShowOrders), args);
+				})
+			);
 		}
 
 		private async void ShowPages() {
@@ -85,15 +96,11 @@ namespace TaxiSimulator.Scenes.OrderCard {
 			}
 		}
 
-		private async void ShowOrders() {
+		private void LoadOrders() => OrderService.Instance.LoadOrders(_currentOffset);
+
+		private void ShowOrders(OrdersServiceSignals.OrdersArgs args) {
 			ClearOrders();
-
-			var orders = await DbService.Instance
-				.DbProvider
-				.OrderRespository
-				.PaginateOrdersAsync(_currentOffset);
-
-			foreach (var order in orders) {
+			foreach (var order in args.Orders) {
 				AddOrder(order);
 			}
 		}
@@ -119,7 +126,7 @@ namespace TaxiSimulator.Scenes.OrderCard {
 			pagItem.Offset = index;
 			pagItem.TextureButton.ButtonDown += () => {
 				_currentOffset = pagItem.Offset;
-				ShowOrders();
+				CallDeferred(nameof(LoadOrders));
 			};
 			_paginationContainer.AddChild(pagItem);
 		}
