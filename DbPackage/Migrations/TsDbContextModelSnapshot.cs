@@ -113,6 +113,9 @@ namespace DbPackage.Migrations
                     b.Property<long?>("StartTime")
                         .HasColumnType("INTEGER");
 
+                    b.Property<long?>("TakenAt")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("TarifPlanId")
                         .HasColumnType("INTEGER");
 

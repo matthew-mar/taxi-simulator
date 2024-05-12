@@ -19,7 +19,10 @@ namespace TaxiSimulator.Scenes.MapCameraScene.Signals {
         }
 
         public static void ClearSignals() {
+            pointBlitedSignal?.Dispose();
             pointBlitedSignal = null;
+
+            pointCleanedSignal?.Dispose();
             pointCleanedSignal = null;
         }
     }

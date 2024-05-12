@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbPackage.Migrations
 {
     [DbContext(typeof(TsDbContext))]
-    [Migration("20240505222348_Initial")]
+    [Migration("20240511203512_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,6 +113,9 @@ namespace DbPackage.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<long?>("StartTime")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("TakenAt")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("TarifPlanId")

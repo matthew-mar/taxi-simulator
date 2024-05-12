@@ -13,6 +13,9 @@ namespace TaxiSimulator.Common {
         }
 
         public void Attach(Callable callable) {
+            if (IsConnected(EventName, callable)) {
+                return;
+            }
             Connect(EventName, callable);
         }
 

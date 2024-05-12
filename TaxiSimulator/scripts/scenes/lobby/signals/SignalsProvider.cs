@@ -84,14 +84,31 @@ namespace TaxiSimulator.Scenes.Lobby.Signals {
         }
 
         public static void ClearSignals() {
+            driveButtonPressedSignal?.Dispose();
             driveButtonPressedSignal = null;
+            
+            driveButtonPressedSignal?.Dispose();
             quitButtonPressedSignal = null;
+            
+            mailButtonPressedSignal?.Dispose();
             mapButtonPressedSignal = null;
+            
+            ordersButtonPressedSignal?.Dispose();
             ordersButtonPressedSignal = null;
+            
+            companyButtonPressedSignal?.Dispose();
             companyButtonPressedSignal = null;
+            
+            realEstateButtonPressedSignal?.Dispose();
             realEstateButtonPressedSignal = null;
+            
+            carsButtonPressedSignal?.Dispose();
             carsButtonPressedSignal = null;
+            
+            mailButtonPressedSignal?.Dispose();
             mailButtonPressedSignal = null;
+            
+            settingsButtonPressedSignal?.Dispose();
             settingsButtonPressedSignal = null;
         }
     }

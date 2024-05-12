@@ -6,6 +6,7 @@ using DbSignals = TaxiSimulator.Services.Db.Signals;
 using TabSignals = TaxiSimulator.Scenes.Tab.Signals;
 using MenuSignals = TaxiSimulator.Scenes.Menu.Signals;
 using LobbySignals = TaxiSimulator.Scenes.Lobby.Signals;
+using PointSignals = TaxiSimulator.Scenes.Point.Signals;
 using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
 using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using GameSignals = TaxiSimulator.Scenes.GameScene.Signals;
@@ -16,10 +17,13 @@ using GasolineSignals = TaxiSimulator.Scenes.Gasoline.Signals;
 using MainMenuSignals = TaxiSimulator.Scenes.MainMenu.Signals;
 using MapSignals = TaxiSimulator.Scenes.MapController.Signals;
 using InputSignals = TaxiSimulator.Services.InputService.Signlas;
+using OrderServiceSignals = TaxiSimulator.Services.Order.Signals;
 using MapCameraSignals = TaxiSimulator.Scenes.MapCameraScene.Signals;
 using NavigationMarkSignals = TaxiSimulator.Scenes.NavigationMark.Signals;
+using OrderGrigCameraSignals = TaxiSimulator.Scenes.OrderGridCameraScene.Signals;
 
 using Godot;
+using TaxiSimulator.Services.Player;
 using TaxiSimulator.Scenes.GameScene;
 
 namespace TaxiSimulator.Services.Game {
@@ -45,8 +49,7 @@ namespace TaxiSimulator.Services.Game {
 				return;
 			}
 
-			Attach();
-			_reload = false;
+			Reload();
 		}
 
 		public void SwitchToMain() => SceneSwitcher.SwitchScene(
@@ -83,6 +86,9 @@ namespace TaxiSimulator.Services.Game {
 			MenuSignals.SignalsProvider.ClearSignals();
 			DbSignals.SignalsProvider.ClearSignals();
 			OrderSignals.SignalsProvider.ClearSignals();
+			OrderGrigCameraSignals.SignalsProvider.ClearSignals();
+			PointSignals.SignalsProvider.ClearSignals();
+			OrderServiceSignals.SignalsProvider.ClearSignals();
 		}
 
 		private void Attach() {
@@ -152,6 +158,22 @@ namespace TaxiSimulator.Services.Game {
 					GameMode = args.To;
 				})
 			);
+
+			// OrderSignals.SignalsProvider.OrderTakenSignal.Attach(
+			// 	Callable.From((OrderSignals.OrderArgs args) => {
+			// 		GameMode = GameMode.Game;
+			// 		CallDeferred(nameof(ClearSignals));
+			// 		CallDeferred(nameof(SwitchToGame));
+			// 		_reload = true;
+			// 	})
+			// );
+		}
+
+		private void Reload() {
+			Attach();
+			PlayerService.Instance.Detach();
+			PlayerService.Instance.Attach();
+			_reload = false;
 		}
 	}
 }

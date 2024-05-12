@@ -37,9 +37,16 @@ namespace TaxiSimulator.Scenes.Gasoline.Signals {
         }
 
         public static void ClearSignals() {
+            carEnteredSignal?.Dispose();
             carEnteredSignal = null;
+            
+            carLeftSignal?.Dispose();
             carLeftSignal = null;
+
+            carStayedSignal?.Dispose();
             carStayedSignal = null;
+
+            refuelAllowedSignal?.Dispose();
             refuelAllowedSignal = null;
         }
     }

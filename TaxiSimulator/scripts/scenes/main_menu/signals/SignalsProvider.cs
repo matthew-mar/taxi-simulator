@@ -19,7 +19,10 @@ namespace TaxiSimulator.Scenes.MainMenu.Signals {
         }
 
         public static void ClearSignals() {
+            playButtonPressedSignal?.Dispose();
             playButtonPressedSignal = null;
+
+            exitButtonPressedSignal?.Dispose();
             exitButtonPressedSignal = null;
         }
     }

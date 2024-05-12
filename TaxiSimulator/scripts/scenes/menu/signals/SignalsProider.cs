@@ -10,6 +10,7 @@ namespace TaxiSimulator.Scenes.Menu.Signals {
         }
 
         public static void ClearSignals() {
+            menuStateChangedSignal?.Dispose();
             menuStateChangedSignal = null;
         }
     }

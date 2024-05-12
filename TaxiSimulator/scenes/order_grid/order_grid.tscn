@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://d0vodnnk8ea8l"]
 
 [ext_resource type="Script" path="res://scripts/scenes/order_card/OrderController.cs" id="1_ce5ba"]
-[ext_resource type="PackedScene" uid="uid://0u3hgfx22i1k" path="res://scenes/sub_viewport_map_container/sub_map_view_port.tscn" id="1_xxhoe"]
 [ext_resource type="Texture2D" uid="uid://4eeo64kslsi" path="res://scenes/order_grid/assets/base (1).png" id="2_8y5qq"]
+[ext_resource type="PackedScene" uid="uid://ckmrkg0swpt24" path="res://scenes/sub_viewport_map_container/order_camera_viewport.tscn" id="2_37js5"]
 [ext_resource type="Script" path="res://scripts/scenes/order_card/view/OrderContainer.cs" id="4_r6b67"]
 [ext_resource type="Texture2D" uid="uid://c6g12e6xmncqx" path="res://scenes/order_grid/assets/panel (6).png" id="5_ancw7"]
 [ext_resource type="Texture2D" uid="uid://3qvhtvfsladf" path="res://scenes/order_grid/assets/panel (7).png" id="6_7clfu"]
@@ -22,17 +22,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ce5ba")
 
-[node name="SubMapViewPort" parent="." instance=ExtResource("1_xxhoe")]
-layout_mode = 2
-anchors_preset = 0
+[node name="order_camera_viewport" parent="." instance=ExtResource("2_37js5")]
+layout_mode = 1
+anchors_preset = 9
 anchor_right = 0.0
-anchor_bottom = 0.0
 offset_left = 0.0
-offset_right = 1024.0
-offset_bottom = 1088.0
+offset_right = 968.0
 grow_horizontal = 1
-grow_vertical = 1
-ViewPortMode = 3
 
 [node name="base_panel" type="TextureRect" parent="."]
 layout_mode = 0

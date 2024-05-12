@@ -3,6 +3,7 @@ using TaxiSimulator.Services.Game;
 using TaxiSimulator.Scenes.GameScene.Signals;
 
 using PuaseSignals = TaxiSimulator.Scenes.Pause.Signals;
+using OrderSignals = TaxiSimulator.Scenes.OrderCard.Signals;
 using InputSignals = TaxiSimulator.Services.InputService.Signlas;
 
 using Godot;
@@ -67,6 +68,16 @@ namespace TaxiSimulator.Scenes.GameScene {
 					}
 
 					ChangeGameMode(GameMode.Map);
+				})
+			);
+
+			OrderSignals.SignalsProvider.OrderTakenSignal.Attach(
+				Callable.From((OrderSignals.OrderArgs args) => {
+					if (_currentGameMode == GameMode.Pause) {
+						return;
+					}
+
+					ChangeGameMode(GameMode.Game);
 				})
 			);
 		}

@@ -10,6 +10,12 @@ namespace TaxiSimulator.Common.Helpers.Dictionary {
         public const string OrderCardScenePath = "res://scenes/order_card/order_card.tscn";
 
         public const string PaginationItemScenePath = "res://scenes/pagination_item/pagination_item.tscn";
+
+        public const string DepartureScenePath = "res://scenes/Map/departure.tscn";
+
+        public const string DestinationScenePath = "res://scenes/Map/destination.tscn";
+
+        public const string MarkScenePath = "res://scenes/navigation_point/navigation_point.tscn";
     }
 
     public class InputActionDictionary {

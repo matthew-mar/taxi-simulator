@@ -8,6 +8,8 @@ namespace TaxiSimulator.Services.Player.Signals {
 
         private static BalanceSignal balanceSignal = null;
 
+        private static WorkflowStateChangedSignal workflowStateChangedSignal = null;
+
         public static TirednessSignal TiredSignal {
             get {
                 tiredSignal ??= new();
@@ -36,11 +38,19 @@ namespace TaxiSimulator.Services.Player.Signals {
             }
         }
 
+        public static WorkflowStateChangedSignal WorkflowStateChangedSignal {
+            get {
+                workflowStateChangedSignal ??= new();
+                return workflowStateChangedSignal;
+            }
+        }
+
         public static void ClearSingals() {
             tiredSignal = null;
             restSignal = null;
             experienceSignal = null;
             balanceSignal = null;
+            workflowStateChangedSignal = null;
         }
     }
 }

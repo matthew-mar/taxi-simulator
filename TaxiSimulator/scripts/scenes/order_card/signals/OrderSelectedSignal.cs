@@ -1,14 +1,11 @@
+using DbPackage.Models;
 using Godot;
 using TaxiSimulator.Common;
 
 namespace TaxiSimulator.Scenes.OrderCard.Signals {
-    public partial class OrderSelectedArgs : EventSignalArgs {
-        public int OrderId { get; set; }
-    }
-
     public partial class OrderSelectedSignal : EventSignal {
         [Signal]
-        public delegate void OrderSelectedEventHandler(OrderSelectedArgs args);
+        public delegate void OrderSelectedEventHandler(OrderArgs args);
 
         protected override string EventName => SignalName.OrderSelected;
     }

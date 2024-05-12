@@ -1,138 +1,69 @@
 using TaxiSimulator.Common;
 using TaxiSimulator.Scenes.MapCameraScene.View;
-using TaxiSimulator.Scenes.MapCameraScene.Signals;
-
-using PauseSignals = TaxiSimulator.Scenes.Pause.Signals;
+using PointSignals = TaxiSimulator.Scenes.Point.Signals;
 using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
+using PlayerSignals = TaxiSimulator.Services.Player.Signals;
 using MapSignals = TaxiSimulator.Scenes.MapController.Signals;
-using GameSceneSignals = TaxiSimulator.Scenes.GameScene.Signals;
 using InputSignals = TaxiSimulator.Services.InputService.Signlas;
-using NavigationMarkSignals = TaxiSimulator.Scenes.NavigationMark.Signals;
 
 using Godot;
-using System.Collections.Generic;
-using TaxiSimulator.Scenes.GameScene;
 using TaxiSimulator.Services.Game;
+using TaxiSimulator.Scenes.GameScene;
+using TaxiSimulator.Common.Scenes.MoveableCameraScene;
 
 namespace TaxiSimulator.Scenes.MapCameraScene {
-	public partial class MapCameraController : Node3D {
-		public const string NodePath = "SubViewport/map_camera";
+	public partial class MapCameraController : MoveableCameraController {
+		protected override bool Active => GameService.Instance.GameMode == GameMode.Map;
 
-		private static List<GameMode> AvailableModes = new () {
-			GameMode.Map,
-			GameMode.OrderGrid,
-		};
-
-		private static bool CanMove => AvailableModes.Contains(GameService.Instance.GameMode);
-
-		public GameMode CurrentGameMode { get; set; }
-
-		private bool Available => CurrentGameMode == GameService.Instance.GameMode;
-		
-		private bool MapMode => CurrentGameMode == GameMode.Map;
-		
-		private bool OrderGridMode => CurrentGameMode == GameMode.OrderGrid;
-		
-		private bool _checkSignals = true;
+		private MapCamera _mapCamera;
 
 		public override void _Ready() {
 			base._Ready();
 
-			var mapCamera = GetNode<MapCamera>(MapCamera.NodePath);
-
-			GameSceneSignals.SignalsProvider.GameModeChangedSignal.Attach(
-				Callable.From((GameSceneSignals.GameModeChangedArgs args) => {
-					_checkSignals = args.To == GameScene.GameMode.Map;
-				})
-			);
-
-			InputSignals.SignalsProvider.VerticalPressedSignal.Attach(
-				Callable.From((InputSignals.VerticalPressedArgs args) => {
-					if (! CanMove) {
-						return;
-					}
-
-					mapCamera.MoveVertical(args.VerticalAxis);
-				})
-			);
-
-			InputSignals.SignalsProvider.HorizontalPressedSignal.Attach(
-				Callable.From((InputSignals.HorizontalPressedArgs args) => {
-					if (! CanMove) {
-						return;
-					}
-
-					mapCamera.MoveHorizontal(args.HorizontalAxis);
-				})
-			);
-
-			InputSignals.SignalsProvider.MouseScrolledUpSignal.Attach(
-				Callable.From((EventSignalArgs args) => {
-					if (! CanMove) {
-						return;
-					}
-
-					mapCamera.ZoomIn();
-				})
-			);
-
-			InputSignals.SignalsProvider.MouseScrolledDownSignal.Attach(
-				Callable.From((EventSignalArgs args) => {
-					if (! CanMove) {
-						return;
-					}
-
-					mapCamera.ZoomOut();
-				})
-			);
+			_mapCamera = (MapCamera)_camera;
 
 			CarSignals.SignalsProvider.PositionChangedSignal.Attach(
 				Callable.From((CarSignals.PositionSignalArgs args) => {
-					mapCamera.SetCarPosition(args.CurrentPosition);
+					_mapCamera.SetCarPosition(args.CurrentPosition);
 				})
 			);
 
 			MapSignals.SignalsProvider.CarLocationButtonPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! CanMove) {
+					if (! Active) {
 						return;
 					}
-
-					mapCamera.MoveToCar();
+					_mapCamera.MoveToCar();
 				})
 			);
 
 			InputSignals.SignalsProvider.MouseLeftClickedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! Available) {
+					if (! Active) {
 						return;
 					}
-
-					if (! MapMode) {
-						return;
-					}
-
-					mapCamera.BlitPoint();
+					_mapCamera.BlitPoint();
 				})
 			);
 
 			InputSignals.SignalsProvider.ActionCPressedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					if (! Available) {
+					if (! Active) {
 						return;
 					}
-
-					if (! MapMode) {
-						return;
-					}
-
-					mapCamera.ClearPoint();
+					_mapCamera.ClearPoint();
 				})
 			);
 
-			NavigationMarkSignals.SignalsProvider.PointReachedSignal.Attach(
+			PointSignals.SignalsProvider.PointReachedSignal.Attach(
 				Callable.From((EventSignalArgs args) => {
-					mapCamera.ClearPoint();
+					_mapCamera.ClearPoint();
+				})
+			);
+
+			PlayerSignals.SignalsProvider.WorkflowStateChangedSignal.Attach(
+				Callable.From((PlayerSignals.WorkflowStateArgs args) => {
+					_mapCamera.BlitPointOnPosition(args.Point);
 				})
 			);
 		}

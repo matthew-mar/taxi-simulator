@@ -4,16 +4,18 @@ using TaxiSimulator.Scenes.NavigationMark.Signals;
 
 using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
 using OrderSignals = TaxiSimulator.Scenes.OrderCard.Signals;
+using PlayerSignals = TaxiSimulator.Services.Player.Signals;
 using MapCameraSignals = TaxiSimulator.Scenes.MapCameraScene.Signals;
+using OrderGridCameraSignals = TaxiSimulator.Scenes.OrderGridCameraScene.Signals;
 
 using Godot;
 using System;
-using TaxiSimulator.Services.Db;
-using TaxiSimulator.Common.Helpers;
 
 namespace TaxiSimulator.Scenes.NavigationMark {
 	public partial class NavigationMarkController : Sprite3D {
 		private Vector3? _destinationPoint = null;
+
+		private Vector3? _carPosition = null;
 
 		private MarkAgent _markAgent;
 
@@ -54,23 +56,11 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 				})
 			);
 
-			OrderSignals.SignalsProvider.OrderSelectedSignal.OrderSelected += 
-				async (OrderSignals.OrderSelectedArgs args) => {
-					var order = await DbService.Instance.DbProvider
-						.OrderRespository
-						.GetOrderByIdAsync(args.OrderId);
-					
-					_markAgent.FindPath(
-						VectorConverter.FromDb(order.DeparturePoint),
-						VectorConverter.FromDb(order.DestinationPoint)
-					);
-				};
-		}
-
-		public override void _Process(double delta) {
-			base._Process(delta);
-
-			_markAgent.CheckPointReach();
+			OrderGridCameraSignals.SignalsProvider.FlagsBlitedSignal.Attach(
+				Callable.From((OrderGridCameraSignals.FlagsBlitedArgs args) => {
+					_markAgent.FindPath(args.DeparturePos, args.DestinationPos);
+				})
+			);
 		}
 	}
 }

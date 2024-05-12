@@ -66,6 +66,7 @@ namespace DbPackage.Migrations
                     TarifPlanId = table.Column<int>(type: "INTEGER", nullable: true),
                     Price = table.Column<float>(type: "REAL", nullable: true),
                     CreatedAt = table.Column<long>(type: "INTEGER", nullable: true),
+                    TakenAt = table.Column<long>(type: "INTEGER", nullable: true),
                     StartTime = table.Column<long>(type: "INTEGER", nullable: true),
                     EndTime = table.Column<long>(type: "INTEGER", nullable: true),
                     CompletedAt = table.Column<long>(type: "INTEGER", nullable: true),

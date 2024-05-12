@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://do0uipdd5shc4"]
+[gd_scene load_steps=29 format=3 uid="uid://do0uipdd5shc4"]
 
 [ext_resource type="Script" path="res://scripts/scenes/order_card/view/Order.cs" id="1_8wlgk"]
 [ext_resource type="Texture2D" uid="uid://ri7cm7ostys7" path="res://scenes/order_card/assets/points_panel (2).png" id="2_1b4wy"]
@@ -26,6 +26,8 @@
 [ext_resource type="Script" path="res://scripts/scenes/order_card/view/CompanyName.cs" id="17_lqj8x"]
 [ext_resource type="Script" path="res://scripts/scenes/order_card/view/TarifPlanLabel.cs" id="17_nk06d"]
 [ext_resource type="Script" path="res://scripts/scenes/order_card/view/CompanyIcon.cs" id="18_340u7"]
+[ext_resource type="Texture2D" uid="uid://ca8dtppgwlgdh" path="res://scenes/order_card/assets/check_circle (2).png" id="26_cpah3"]
+[ext_resource type="Script" path="res://scripts/scenes/order_card/view/TakeButton.cs" id="26_m1ihr"]
 
 [node name="OrderCard" type="Control"]
 layout_mode = 3
@@ -235,6 +237,8 @@ offset_top = 27.0
 offset_right = 938.0
 offset_bottom = 68.0
 texture_normal = ExtResource("12_fbfh3")
+texture_pressed = ExtResource("26_cpah3")
+script = ExtResource("26_m1ihr")
 
 [node name="decline_button" type="TextureButton" parent="base_panel"]
 layout_mode = 0

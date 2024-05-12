@@ -1,4 +1,5 @@
 namespace DbPackage.Structures {
+    #nullable enable
     [Serializable]
     public class DbVector {
         public float X { get; set; }
