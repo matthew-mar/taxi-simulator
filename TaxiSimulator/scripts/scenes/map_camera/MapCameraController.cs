@@ -20,8 +20,6 @@ namespace TaxiSimulator.Scenes.MapCameraScene {
 		public override void _Ready() {
 			base._Ready();
 
-			GD.Print("attach map camera");
-
 			_mapCamera = (MapCamera)_camera;
 
 			CarSignals.SignalsProvider.PositionChangedSignal.Attach(

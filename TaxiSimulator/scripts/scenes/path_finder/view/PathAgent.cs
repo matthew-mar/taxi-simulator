@@ -12,14 +12,12 @@ namespace TaxiSimulator.Scenes.PathFinder.View {
         private List<MeshInstance3D> _lines = new();
 
         public void DrawPathOnScene(Vector3[] path, Window sceneRoot) {
-            GD.Print("Draw");
             ClearLines();
             for (int i = 0; i < path.Length - 1; i++) {
                 var line = DrawCylinderLine(path[i], path[i + 1]);
                 sceneRoot.AddChild(line);
                 _lines.Add(line);
             }
-            GD.Print(_lines.Count);
         }
 
         public override void _Process(double delta) {
@@ -27,7 +25,6 @@ namespace TaxiSimulator.Scenes.PathFinder.View {
         }
 
         public void ClearLines() {
-            GD.Print("clear");
             foreach (var line in _lines) {
                 line.QueueFree();
             }

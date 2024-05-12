@@ -77,7 +77,6 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			
 			_orderButton = GetNode<OrderButton>(OrderButton.NodePath);
 			_orderButton.ButtonUp += () => {
-				GD.Print("order selected");
 				SignalsProvider.OrderSelectedSignal.Emit(new OrderArgs() {
 					OrderId = _order.Id,
 				});
@@ -85,7 +84,6 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 
 			_takeButton = GetNode<TakeButton>(TakeButton.NodePath);
 			_takeButton.ButtonDown += async () => {
-				GD.Print("order button pressed");
 				_order.TakenAt = TimeTool.NowTimestamp;
 				await DbService.Instance.DbProvider.OrderRespository.UpdateByModelAsync(_order);
 				SignalsProvider.OrderTakenSignal.Emit(new OrderArgs() {

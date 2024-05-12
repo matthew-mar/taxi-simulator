@@ -142,3 +142,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Добавлено
 
 - Сетка заказов
+
+## [1.17.0] - 12.05.2024
+
+### Добавлено
+
+- Город
+
+### Изменено
+
+- Управление
