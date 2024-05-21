@@ -152,3 +152,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Изменено
 
 - Управление
+
+## [1.17.1] - 21.05.2024
+
+### Изменено
+
+- Улучшена навигация

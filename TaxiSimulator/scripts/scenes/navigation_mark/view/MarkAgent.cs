@@ -7,15 +7,32 @@ namespace TaxiSimulator.Scenes.NavigationMark.View {
 
 		private Vector3[] _currentPath = null;
 
-		public async void FindPath(Vector3 from, Vector3 to) {
+		private int pathChangedCount = 0;
+
+        public override void _Ready() {
+            base._Ready();
+			PathChanged += () => {
+				FindPath(this.GetParent<Sprite3D>().GlobalPosition, TargetPosition);
+			};
+        }
+
+		public void SetTarget(Vector3 target) {
+			TargetPosition = target;
+		}
+
+        public async void FindPath(Vector3 from, Vector3 to) {
 			await ToSignal(GetTree(), "physics_frame");
-			_currentPath = NavigationServer3D.MapGetPath(GetNavigationMap(), from, to, true);
+			_currentPath = NavigationServer3D.MapGetPath(GetNavigationMap(), from, to, false);
 			SignalsProvider.PathFoundedSignal.Emit(new PathFoundedArgs() {
 				Path = _currentPath,
 			});
 		}
 
-		public void CheckPointReach() {
+        public override void _PhysicsProcess(double delta) {
+            GetNextPathPosition();
+        }
+
+        public void CheckPointReach() {
 			if (_currentPath == null) {
 				return;
 			}

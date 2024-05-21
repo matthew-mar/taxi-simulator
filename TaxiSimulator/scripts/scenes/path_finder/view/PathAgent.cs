@@ -20,10 +20,6 @@ namespace TaxiSimulator.Scenes.PathFinder.View {
             }
         }
 
-        public override void _Process(double delta) {
-            base._Process(delta);
-        }
-
         public void ClearLines() {
             foreach (var line in _lines) {
                 line.QueueFree();
