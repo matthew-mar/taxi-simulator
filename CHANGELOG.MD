@@ -158,3 +158,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Изменено
 
 - Улучшена навигация
+
+## [1.17.2] - 22.05.2024
+
+### Изменено
+
+- Настроен город
+- Изменена машина
