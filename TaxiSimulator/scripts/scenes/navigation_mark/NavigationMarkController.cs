@@ -2,9 +2,6 @@ using TaxiSimulator.Common;
 using TaxiSimulator.Scenes.NavigationMark.View;
 using TaxiSimulator.Scenes.NavigationMark.Signals;
 
-using CarSignals = TaxiSimulator.Scenes.CarScene.Signals;
-using OrderSignals = TaxiSimulator.Scenes.OrderCard.Signals;
-using PlayerSignals = TaxiSimulator.Services.Player.Signals;
 using MapCameraSignals = TaxiSimulator.Scenes.MapCameraScene.Signals;
 using OrderGridCameraSignals = TaxiSimulator.Scenes.OrderGridCameraScene.Signals;
 
@@ -14,8 +11,6 @@ using System;
 namespace TaxiSimulator.Scenes.NavigationMark {
 	public partial class NavigationMarkController : Sprite3D {
 		private Vector3? _destinationPoint = null;
-
-		private Vector3? _carPosition = null;
 
 		private MarkAgent _markAgent;
 
@@ -31,6 +26,15 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 			MapCameraSignals.SignalsProvider.PointBlitedSignal.Attach(
 				Callable.From((MapCameraSignals.PointBlitedArgs args) => {
 					_destinationPoint = args.PointPosition;
+					_markAgent.SetTarget(_destinationPoint ?? throw new ArgumentNullException(
+							"Destination Point can not be null"
+					));
+					_markAgent.FindPath(
+						GlobalPosition, 
+						_destinationPoint ?? throw new ArgumentNullException(
+							"Destination Point can not be null"
+						)
+					);
 				})
 			);
 
@@ -38,21 +42,6 @@ namespace TaxiSimulator.Scenes.NavigationMark {
 				Callable.From((EventSignalArgs args) => {
 					_destinationPoint = null;
 					SignalsProvider.DestinationDestroyedSignal.Emit();
-				})
-			);
-
-			CarSignals.SignalsProvider.PositionChangedSignal.Attach(
-				Callable.From((CarSignals.PositionSignalArgs args) => {
-					if (_destinationPoint == null) {
-						return;
-					}
-
-					_markAgent.FindPath(
-						GlobalPosition, 
-						_destinationPoint ?? throw new ArgumentNullException(
-							"Destination Point can not be null"
-						)
-					);
 				})
 			);
 

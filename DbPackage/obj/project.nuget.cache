@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LqdHNVzldphLaDUfG1+U8exh+1v/CAShiW2yILBbcIuwrrkqMIFwe95DzXPSNqvmMbYahB0BO16iqL9olemHPA==",
+  "dgSpecHash": "CRfNYljUjOzJtVs8ogn048ESEcyWhHs3PgJTLDyGTvdY5jwrZdiyzv+WTzJYcCXTbVULrGgrZ2GiIUejdDA35g==",
   "success": true,
   "projectFilePath": "/home/mmary/taxi-simulator/DbPackage/DbPackage.csproj",
   "expectedPackageFiles": [
@@ -33,7 +33,9 @@
     "/home/mmary/.nuget/packages/system.memory/4.5.4/system.memory.4.5.4.nupkg.sha512",
     "/home/mmary/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/mmary/.nuget/packages/system.text.encodings.web/6.0.0/system.text.encodings.web.6.0.0.nupkg.sha512",
-    "/home/mmary/.nuget/packages/system.text.json/6.0.0/system.text.json.6.0.0.nupkg.sha512"
+    "/home/mmary/.nuget/packages/system.text.json/6.0.0/system.text.json.6.0.0.nupkg.sha512",
+    "/home/mmary/.nuget/packages/microsoft.netcore.app.ref/6.0.29/microsoft.netcore.app.ref.6.0.29.nupkg.sha512",
+    "/home/mmary/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.29/microsoft.aspnetcore.app.ref.6.0.29.nupkg.sha512"
   ],
   "logs": []
 }
