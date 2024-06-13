@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://cdh5cxi60a1to"]
+
+[ext_resource type="Texture2D" uid="uid://ck37pgwax8fe7" path="res://assets/Rails001_2K-JPG/Rails001_2K-JPG_Color.jpg" id="1_y2k8o"]
+[ext_resource type="Texture2D" uid="uid://bb2hgaia0x5ut" path="res://assets/Rails001_2K-JPG/Rails001_2K-JPG_AmbientOcclusion.jpg" id="2_k542c"]
+[ext_resource type="Texture2D" uid="uid://byys6558gbc85" path="res://assets/Rails001_2K-JPG/Rails001_2K-JPG_Metalness.jpg" id="3_hhx5f"]
+[ext_resource type="Texture2D" uid="uid://b4tdu6wwf3uk2" path="res://assets/Rails001_2K-JPG/Rails001_2K-JPG_NormalGL.jpg" id="4_w4ird"]
+[ext_resource type="Texture2D" uid="uid://cch4n3j2v444w" path="res://assets/Rails001_2K-JPG/Rails001_2K-JPG_Roughness.jpg" id="5_5hi1h"]
+
+[resource]
+render_priority = 40
+albedo_texture = ExtResource("1_y2k8o")
+metallic = 1.0
+metallic_texture = ExtResource("3_hhx5f")
+roughness_texture = ExtResource("5_5hi1h")
+normal_enabled = true
+normal_texture = ExtResource("4_w4ird")
+ao_enabled = true
+ao_texture = ExtResource("2_k542c")
+uv1_scale = Vector3(1000, 1, 0)
+uv1_world_triplanar = true
