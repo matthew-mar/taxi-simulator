@@ -15,6 +15,7 @@ path_desired_distance = 50.0
 path_height_offset = 0.5
 path_max_distance = 50.01
 navigation_layers = 3
+path_postprocessing = 1
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(1, 0, 0.0431373, 1)

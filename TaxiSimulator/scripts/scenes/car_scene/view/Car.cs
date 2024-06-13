@@ -7,15 +7,15 @@ namespace TaxiSimulator.Scenes.CarScene.View {
 	public partial class Car : VehicleBody3D {
 		public const string NodePath = "car_copy_1";
 
-		public const float FullFuel = 1f;
+		public const float FullFuel = 1000f;
 
 		private const float Speed = 2_500f;
 
 		[Export]
-		private double _fuel = 1f;
+		private double _fuel = 1000f;
 
 		[Export]
-		private float _fuelConsumption = 8.2f;
+		private float _fuelConsumption = 0.01f;
 
 		private Camera3D _backCamera;
 

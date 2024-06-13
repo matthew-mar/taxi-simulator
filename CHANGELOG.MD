@@ -165,3 +165,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Настроен город
 - Изменена машина
+
+## [1.17.3] - 13.06.2024
+
+### Добавлено
+
+- Трамвай
