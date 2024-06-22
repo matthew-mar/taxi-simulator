@@ -1,0 +1,15 @@
+/home/mmary/taxi-simulator/DbPackage/bin/ExportRelease/net6.0/DbPackage.deps.json
+/home/mmary/taxi-simulator/DbPackage/bin/ExportRelease/net6.0/DbPackage.runtimeconfig.json
+/home/mmary/taxi-simulator/DbPackage/bin/ExportRelease/net6.0/DbPackage.dll
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.csproj.AssemblyReference.cache
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.GeneratedMSBuildEditorConfig.editorconfig
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.AssemblyInfoInputs.cache
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.AssemblyInfo.cs
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.csproj.CoreCompileInputs.cache
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.dll
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/refint/DbPackage.dll
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.genruntimeconfig.cache
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/ref/DbPackage.dll
+/home/mmary/taxi-simulator/DbPackage/bin/ExportRelease/net6.0/DbPackage.pdb
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.sourcelink.json
+/home/mmary/taxi-simulator/DbPackage/obj/ExportRelease/net6.0/DbPackage.pdb

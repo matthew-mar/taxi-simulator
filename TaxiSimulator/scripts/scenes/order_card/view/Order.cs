@@ -36,6 +36,8 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 
 		private TakeButton _takeButton;
 
+		private int _treeIndex;
+
 		public void SetOrder(ModelOrder order) {
 			_order = order;
 			SetCompany(
@@ -63,6 +65,10 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			SetDistance(order.DeparturePoint, order.DestinationPoint);
 		}
 
+		public void SetTreeIndex(int treeIndex) => _treeIndex = treeIndex;
+
+		public void SetSelected(bool selected) => _orderButton.ButtonPressed = selected;
+
 		public void Init() {
 			_companyName = GetNode<CompanyName>(CompanyName.NodePath);
 			_cost = GetNode<Cost>(Cost.NodePath);
@@ -77,8 +83,9 @@ namespace TaxiSimulator.Scenes.OrderCard.View {
 			
 			_orderButton = GetNode<OrderButton>(OrderButton.NodePath);
 			_orderButton.ButtonUp += () => {
-				SignalsProvider.OrderSelectedSignal.Emit(new OrderArgs() {
+				SignalsProvider.OrderSelectedSignal.Emit(new SelectedArgs() {
 					OrderId = _order.Id,
+					TreeIndex = _treeIndex,
 				});
 			};
 

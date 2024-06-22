@@ -9,6 +9,7 @@ using TaxiSimulator.Common.Helpers;
 using TaxiSimulator.Services.Order;
 using OrdersServiceSignals = TaxiSimulator.Services.Order.Signals;
 using System.Collections.Generic;
+using TaxiSimulator.Scenes.OrderCard.Signals;
 
 namespace TaxiSimulator.Scenes.OrderCard {
 	public partial class OrderController : Control {
@@ -71,6 +72,16 @@ namespace TaxiSimulator.Scenes.OrderCard {
 					CallDeferred(nameof(ShowOrders), args);
 				})
 			);
+
+			SignalsProvider.OrderSelectedSignal.Attach(
+				Callable.From((SelectedArgs args) => {
+					for (var i = 0; i < _ordersContainer.GetChildCount(); i++) {
+						if (_ordersContainer.GetChild(i) is Order order) {
+							order.SetSelected(i == args.TreeIndex);
+						}
+					}
+				})
+			);
 		}
 
 		private async void ShowPages() {
@@ -100,8 +111,8 @@ namespace TaxiSimulator.Scenes.OrderCard {
 
 		private void ShowOrders(OrdersServiceSignals.OrdersArgs args) {
 			ClearOrders();
-			foreach (var order in args.Orders) {
-				AddOrder(order);
+			for (var i = 0; i < args.Orders.Count; i++) {
+				AddOrder(args.Orders[i], i);
 			}
 		}
 
@@ -111,11 +122,12 @@ namespace TaxiSimulator.Scenes.OrderCard {
 			}
 		}
 
-		private void AddOrder(ModelOrder modelOrder) {
+		private void AddOrder(ModelOrder modelOrder, int index) {
 			var orderCardScene = GD.Load<PackedScene>(ScenePathDictionary.OrderCardScenePath);
 			var orderCard = orderCardScene.Instantiate<Order>();
 			orderCard.Init();
 			orderCard.SetOrder(modelOrder);
+			orderCard.SetTreeIndex(index);
 			_ordersContainer.AddChild(orderCard);
 		}
 

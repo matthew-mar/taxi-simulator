@@ -19,7 +19,7 @@ namespace TaxiSimulator.Scenes.OrderGridCameraScene {
 			_gridCamera = (OrderGridCamera)_camera;
 
 			OrderSignals.SignalsProvider.OrderSelectedSignal.OrderSelected +=
-				async (OrderSignals.OrderArgs args) => {
+				async (OrderSignals.SelectedArgs args) => {
 					var order = await DbService.Instance.DbProvider
 						.OrderRespository
 						.GetOrderByIdAsync(args.OrderId);

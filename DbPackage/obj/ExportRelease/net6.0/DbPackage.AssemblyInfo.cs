@@ -11,7 +11,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("DbPackage")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyConfigurationAttribute("ExportRelease")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3ececc77a38534f6285fe4d8760980ec3536202")]
 [assembly: System.Reflection.AssemblyProductAttribute("DbPackage")]
