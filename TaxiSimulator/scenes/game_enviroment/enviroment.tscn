@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkck7kpgv5w6v"]
+
+[ext_resource type="PackedScene" uid="uid://q7y6qajrmtc7" path="res://scenes/mini_map/mini_map_controller.tscn" id="1_xfup5"]
+[ext_resource type="PackedScene" uid="uid://bau34ct4r8prs" path="res://scenes/pause_menu/pause_menu_controller.tscn" id="2_0kkjt"]
+[ext_resource type="PackedScene" uid="uid://b2dqquhs1bv4p" path="res://scenes/city/city.tscn" id="3_5i4cn"]
+[ext_resource type="PackedScene" uid="uid://dyrx76yvyfmh0" path="res://scenes/car_controller/car_controller.tscn" id="4_1c1sv"]
+
+[node name="Enviroment" type="Node3D"]
+
+[node name="UI" type="Node3D" parent="."]
+
+[node name="MiniMapController" parent="UI" instance=ExtResource("1_xfup5")]
+size_flags_horizontal = 4
+
+[node name="pause_menu_controller" parent="UI" instance=ExtResource("2_0kkjt")]
+visible = false
+
+[node name="city" parent="." instance=ExtResource("3_5i4cn")]
+
+[node name="CarController" parent="." instance=ExtResource("4_1c1sv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.1443, 4.07752, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100.586, 0)

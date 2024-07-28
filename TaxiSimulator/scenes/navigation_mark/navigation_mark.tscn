@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://gu1vutkoh47j"]
+
+[ext_resource type="Texture2D" uid="uid://clos8ca5xum8i" path="res://navigation (1).png" id="1_8ea5e"]
+[ext_resource type="Script" path="res://scripts/scenes/navigation_mark/NavigationMarkController.cs" id="2_qwlet"]
+[ext_resource type="Script" path="res://scripts/scenes/navigation_mark/view/MarkAgent.cs" id="3_urd4u"]
+
+[node name="NavigationMark" type="Sprite3D"]
+transform = Transform3D(3.77489e-07, -5, 2.18557e-07, 0, -2.18557e-07, -5, 5, 3.77489e-07, -1.65006e-14, 0, 0, 0)
+layers = 2
+texture = ExtResource("1_8ea5e")
+script = ExtResource("2_qwlet")
+
+[node name="MarkAgent" type="NavigationAgent3D" parent="."]
+path_desired_distance = 50.0
+path_height_offset = 0.5
+path_max_distance = 50.01
+navigation_layers = 3
+path_postprocessing = 1
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0, 0.0431373, 1)
+debug_path_custom_point_size = 18.45
+script = ExtResource("3_urd4u")

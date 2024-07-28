@@ -1,0 +1,22 @@
+{
+    "Companies": [
+        {
+            "Id": 1,
+            "Name": "yandex taxi",
+            "PlayerSigned": false,
+            "IconPath": "res://companies/yandex.png"
+        },
+        {
+            "Id": 2,
+            "Name": "uber",
+            "PlayerSigned": false,
+            "IconPath": "res://companies/uber.png"
+        },
+        {
+            "Id": 3,
+            "Name": "city mobile",
+            "PlayerSigned": false,
+            "IconPath": "res://companies/city_mobile.png"
+        }
+    ] 
+}

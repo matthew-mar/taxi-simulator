@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://knqrjcvi3f4h"]
+
+[ext_resource type="Texture2D" uid="uid://3qvhtvfsladf" path="res://scenes/order_grid/assets/panel (7).png" id="1_77hv2"]
+[ext_resource type="Texture2D" uid="uid://c0otdr6f8o7e" path="res://scenes/order_grid/assets/Ellipse 1.png" id="2_3i82q"]
+[ext_resource type="Texture2D" uid="uid://coyvgyfv4o4fm" path="res://scenes/order_grid/assets/Ellipse 2.png" id="3_c7n86"]
+[ext_resource type="Script" path="res://scripts/scenes/order_card/view/PaginationItem.cs" id="4_8m4nd"]
+
+[node name="pagination_item" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_77hv2")
+script = ExtResource("4_8m4nd")
+
+[node name="item_button" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 25.0
+offset_right = 70.0
+offset_bottom = 66.0
+toggle_mode = true
+texture_normal = ExtResource("2_3i82q")
+texture_pressed = ExtResource("3_c7n86")

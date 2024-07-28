@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://grk5tkmv5x31"]
+
+[ext_resource type="Script" path="res://scripts/scenes/parking_scene/ParkingController.cs" id="1_ee3vi"]
+[ext_resource type="PackedScene" uid="uid://d26gj47lpxaji" path="res://scenes/collision_area/collision_area.tscn" id="2_jsb43"]
+[ext_resource type="Texture2D" uid="uid://ddjm433nnjjgg" path="res://scenes/parking/assets/ParkingSigns.png" id="3_5gsle"]
+
+[node name="Parking" type="Node3D"]
+script = ExtResource("1_ee3vi")
+
+[node name="CollisionArea" parent="." instance=ExtResource("2_jsb43")]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 1, 0, -10, -4.37114e-08, 0, 0, 0)
+layers = 2
+texture = ExtResource("3_5gsle")

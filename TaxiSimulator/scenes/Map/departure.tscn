@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvw6w734d11j"]
+
+[ext_resource type="Texture2D" uid="uid://mkis55v6erh4" path="res://scenes/Map/assets/Departure.png" id="1_ksk5k"]
+
+[node name="Departure" type="Sprite3D"]
+process_priority = 1010
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+layers = 2
+sorting_offset = 3.485
+render_priority = -128
+texture = ExtResource("1_ksk5k")

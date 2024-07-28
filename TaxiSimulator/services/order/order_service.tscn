@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ujjkjiihjqyu"]
+
+[ext_resource type="Script" path="res://scripts/services/order/OrderService.cs" id="1_yrs3t"]
+
+[node name="order_service" type="Node"]
+script = ExtResource("1_yrs3t")

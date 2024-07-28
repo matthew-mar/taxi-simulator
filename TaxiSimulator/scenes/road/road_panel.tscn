@@ -1,0 +1,156 @@
+[gd_scene load_steps=2 format=3 uid="uid://duvw6q05e02gc"]
+
+[ext_resource type="PackedScene" uid="uid://ptfesd1fi6rr" path="res://scenes/road/new_road.tscn" id="1_lnkor"]
+
+[node name="RoadPanel" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="NewRoad" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 5, 0, 0)
+
+[node name="NewRoad2" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 15, 0, 0)
+
+[node name="NewRoad3" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 25, 0, 0)
+
+[node name="NewRoad4" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 35, 0, 0)
+
+[node name="NewRoad5" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 45, 0, 0)
+
+[node name="NewRoad6" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 55, 0, 0)
+
+[node name="NewRoad7" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 65, 0, 0)
+
+[node name="NewRoad8" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 75, 0, 0)
+
+[node name="NewRoad9" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 85, 0, 0)
+
+[node name="NewRoad10" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 95, 0, 0)
+
+[node name="NewRoad11" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 105, 0, 0)
+
+[node name="NewRoad12" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 115, 0, 0)
+
+[node name="NewRoad13" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 125, 0, 0)
+
+[node name="NewRoad14" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 135, 0, 0)
+
+[node name="NewRoad15" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 145, 0, 0)
+
+[node name="NewRoad16" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 155, 0, 0)
+
+[node name="NewRoad17" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 165, 0, 0)
+
+[node name="NewRoad18" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 175, 0, 0)
+
+[node name="NewRoad19" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 185, 0, 0)
+
+[node name="NewRoad20" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 195, 0, 0)
+
+[node name="NewRoad21" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 205, 0, 0)
+
+[node name="NewRoad22" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 215, 0, 0)
+
+[node name="NewRoad23" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 225, 0, 0)
+
+[node name="NewRoad24" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 235, 0, 0)
+
+[node name="NewRoad25" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 245, 0, 0)
+
+[node name="NewRoad26" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 255, 0, 0)
+
+[node name="NewRoad27" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 265, 0, 0)
+
+[node name="NewRoad28" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 275, 0, 0)
+
+[node name="NewRoad29" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 285, 0, 0)
+
+[node name="NewRoad30" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 295, 0, 0)
+
+[node name="NewRoad31" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 305, 0, 0)
+
+[node name="NewRoad32" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 315, 0, 0)
+
+[node name="NewRoad33" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 325, 0, 0)
+
+[node name="NewRoad34" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 335, 0, 0)
+
+[node name="NewRoad35" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 345, 0, 0)
+
+[node name="NewRoad36" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 355, 0, 0)
+
+[node name="NewRoad37" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 365, 0, 0)
+
+[node name="NewRoad38" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 375, 0, 0)
+
+[node name="NewRoad39" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 385, 0, 0)
+
+[node name="NewRoad40" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 395, 0, 0)
+
+[node name="NewRoad41" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 405, 0, 0)
+
+[node name="NewRoad42" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 415, 0, 0)
+
+[node name="NewRoad43" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 425, 0, 0)
+
+[node name="NewRoad44" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 435, 0, 0)
+
+[node name="NewRoad45" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 445, 0, 0)
+
+[node name="NewRoad46" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 455, 0, 0)
+
+[node name="NewRoad47" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 465, 0, 0)
+
+[node name="NewRoad48" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 475, 0, 0)
+
+[node name="NewRoad49" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 485, 0, 0)
+
+[node name="NewRoad50" parent="." instance=ExtResource("1_lnkor")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 495, 0, 0)

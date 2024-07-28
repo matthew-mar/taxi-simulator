@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxx5dgou0wibw"]
+
+[ext_resource type="Script" path="res://scripts/scenes/point/PointController.cs" id="1_344uw"]
+[ext_resource type="PackedScene" uid="uid://d26gj47lpxaji" path="res://scenes/collision_area/collision_area.tscn" id="1_mcfgi"]
+[ext_resource type="Texture2D" uid="uid://yb3361gl5jgm" path="res://scripts/scenes/map_camera/view/point.png" id="1_xtoo5"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7ipm0"]
+height = 1.51676
+radius = 14.9598
+
+[node name="NavigationPoint" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_344uw")
+
+[node name="CollisionArea" parent="." instance=ExtResource("1_mcfgi")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0.105174, 10.1416, -0.583385)
+
+[node name="NavigationPointAgent" type="NavigationAgent3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, -1, 0, 10, -4.37114e-08, 0, 0, 0)
+layers = 2
+texture = ExtResource("1_xtoo5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_7ipm0")

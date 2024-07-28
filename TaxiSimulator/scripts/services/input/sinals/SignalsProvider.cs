@@ -1,0 +1,96 @@
+namespace TaxiSimulator.Services.InputService.Signlas {
+    public class SignalsProvider {
+        private static EscapePressedSignal escapePressedSignal = null;
+
+        private static HorizontalPressedSignal horizontalPressedSignal = null;
+
+        private static VerticalPressedSignal verticalPressedSignal = null;
+
+        private static MouseScrolledUpSignal mouseScrolledUpSignal = null;
+
+        private static MouseScrolledDownSignal mouseScrolledDownSignal = null;
+
+        private static ActionMPressedSignal actionMPressedSignal = null;
+
+        private static MouseLeftClickedSignal mouseLeftClickedSignal = null;
+
+        private static ActionCPressedSignal actionCPressedSignal = null;
+
+        private static ActionEPressedSignal actionEPressedSignal= null;
+
+        public static EscapePressedSignal EscapePressedSignal {
+            get {
+                escapePressedSignal ??= new();
+                return escapePressedSignal;
+            }
+        }
+
+        public static HorizontalPressedSignal HorizontalPressedSignal {
+            get {
+                horizontalPressedSignal ??= new();
+                return horizontalPressedSignal;
+            }
+        }
+
+        public static VerticalPressedSignal VerticalPressedSignal {
+            get {
+                verticalPressedSignal ??= new();
+                return verticalPressedSignal;
+            }
+        }
+
+        public static MouseScrolledUpSignal MouseScrolledUpSignal {
+            get {
+                mouseScrolledUpSignal ??= new();
+                return mouseScrolledUpSignal;
+            }
+        }
+
+        public static MouseScrolledDownSignal MouseScrolledDownSignal {
+            get {
+                mouseScrolledDownSignal ??= new();
+                return mouseScrolledDownSignal;
+            }
+        }
+
+        public static ActionMPressedSignal ActionMPressedSignal {
+            get {
+                actionMPressedSignal ??= new();
+                return actionMPressedSignal;
+            }
+        }
+
+        public static MouseLeftClickedSignal MouseLeftClickedSignal {
+            get {
+                mouseLeftClickedSignal ??= new();
+                return mouseLeftClickedSignal;
+            }
+        }
+
+        public static ActionCPressedSignal ActionCPressedSignal {
+            get {
+                actionCPressedSignal ??= new();
+                return actionCPressedSignal;
+            }
+        }
+
+        public static ActionEPressedSignal ActionEPressedSignal {
+            get {
+                actionEPressedSignal ??= new();
+                return actionEPressedSignal;
+            }
+        }
+
+        public static void ClearSignals() {
+            escapePressedSignal = null;
+            horizontalPressedSignal = null;
+            verticalPressedSignal = null;
+            mouseScrolledUpSignal = null;
+            mouseScrolledDownSignal = null;
+            actionMPressedSignal = null;
+            mouseLeftClickedSignal = null;
+            actionCPressedSignal = null;
+            actionEPressedSignal = null;
+        }
+    }
+}

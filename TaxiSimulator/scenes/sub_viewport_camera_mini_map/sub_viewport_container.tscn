@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ds5gdfox3r874"]
+
+[ext_resource type="Script" path="res://scripts/scenes/sub_viewport_container/SubViewportContainerController.cs" id="1_27ggp"]
+[ext_resource type="Script" path="res://scripts/scenes/sub_viewport_container/view/SubViewportWrapper.cs" id="2_7m3nx"]
+[ext_resource type="PackedScene" uid="uid://bvxvrmsq6lp6p" path="res://scenes/mini_map_camera/mini_map_camera.tscn" id="3_deefq"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_right = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27ggp")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(496, 312)
+render_target_update_mode = 4
+script = ExtResource("2_7m3nx")
+
+[node name="mini_map_camera_controller" parent="SubViewport" instance=ExtResource("3_deefq")]
